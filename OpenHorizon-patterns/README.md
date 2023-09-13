@@ -7,7 +7,9 @@ node type.
 * [query](query)
 * [operator](operator)
 
-## General steps for deploying via Pattern  
+## General steps for deploying via Pattern
+0. [Install Docker]() and login 
+
 1. Update configurations values for service.definition.json
    * org          
    * url
@@ -26,11 +28,11 @@ node type.
 hzn exchange service publish -P -r "docker.io:anyloguser:dckr_pat_zThA7XRQ_a-9J8_OKculQM9kYrw" -f service.definition.json
 ```
 
-3. Update configuration vaules for deployment.policy.json
+3. Update configuration values for deployment.policy.json
 
 4. Add deployment policy 
 ```shell
-hzn exchange deployment addpolicy -f deployment.policy.json ${ORG}/anylog-node_0.1.0_amd64​
+hzn exchange deployment addpolicy -f deployment.policy.json ${ORG}/anylog-node_0.1.0_amd64
 ```
 
 5. node.policy.json contains a property value of anylog.master == true (again just our arbitrary string value) so once 
