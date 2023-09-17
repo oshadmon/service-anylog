@@ -1,7 +1,7 @@
 {
     "services": [
         {
-            "org": "myorg",
+            "org": "anylog",
             "url": "anylog-node",
             "variables": {
                 "NODE_TYPE": "query",
