@@ -4,7 +4,7 @@
     "description": "A sample AnyLog service to deploy a Master Node",
     "documentation": "https://github.com/open-horizon-services/service-anylog/tree/os-dev/README.md",
     "url": "anylog-node",
-    "version": "0.1.0",
+    "version": "1.31",
     "arch": "amd64",
     "sharable": "multiple",
     "requiredServices": [],
