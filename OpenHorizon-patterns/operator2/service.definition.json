@@ -19,11 +19,11 @@
         },
         {
             "name": "NODE_TYPE",
-            "default": "operator"
+            "default": "master"
         },
         {
             "name": "NODE_NAME",
-            "default": "anylog-operator2"
+            "default": "anylog-master"
         },
         {
             "name": "COMPANY_NAME",
@@ -31,11 +31,11 @@
         },
         {
             "name": "ANYLOG_SERVER_PORT",
-            "default": 32148
+            "default": 32048
         },
                 {
             "name": "ANYLOG_REST_PORT",
-            "default": 32149
+            "default": 32049
         },
         {
             "name": "ANYLOG_BROKER_PORT",
@@ -43,11 +43,11 @@
         },
         {
             "name": "LEDGER_CONN",
-            "default": "172.105.4.104:32048"
+            "default": "127.0.0.1:32048"
         },
         {
             "name": "ENABLE_MQTT",
-            "default": "true"
+            "default": "false"
         }
     ],
     "deployment": {
