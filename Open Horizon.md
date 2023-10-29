@@ -14,8 +14,14 @@ Open Horizon can be used to easily manage and deploy AnyLog node(s) through thei
 ## Requirements 
 * A physical / virtual machine for each node, as OpenHorizon is unable to deploy more than 1 instance per node 
 * [Machine requirements](https://www.ibm.com/docs/en/eam/4.0?topic=devices-preparing-edge-devicehttps://www.ibm.com/docs/en/eam/4.0?topic=devices-preparing-edge-device)
-   * **Operating System**: Ubuntu / Debian 
-   * For 64
+**For 64-bit Intel or AMD device or virtual machine:**
+* 64-bit Intel or AMD device or virtual machine
+* An internet connection for your device (wired or wifi)
+
+**For Linux on ARM (32-bit):**
+* Hardware requirements - Raspberry Pi 3A+, 3B, 3B+, or 4 (preferred), but also supports  A+, B+, 2B, Zero-W, or Zero-WH
+* MicroSD flash card (32 GB preferred)
+* An Internet connection for your device (wired or wifi). Note: Some devices can require extra hardware for supporting wifi.
 
 ## Associating Machine to Open Horizon
 The following steps will associate a new machine with the Open Horizon management platform. The process will complete the 
@@ -67,6 +73,11 @@ hzn eventlog list -f
 <<COMMENT
 ```
 
+To unregister an edge service: 
+```shell
+hzn unregister -f 
+```
+
 6. Docker is already installed via HZN, however needs permissions to use not as root
 ```shell
 USER=`whoami` 
@@ -95,7 +106,7 @@ IBM has deployed a _Master_ node which will be used against `132.177.125.232:320
 * Company Name 
 * For Operator Node - Cluster Name (optional)
 * For Operator Node - Default DBMS (optional)
-* If you're deploying your own Master node, make sure to update `LEDGER_CONN` value
+* If you're deploying your own Master node, make sure to update `LEDGER_CONN` value in other node configurations 
 
 3. Deploy Node - Note, `hzn` is not able to deploy more than a single instance on a given machine 
 ```shell
