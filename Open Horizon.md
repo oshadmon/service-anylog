@@ -11,6 +11,11 @@ Open Horizon can be used to easily manage and deploy AnyLog node(s) through thei
 * [AnyLog Documentation](https://github.com/AnyLog-co/documentation)
 * [AnyLog Website](https://anylog.co)
 
+## Requirements 
+* A physical / virtual machine for each node, as OpenHorizon is unable to deploy more than 1 instance per node 
+* [Machine requirements](https://www.ibm.com/docs/en/eam/4.0?topic=devices-preparing-edge-devicehttps://www.ibm.com/docs/en/eam/4.0?topic=devices-preparing-edge-device)
+   * **Operating System**: Ubuntu / Debian 
+   * For 64
 
 ## Associating Machine to Open Horizon
 The following steps will associate a new machine with the Open Horizon management platform. The process will complete the 
@@ -22,18 +27,7 @@ following:
 
 1. On the node Update / Upgrade Node
 ```shell
-# Debian / Ubuntu 
 for CMD in update upgrade ; do sudo apt-get -y ${CMD} ; done
-
-# Redhat / CentOS 
-for CMD in update upgrade ; do sudo yum -y ${CMD} ; done
-
-# Fedora
-for CMD in update upgrade ; do sudo dnf -y ${CMD} ; done
-
-
-# Alpine 
-sudo apk update && sudo apk upgrade
 ```
 
 2. Create an Open Horizon [API Key](https://www.ibm.com/docs/en/eam/4.3?topic=installation-creating-your-api-key)
@@ -103,4 +97,16 @@ IBM has deployed a _Master_ node which will be used against `132.177.125.232:320
 * For Operator Node - Default DBMS (optional)
 * If you're deploying your own Master node, make sure to update `LEDGER_CONN` value
 
-  3.      
+3. Deploy Node - Note, `hzn` is not able to deploy more than a single instance on a given machine 
+```shell
+# Operator Node 
+cd deployments/operator
+hzn register --pattern anylog-node --policy privileged_node_policy.json
+
+# Query Node 
+cd deployments/query
+hzn register --pattern anylog-node --policy privileged_node_policy.json
+```
+
+4. Validate node is running  
+      

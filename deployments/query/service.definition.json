@@ -51,7 +51,7 @@
         },
         {
             "name": "LEDGER_CONN",
-            "defaultValue": "172.105.4.104:32048"
+            "defaultValue": "132.177.125.232:32048"
         },
         {
             "name": "ENABLE_MQTT",
