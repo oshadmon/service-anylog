@@ -84,3 +84,23 @@ newgrp docker
 At the end of the process, OpenHorizon should show a new active node
 ![OpenHorizon_node_state.png](imgs%2FOpenHorizon_node_state.png)
 
+## Associate AnyLog Deployment with OpenHorizon
+
+@Troy - needs to explain how he associated AnyLog with OpenHorizon  
+
+## Create AnyLog node as a Service on Open Horizon
+The following provides directions for deploying an AnyLog Operator & Query via OpenHorizon. 
+
+IBM has deployed a _Master_ node which will be used against `132.177.125.232:32048` (REST communication - `132.177.125.232:32049`). 
+
+1. via [AnyLog Downloads](https://anylog.co/download-anylog) request access to our _Docker_ repository a 3-month license
+
+2. Update `service.definition.json` configuration file  ([Operator Node](deployments/operator/service.definition.json) | [Query Node](deployments/query/service.definition.json)) with the following: 
+* License Key 
+* Node Name (optional)
+* Company Name 
+* For Operator Node - Cluster Name (optional)
+* For Operator Node - Default DBMS (optional)
+* If you're deploying your own Master node, make sure to update `LEDGER_CONN` value
+
+  3.      

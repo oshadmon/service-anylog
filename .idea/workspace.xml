@@ -5,40 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="570649da-fb66-4dc2-aa28-0ef35dd7900c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/service-anylog.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Open Horizon_old.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Open Horizon.md" beforeDir="false" afterPath="$PROJECT_DIR$/Open Horizon.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/defaults/deployment.policy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/defaults/node.policy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/defaults/service.definition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/defaults/userinput.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/master/deployment.policy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/master/node.policy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/master/service.definition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/master/userinput.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/operator2/deployment.policy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/operator2/node.policy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/operator2/service.definition.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenHorizon-patterns/operator2/userinput.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anylog-generic/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anylog-generic/anylog_configs.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anylog-generic/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anylog_IBM_configs.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anylog_IBM_configs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anylog_generic_configs.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anylog_generic_configs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/base.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample-docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample-docker/entrypoint.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample-docker/start_anylog.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
