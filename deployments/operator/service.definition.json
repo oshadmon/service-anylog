@@ -35,7 +35,7 @@
         },
         {
             "name": "NODE_NAME",
-            "defaultValue": "anylog-operator1"
+            "defaultValue": "anylog-operator2"
         },
         {
             "name": "COMPANY_NAME",

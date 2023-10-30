@@ -3,8 +3,8 @@
     "label": "anylog-node for amd64",
     "description": "A sample AnyLog service to deploy a Master Node",
     "documentation": "https://github.com/open-horizon-services/service-anylog/tree/os-dev/README.md",
-    "url": "anylog-node",
-    "version": "1.3",
+    "url": "anylog-training-node",
+    "version": "1.3.2310",
     "arch": "amd64",
     "sharable": "multiple",
     "requiredServices": [],
@@ -27,7 +27,7 @@
         },
         {
             "name": "LICENSE_KEY",
-            "defaultValue":
+            "defaultValue": "b7133573e398615da8fb419aedfa51af90307c9c3b1a2278561cf7e1040ade3b4a40cc8263724f9128de96198c13a447b1bd49b972f7e7bb37e6d3152d8ef139ed18514e6aa2038793e80068f586c12aee70718f43a5bfa901bf94844bf1a94087155f83c49980775518ace2de986af25ee2c5e5a0efc2833d16078aad9e28642024-02-01bGuest"
         },
         {
             "name": "NODE_TYPE",
@@ -35,11 +35,11 @@
         },
         {
             "name": "NODE_NAME",
-            "defaultValue": "anylog-query"
+            "defaultValue": "anylog-query1"
         },
         {
             "name": "COMPANY_NAME",
-            "defaultValue": "Open Horizon"
+            "defaultValue": "AnyLog"
         },
         {
             "name": "ANYLOG_SERVER_PORT",
@@ -48,6 +48,14 @@
         {
             "name": "ANYLOG_REST_PORT",
             "defaultValue": "32349"
+        },
+        {
+            "name": "CLUSTER_NAME",
+            "defaultValue": "anylog-cluster1"
+        },
+        {
+            "name": "DEFAULT_DBMS",
+            "defaultValue": "anylog"
         },
         {
             "name": "LEDGER_CONN",
@@ -65,7 +73,7 @@
     "deployment": {
         "services": {
             "anylog-node": {
-                "image": "anylogco/anylog-network:beta",
+                "image": "anylogco/anylog-network:training",
                 "network": "host"
             }
         }
