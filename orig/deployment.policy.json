@@ -1,13 +1,13 @@
 {
-  "label": "anylog-node_1.3_amd64 Deployment Policy",
+  "label": "anylog-node_0.1.0_amd64 Deployment Policy",
   "description": "A super-simple sample Horizon Deployment Policy",
   "service": {
     "name": "anylog-node",
-    "org": "anylog",
+    "org": "myorg",
     "arch": "*",
     "serviceVersions": [
       {
-        "version": "1.3",
+        "version": "0.1.0",
         "priority":{}
       }
     ]
@@ -19,7 +19,7 @@
   ],
   "userInput": [
     {
-      "serviceOrgid": "anylog",
+      "serviceOrgid": "myorg",
       "serviceUrl": "anylog-node",
       "serviceVersionRange": "[0.0.0,INFINITY)",
       "inputs": [
