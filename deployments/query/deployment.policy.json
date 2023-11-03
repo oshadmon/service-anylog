@@ -1,13 +1,13 @@
 {
-  "label": "anylog-node_1.3_amd64 Deployment Policy",
+  "label": "anylog-training-node_1.3.2310_amd64 Deployment Policy",
   "description": "A super-simple sample Horizon Deployment Policy",
   "service": {
-    "name": "anylog-node",
+    "name": "anylog-training-node",
     "org": "anylog",
     "arch": "*",
     "serviceVersions": [
       {
-        "version": "1.3",
+        "version": "1.3.2310",
         "priority":{}
       }
     ]
@@ -20,7 +20,7 @@
   "userInput": [
     {
       "serviceOrgid": "anylog",
-      "serviceUrl": "anylog-node",
+      "serviceUrl": "anylog-training-node",
       "serviceVersionRange": "[0.0.0,INFINITY)",
       "inputs": [
         {
