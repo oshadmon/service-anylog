@@ -84,6 +84,9 @@ sql openhorizon format=table "select increments(second, 1, timestamp), MIN(times
 
 # number of rows per host
 sql openhorizon format=table "select hostname, count(*) FROM kubearmor group by hostname;"
+
+# host_list all columns 
+sql openhorizon format=table "select * FROM host_list;" 
 ``` 
 
 * Sections of data 
