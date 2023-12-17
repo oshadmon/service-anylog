@@ -2,6 +2,14 @@
 
 Remote CLI: http://45.79.92.25:31800/  
 
+**Notes**: 
+1. we separated the content in [azure-k8s][azure-k8s-cluster-telemetry.json](azure-k8s-cluster-telemetry.json) into 2 tables 
+2. I added the following rows to the JSON file, that way _host_list_ has the same hostnames as _kubearmor_
+```json
+{"ClusterName": "default", "HostName": "aks-agentpool-84859103-vmss000000", "PPID": 0, "UID": 0}
+{"ClusterName": "default", "HostName": "aks-agentpool-84859103-vmss000001", "PPID": 0, "UID": 0}
+```
+
 ## Setup Directions 
 The following steps are done on the _Operator_ node unless stated otherwise
 
