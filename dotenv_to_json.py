@@ -5,7 +5,7 @@ import os
 
 ROOT_PATH = os.path.dirname(os.path.expanduser(os.path.expanduser(os.path.abspath(__file__))))
 SAMPLE_CONFIGS = os.path.join(ROOT_PATH, 'anylog_generic_configs.env')
-BASE_CONFIGS = os.path.join(ROOT_PATH, 'base.json')
+BASE_CONFIGS = os.path.join(ROOT_PATH, 'deployments', 'base.json')
 
 
 def __read_dotenv(config_file:str)->dict:

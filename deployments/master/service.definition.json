@@ -11,7 +11,7 @@
     "userInput": [
         {
             "name": "INIT_TYPE",
-            "defaultValue": "training"
+            "defaultValue": "prod"
         },
         {
             "name": "ANYLOG_PATH",
@@ -19,7 +19,7 @@
         },
         {
             "name": "LOCAL_SCRIPTS",
-            "defaultValue": "/app/deployment-scripts/training-deployment"
+            "defaultValue": "/app/deployment-scripts/node-deployment"
         },
         {
             "name": "TEST_DIR",
@@ -27,7 +27,7 @@
         },
         {
             "name": "LICENSE_KEY",
-            "defaultValue":
+            "defaultValue": ""
         },
         {
             "name": "NODE_TYPE",
@@ -39,7 +39,7 @@
         },
         {
             "name": "COMPANY_NAME",
-            "defaultValue": "Open Horizon"
+            "defaultValue": "New Company"
         },
         {
             "name": "ANYLOG_SERVER_PORT",
@@ -50,12 +50,36 @@
             "defaultValue": "32049"
         },
         {
-            "name": "LEDGER_CONN",
-            "defaultValue": "127.0.0.1:32048"
+            "name": "TCP_BIND",
+            "defaultValue": "false"
         },
         {
-            "name": "ENABLE_MQTT",
+            "name": "REST_BIND",
             "defaultValue": "false"
+        },
+        {
+            "name": "DB_TYPE",
+            "defaultValue": "sqlite"
+        },
+        {
+            "name": "DB_USER",
+            "defaultValue": ""
+        },
+        {
+            "name": "DB_PASSWD",
+            "defaultValue": ""
+        },
+        {
+            "name": "DB_IP",
+            "defaultValue": "127.0.0.1"
+        },
+        {
+            "name": "DB_PORT",
+            "defaultValue": 5432
+        },
+        {
+            "name": "LEDGER_CONN",
+            "defaultValue": "127.0.0.1:32048"
         },
         {
             "name": "MONITOR_NODES",
@@ -65,7 +89,7 @@
     "deployment": {
         "services": {
             "anylog-node": {
-                "image": "anylogco/anylog-network:beta",
+                "image": "anylogco/anylog-network:latest",
                 "network": "host"
             }
         }

@@ -11,7 +11,7 @@
     "userInput": [
         {
             "name": "INIT_TYPE",
-            "defaultValue": "training"
+            "defaultValue": "prod"
         },
         {
             "name": "ANYLOG_PATH",
@@ -19,7 +19,7 @@
         },
         {
             "name": "LOCAL_SCRIPTS",
-            "defaultValue": "/app/deployment-scripts/training-deployment"
+            "defaultValue": "/app/deployment-scripts/node-deployment"
         },
         {
             "name": "TEST_DIR",
@@ -27,7 +27,7 @@
         },
         {
             "name": "LICENSE_KEY",
-            "defaultValue": "b7133573e398615da8fb419aedfa51af90307c9c3b1a2278561cf7e1040ade3b4a40cc8263724f9128de96198c13a447b1bd49b972f7e7bb37e6d3152d8ef139ed18514e6aa2038793e80068f586c12aee70718f43a5bfa901bf94844bf1a94087155f83c49980775518ace2de986af25ee2c5e5a0efc2833d16078aad9e28642024-02-01bGuest"
+            "defaultValue": ""
         },
         {
             "name": "NODE_TYPE",
@@ -35,11 +35,11 @@
         },
         {
             "name": "NODE_NAME",
-            "defaultValue": "anylog-operator2"
+            "defaultValue": "anylog-operator"
         },
         {
             "name": "COMPANY_NAME",
-            "defaultValue": "AnyLog"
+            "defaultValue": "New Company"
         },
         {
             "name": "ANYLOG_SERVER_PORT",
@@ -50,20 +50,72 @@
             "defaultValue": "32149"
         },
         {
-            "name": "CLUSTER_NAME",
-            "defaultValue": "anylog-cluster1"
+            "name": "ANYLOG_BROKER_PORT",
+            "defaultValue": ""
         },
         {
-            "name": "DEFAULT_DBMS",
-            "defaultValue": "anylog"
+            "name": "TCP_BIND",
+            "defaultValue": "false"
+        },
+        {
+            "name": "REST_BIND",
+            "defaultValue": "false"
+        },
+        {
+            "name": "BROKER_BIND",
+            "defaultValue": "false"
+        },
+        {
+            "name": "DB_TYPE",
+            "defaultValue": "sqlite"
+        },
+        {
+            "name": "DB_USER",
+            "defaultValue": ""
+        },
+        {
+            "name": "DB_PASSWD",
+            "defaultValue": ""
+        },
+        {
+            "name": "DB_IP",
+            "defaultValue": "127.0.0.1"
+        },
+        {
+            "name": "DB_PORT",
+            "defaultValue": "5432"
         },
         {
             "name": "LEDGER_CONN",
-            "defaultValue": "132.177.125.232:32048"
+            "defaultValue": "127.0.0.1:32048"
+        },
+        {
+            "name": "CLUSTER_NAME",
+            "defaultValue": "new-company-cluster1"
+        },
+        {
+            "name": "DEFAULT_DBMS",
+            "defaultValue": "new_company"
+        },
+        {
+            "name": "ENABLE_PARTITIONS",
+            "defaultValue": "true"
+        },
+        {
+            "name": "PARTITION_COLUMN",
+            "defaultValue": "insert_timestamp"
+        },
+        {
+            "name": "PARTITION_INTERVAL",
+            "defaultValue": "1 day"
+        },
+        {
+            "name": "PARTITION_KEEP",
+            "defaultValue": "3"
         },
         {
             "name": "ENABLE_MQTT",
-            "defaultValue": "true"
+            "defaultValue": "false"
         },
         {
             "name": "MONITOR_NODES",
