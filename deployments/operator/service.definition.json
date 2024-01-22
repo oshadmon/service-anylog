@@ -125,7 +125,7 @@
     "deployment": {
         "services": {
             "anylog-node": {
-                "image": "anylogco/anylog-network:training",
+                "image": "anylogco/anylog-network:latest",
                 "network": "host"
             }
         }

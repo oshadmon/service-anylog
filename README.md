@@ -9,12 +9,6 @@
 of AnyLog nodes. 
 
 * [Deployments Package](https://github.com/AnyLog-co/deployments) - Tool to deploy AnyLog with either _Docker_ or _Kubernetes_
-  * [anylog-generic](anylog-generic/) - docker-compose file(s) to deploy an AnyLog instance. Users should update values  
-  in [anylog_configs.env](anylog-generic/anylog_configs.env), as well as [.env](anylog-generic/.env), if deploying 
-  multiple nodes on the same physical machine.
-  
-* Sample [Dockerfile](sample-docker/Dockerfile) - Dockerfile that uses AnyLog as a base image, and start an empty node
-
 
 # General Configuration of Network
 
@@ -23,4 +17,7 @@ can be deployed either on the same physical machine, or unique machines. Directi
 of the diagram. 
 
 ![Demo Diagram](imgs/deployment_diagram.png)
+
+
+For a [3-month license key](https://anylog.co/download-anylog/) | Support: [info@anylog.co](mailto:info@anylog.co)
 
