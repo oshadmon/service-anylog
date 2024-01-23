@@ -1,4 +1,4 @@
-# Open Horizon 
+# Open Horizon Edge Service
 
 Open Horizon is a platform for managing the service software lifecycle of containerized workloads and related machine 
 learning assets. It enables autonomous management of applications deployed to distributed web scale fleets of edge 

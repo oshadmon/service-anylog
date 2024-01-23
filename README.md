@@ -1,14 +1,10 @@
 ![AnyLog Logo](imgs/anylog_logo.png)
 # AnyLog Service for  OpenHorizon  
 
+* [Edge Service](OpenHorizon_EdgeService.md) - How to deploy AnyLog as an _Edge Service_ with Open Horizon
+* [Deploy Kubearmor](AnyLog_Kubearmor.md) - Deploy Kubearmor with AnyLog
 * [AnyLog Documentation](https://github.com/AnyLog-co/documentation)
-
-* [Open Horizon Deployment](Open%20Horizon.md) - How to deploy AnyLog with Open Horizon
-
-* [Deployment Scripts](https://github.com/AnyLog-co/deployment-scripts) - AnyLog code used to configure different types 
-of AnyLog nodes. 
-
-* [Deployments Package](https://github.com/AnyLog-co/deployments) - Tool to deploy AnyLog with either _Docker_ or _Kubernetes_
+* [Open Horizon Documentation](https://open-horizon.github.io/)
 
 # General Configuration of Network
 
@@ -21,3 +17,4 @@ of the diagram.
 
 For a [3-month license key](https://anylog.co/download-anylog/) | Support: [info@anylog.co](mailto:info@anylog.co)
 
+ 
