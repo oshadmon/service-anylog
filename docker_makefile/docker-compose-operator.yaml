@@ -1,0 +1,27 @@
+version: "2.2"
+services:
+  anylog-operator:
+    image: anylogco/anylog-network:edgelake
+    restart: always
+    env_file:
+      - anylog_operator.env
+    environment:
+      - INIT_TYPE=prod
+    container_name: anylog-operator
+    stdin_open: true
+    tty: true
+#    network_mode: host
+    ports:
+      - 32148:32148
+      - 32149:32149
+
+    volumes:
+      - anylog-operator-anylog:/app/AnyLog-Network/anylog
+      - anylog-operator-blockchain:/app/AnyLog-Network/blockchain
+      - anylog-operator-data:/app/AnyLog-Network/data
+      - anylog-operator-local-scripts:/app/deployment-scripts
+volumes:
+  anylog-operator-anylog:
+  anylog-operator-blockchain:
+  anylog-operator-data:
+  anylog-operator-local-scripts:
