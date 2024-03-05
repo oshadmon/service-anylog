@@ -1,11 +1,11 @@
 # Makefile
 
-# Default target
+
 all: help
 build:
 	docker pull anylogco/anylog-network:edgelake
 up:
-	@echo "Deploy with AnyLog config file: anylog_$(filter-out $@,$(MAKECMDGOALS)).env"
+	@echo "Deploy AnyLog with config file: anylog_$(filter-out $@,$(MAKECMDGOALS)).env"
 	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml up -d
 down:
 	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml down
@@ -17,7 +17,6 @@ exec:
 	docker exec -it anylog-$(filter-out $@,$(MAKECMDGOALS))
 logs:
 	docker logs anylog-$(filter-out $@,$(MAKECMDGOALS))
-# Help target
 help:
 	@echo "Usage: make [target] [anylog-type]"
 	@echo "Targets:"
@@ -30,4 +29,4 @@ help:
 	@echo "  clean       Clean up volumes and network"
 	@echo "  help        Show this help message"
 	@echo "	 supported AnyLog types: master, operator and query"
-
+	@echo "Sample calls: make up master | make attach master | make clean master"
