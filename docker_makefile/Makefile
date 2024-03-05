@@ -1,6 +1,5 @@
 # Makefile
 
-
 all: help
 build:
 	docker pull anylogco/anylog-network:edgelake
