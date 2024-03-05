@@ -1,80 +1,27 @@
-# Define variables
-$(eval COMPOSE_FILE := docker-compose-operator.yaml)
-CONTAINER_NAME := anylog-operator
+# Makefile
 
-# Set default target
-all: up
-## Define targets
-#master-up:
-#	$(eval COMPOSE_FILE := docker-compose-master.yaml)
-#	$(MAKE) up
-#operator-up:
-#	$(eval COMPOSE_FILE := docker-compose-operator.yaml)
-#	$(MAKE) up
-#query-up:
-#	$(eval COMPOSE_FILE  := docker-compose-query.yaml)
-#	$(MAKE) up
-#
-#master-down:
-#	$(eval COMPOSE_FILE := docker-compose-master.yaml)
-#	$(MAKE) down
-#operator-down:
-#	$(eval COMPOSE_FILE := docker-compose-operator.yaml)
-#	$(MAKE) down
-#query-down:
-#	$(eval COMPOSE_FILE := docker-compose-query.yaml)
-#	$(MAKE) down
-#
-#master-clean:
-#	$(eval COMPOSE_FILE := docker-compose-master.yaml)
-#	$(MAKE) clean
-#operator-clean:
-#	$(eval COMPOSE_FILE := docker-compose-operator.yaml)
-#	$(MAKE) clean
-#query-clean:
-#	$(eval COMPOSE_FILE := docker-compose-query.yaml)
-#	$(MAKE) clean
-#
-#master-attach:
-#	CONTAINER_NAME := anylog-master
-#	$(MAKE) attach
-#operator-attach:
-#	CONTAINER_NAME := anylog-operator
-#	$(MAKE) attach
-#query-attach:
-#	CONTAINER_NAME := anylog-query
-#	$(MAKE) attach
-#
-#master-exec:
-#	CONTAINER_NAME := anylog-master
-#	$(MAKE) exec
-#operator-exec:
-#	CONTAINER_NAME := anylog-operator
-#	$(MAKE) exec
-#query-exec:
-#	CONTAINER_NAME := anylog-query
-#	$(MAKE) exec
-
+# Default target
+all: help
 build:
 	docker pull anylogco/anylog-network:edgelake
 up:
-	docker-compose -f ${COMPOSE_FILE} up -d
-logs:
-	docker-compose -f ${COMPOSE_FILE} logs -f
-attach:
-	docker attach --detach-keys=ctrl-d ${CONTAINER_NAME}
-exec:
-	docker exec -it ${CONTAINER_NAME} bash
+	@echo "Deploy with AnyLog config file: anylog_$(filter-out $@,$(MAKECMDGOALS)).env"
+	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml up -d
 down:
-	docker-compose -f ${COMPOSE_FILE} down
-
+	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml down
 clean:
-	docker-compose -f ${COMPOSE_FILE} down -v --remove-orphans
-
+	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml down -v --remove-orphans
+attach:
+	docker attach --detach-keys=ctrl-d anylog-$(filter-out $@,$(MAKECMDGOALS))
+exec:
+	docker exec -it anylog-$(filter-out $@,$(MAKECMDGOALS))
+logs:
+	docker logs anylog-$(filter-out $@,$(MAKECMDGOALS))
+# Help target
 help:
-	@echo "Usage: make [target]"
+	@echo "Usage: make [target] [anylog-type]"
 	@echo "Targets:"
-	@echo "  build       Build the containers"
+	@echo "  build       Pull the docker image"
 	@echo "  up          Start the containers"
 	@echo "  attach      Attach to AnyLog instance"
 	@echo "  exec        Attach to shell interface for container"
@@ -82,4 +29,5 @@ help:
 	@echo "  logs        View logs of the containers"
 	@echo "  clean       Clean up volumes and network"
 	@echo "  help        Show this help message"
-	@echo "Sample command: make master-up"
+	@echo "	 supported AnyLog types: master, operator and query"
+
