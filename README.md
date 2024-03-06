@@ -1,8 +1,14 @@
 ![AnyLog Logo](imgs/anylog_logo.png)
 # AnyLog Service for  OpenHorizon
 
+AnyLog is a decentralized network to manage IoT data. Nodes in the network are compute instances that execute the AnyLog 
+Software. Joining a network requires the following steps:
+1. Install the AnyLog Software on computer instance
+2. Configure a node such that it can join an exiting network (or create a new network).
+
+
 **Table of Content**:
-* [Install OpenHorizon](OpenHorizon_install.md) - Steps to install open horizon
+* [Install OpenHorizon](OpenHorizon_install.md) - Steps to install OpenHorizon
 * [AnyLog via EdgeService](OpenHorizon_EdgeService.md) - Steps to install AnyLog as an OpenHorizon EdgeService
 * [AnyLog via Policy](OpenHorizon_policy.md) - Steps to install AnyLog via policy
 * [KubeArmor](AnyLog_KubeArmor) - Accept data into AnyLog from KubeArmor via [_gRPC_](https://grpc.io/)
