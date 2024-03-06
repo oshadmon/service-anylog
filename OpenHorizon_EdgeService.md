@@ -1,10 +1,10 @@
 # OpenHorizon Edge Service
 
-[OpenHorizon Edge Service](https://cp-console.ieam42-edge-8e873dd4c685acf6fd2f13f4cdfb05bb-0000.us-south.containers.appdomain.cloud/oidc/login.jsp)
-is an online GUI-based deployment process for containerized workload or application that runs at the edge of a network.  
+[OpenHorizon Edge Service](https://cp-console.ieam42-edge-8e873dd4c685acf6fd2f13f4cdfb05bb-0000.us-south.containers.appdomain.cloud/oidc/login.jsp) is an online GUI-based deployment process for containerized workload or application that 
+runs at the edge of a network.  
 
 * [Install OpenHorizon](OpenHorizon_install.md)
-* [Deploy via Pattern]()
+* [Deploy via Pattern](OpenHorizon_policy.md)
 
 ## Deploy AnyLog
 By deploying AnyLog, users can monitor Distributed Edge Nodes and Data from a single point, without centralizing the data.
