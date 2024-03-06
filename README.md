@@ -1,6 +1,7 @@
 ![AnyLog Logo](imgs/anylog_logo.png)
 # AnyLog Service for  OpenHorizon  
 
+* [Install OpenHorizon](OpenHorizon_install.md) - Steps to install open horizon 
 * [Edge Service](OpenHorizon_EdgeService.md) - How to deploy AnyLog as an _Edge Service_ with Open Horizon
 * [Deploy Kubearmor](AnyLog_Kubearmor.md) - Deploy Kubearmor with AnyLog
 * [AnyLog Documentation](https://github.com/AnyLog-co/documentation)
