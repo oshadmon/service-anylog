@@ -1,11 +1,17 @@
 ![AnyLog Logo](imgs/anylog_logo.png)
-# AnyLog Service for  OpenHorizon  
+# AnyLog Service for  OpenHorizon
 
-* [Install OpenHorizon](OpenHorizon_install.md) - Steps to install open horizon 
-* [Edge Service](OpenHorizon_EdgeService.md) - How to deploy AnyLog as an _Edge Service_ with Open Horizon
-* [Deploy Kubearmor](AnyLog_Kubearmor.md) - Deploy Kubearmor with AnyLog
+**Table of Content**:
+* [Install OpenHorizon](OpenHorizon_install.md) - Steps to install open horizon
+* [AnyLog via EdgeService](OpenHorizon_EdgeService.md) - Steps to install AnyLog as an OpenHorizon EdgeService
+* [AnyLog via Policy](OpenHorizon_policy.md) - Steps to install AnyLog via policy
+* [KubeArmor](AnyLog_KubeArmor) - Accept data into AnyLog from KubeArmor via [_gRPC_](https://grpc.io/)
+* [Grafana](AnyLog_Grafana.md) - Generate Grafana dashboards for AnyLog
+
+**Other Links**
 * [AnyLog Documentation](https://github.com/AnyLog-co/documentation)
 * [Open Horizon Documentation](https://open-horizon.github.io/)
+
 
 # General Configuration of Network
 
