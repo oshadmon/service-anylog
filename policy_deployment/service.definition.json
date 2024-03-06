@@ -1,6 +1,6 @@
 {
 	"org": "$HZN_ORG_ID",
-	"label": "Deployment of AnyLog (Query) Node",
+	"label": "Deployment of AnyLog (Operator) Node",
 	"description": "A service to deploy AnyLog with Open Horizon",
 	"documentation": "https://github.com/AnyLog-co/documentation/",
 	"url": "https://anylog.co",
@@ -20,13 +20,13 @@
 			"name": "NODE_TYPE",
 			"label": "Information regarding which AnyLog node configurations to enable. By default, even if everything is disabled, AnyLog starts TCP and REST connection protocols",
 			"type": "string",
-			"defaultValue": "query"
+			"defaultValue": "generic"
 		},
 		{
 			"name": "NODE_NAME",
 			"label": "Name of the AnyLog instance",
 			"type": "string",
-			"defaultValue": "anylog-query"
+			"defaultValue": "anylog-node"
 		},
 		{
 			"name": "COMPANY_NAME",
@@ -38,13 +38,19 @@
 			"name": "ANYLOG_SERVER_PORT",
 			"label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
 			"type": "int",
-			"defaultValue": 32348
+			"defaultValue": 32548
 		},
 		{
 			"name": "ANYLOG_REST_PORT",
 			"label": "Port address used by AnyLog's REST protocol",
 			"type": "int",
-			"defaultValue": 32349
+			"defaultValue": 32549
+		},
+		{
+			"name": "ANYLOG_BROKER_PORT",
+			"label": "Port address used by AnyLog's broker protocol",
+			"type": "int",
+			"defaultValue": ""
 		},
 		{
 			"name": "TCP_BIND",
@@ -59,10 +65,34 @@
 			"defaultValue": false
 		},
 		{
+			"name": "BROKER_BIND",
+			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
+			"type": "bool",
+			"defaultValue": false
+		},
+		{
 			"name": "LEDGER_CONN",
 			"label": "TCP connection information for Master Node",
 			"type": "string",
-			"defaultValue": "127.0.0.1:32348"
+			"defaultValue": "127.0.0.1:32048"
+		},
+		{
+			"name": "CLUSTER_NAME",
+			"label": "Owner of the cluster",
+			"type": "string",
+			"defaultValue": "new-company-cluster1"
+		},
+		{
+			"name": "DEFAULT_DBMS",
+			"label": "Logical database name",
+			"type": "string",
+			"defaultValue": "new_company"
+		},
+		{
+			"name": "ENABLE_MQTT",
+			"label": "Whether to enable the default MQTT process",
+			"type": "bool",
+			"defaultValue": false
 		},
 		{
 			"name": "DEPLOY_LOCAL_SCRIPT",
@@ -73,17 +103,18 @@
 	],
 	"deployment": {
 		"services": {
-			"anylog-query": {
+			"anylog-node": {
 				"image": "anylogco/anylog-network:edgelake",
 				"ports": [
-					{ "HostIP": "0.0.0.0", "HostPort": "32348:32348/tcp" },
-					{ "HostIP": "0.0.0.0", "HostPort": "32349:32349/tcp" }
+					{ "HostIP": "0.0.0.0", "HostPort": "32548:32548/tcp" },
+					{ "HostIP": "0.0.0.0", "HostPort": "32549:32549/tcp" },
+					{ "HostIP": "0.0.0.0", "HostPort": "32550:32550/tcp" }
 				],
 				"binds": [
-					"anylog-query-anylog:/app/AnyLog-Network/anylog",
-					"anylog-query-blockchain:/app/AnyLog-Network/blockchain",
-					"anylog-query-data:/app/AnyLog-Network/data",
-					"anylog-query-local-scripts:/app/deployment-scripts"
+					"anylog-node-anylog:/app/AnyLog-Network/anylog",
+					"anylog-node-blockchain:/app/AnyLog-Network/blockchain",
+					"anylog-node-data:/app/AnyLog-Network/data",
+					"anylog-node-local-scripts:/app/deployment-scripts"
 
 				]
 			}
