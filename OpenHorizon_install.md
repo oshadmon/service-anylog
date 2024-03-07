@@ -73,6 +73,7 @@ chmod +x agent-install.sh
 The _hello world_ pattern will install `hzn` and `docker` as well as validate everything works properly 
 
 1. Test agent is installed by deploying _IBM/pattern-ibm.helloworld_
+
 **Command**
 ```shell
 sudo -s -E ./agent-install.sh -i 'css:' -p IBM/pattern-ibm.helloworld -w '*' -T 120
@@ -97,6 +98,7 @@ Status of the services you are watching:
 ```
 
 2. Check node is running
+
 **Command**
 ```shell
 hzn eventlog list -f
@@ -125,6 +127,7 @@ hzn unregister -f
 ```
 
 4. Validate _hzn_ is installed 
+
 **Command**
 ```shell
 hzn version
