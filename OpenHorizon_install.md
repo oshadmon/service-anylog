@@ -139,7 +139,41 @@ Horizon CLI version: 2.30.0-1435
 Horizon Agent version: 2.30.0-1435
 ```
 
-5. Docker is already installed via `hzn`, however needs permissions to use not as root
+5. View general information about this Horizon edge node.
+
+**Command**:
+```shell
+hzn node list
+```
+
+**Output**: 
+```json
+{
+  "id": "$(hostname)",
+  "organization": "${HZN_ORG_ID}",
+  "pattern": "IBM/pattern-ibm.helloworld",
+  "name": "test-node",
+  "nodeType": "device",
+  "token_last_valid_time": "2024-03-07 22:18:03 +0000 UTC",
+  "token_valid": true,
+  "ha_group": "",
+  "configstate": {
+    "state": "configured",
+    "last_update_time": "2024-03-07 22:18:04 +0000 UTC"
+  },
+  "configuration": {
+    "exchange_api": "${HZN_EXCHANGE_URL}",
+    "exchange_version": "2.110.4",
+    "required_minimum_exchange_version": "2.90.1",
+    "preferred_exchange_version": "2.110.1",
+    "mms_api": "${HZN_FSS_CSSURL}",
+    "architecture": "amd64",
+    "horizon_version": "2.30.0-1435"
+  }
+}
+```
+
+6. Docker is already installed via `hzn`, however needs permissions to use not as root
 ```shell
 USER=`whoami` 
 sudo groupadd docker 
