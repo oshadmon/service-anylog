@@ -31,11 +31,11 @@
         },
         {
             "name": "NODE_TYPE",
-            "defaultValue": "master"
+            "defaultValue": "generic"
         },
         {
             "name": "NODE_NAME",
-            "defaultValue": "anylog-master"
+            "defaultValue": "anylog-node"
         },
         {
             "name": "COMPANY_NAME",
@@ -43,11 +43,11 @@
         },
         {
             "name": "ANYLOG_SERVER_PORT",
-            "defaultValue": "32048"
+            "defaultValue": "32548"
         },
         {
             "name": "ANYLOG_REST_PORT",
-            "defaultValue": "32049"
+            "defaultValue": "32549"
         },
         {
             "name": "LEDGER_CONN",
