@@ -4,7 +4,7 @@
     "description": "A sample AnyLog service to deploy a Master Node",
     "documentation": "https://github.com/open-horizon-services/service-anylog/tree/main/README.md",
     "url": "anylog-node",
-    "version": "edgelake",
+    "version": "$SERVICE_VERSION",
     "arch": "$ARCH",
     "sharable": "multiple",
     "requiredServices": [],
