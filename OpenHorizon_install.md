@@ -44,7 +44,7 @@ right tools available when you need them.
 * [Install Horizon CLI](https://www.ibm.com/docs/en/eam/4.1?topic=cli-installing-hzn) 
 * [Install Docker](https://docs.docker.com/engine/install/) 
 
-## Steps
+## Prepare Machine
 1. Update / Upgrade machine  
 ```shell
 sudo apt-get -y update 
@@ -68,30 +68,10 @@ curl -u "${HZN_ORG_ID}/${HZN_EXCHANGE_USER_AUTH}" -k -o agent-install.sh ${HZN_F
 chmod +x agent-install.sh
 ```
 
-5. Validate _hzn_ is installed 
-**Command**
-```shell
-hzn version
-```
-
-**Output**
-```shell
-Horizon CLI version: 2.30.0-1435
-Horizon Agent version: 2.30.0-1435
-```
-
-6. Docker is already installed via HZN, however needs permissions to use not as root
-```shell
-USER=`whoami` 
-sudo groupadd docker 
-sudo usermod -aG docker ${USER} 
-newgrp docker
-```
-
-When using [OpenHorizon Edge Service](OpenHorizon_EdgeService.md), the number of edge nodes increase by one. 
-![OpenHorizon_node_state.png](imgs%2FOpenHorizon_node_state.png)
-
 ## Install _Hello World_
+
+The _hello world_ pattern will install `hzn` and `docker` as well as validate everything works properly 
+
 1. Test agent is installed by deploying _IBM/pattern-ibm.helloworld_
 **Command**
 ```shell
@@ -143,5 +123,32 @@ hzn eventlog list -f
 ```shell
 hzn unregister -f
 ```
+
+4. Validate _hzn_ is installed 
+**Command**
+```shell
+hzn version
+```
+
+**Output**
+```shell
+Horizon CLI version: 2.30.0-1435
+Horizon Agent version: 2.30.0-1435
+```
+
+5. Docker is already installed via `hzn`, however needs permissions to use not as root
+```shell
+USER=`whoami` 
+sudo groupadd docker 
+sudo usermod -aG docker ${USER} 
+newgrp docker
+
+# optional - install docker-compose 
+sudo apt-get -y install docker-compose
+```
+
+When using [OpenHorizon Edge Service](OpenHorizon_EdgeService.md), the number of edge nodes increase by one. 
+![OpenHorizon_node_state.png](imgs%2FOpenHorizon_node_state.png)
+
 
 
