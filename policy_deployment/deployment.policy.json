@@ -1,8 +1,8 @@
 {
-  "label": "$SERVICE_NAME Deployment Policy",
+  "label": "anylog-node Deployment Policy",
   "description": "A super-simple sample Horizon Deployment Policy",
   "service": {
-    "name": "$SERVICE_NAME",
+    "name": "anylog-node",
     "org": "$HZN_ORG_ID",
     "arch": "*",
     "serviceVersions": [
@@ -20,7 +20,7 @@
   "userInput": [
     {
       "serviceOrgid": "$HZN_ORG_ID",
-      "serviceUrl": "$SERVICE_NAME",
+      "serviceUrl": "anylog-node",
       "serviceVersionRange": "[0.0.0,INFINITY)",
       "inputs": [
         {
