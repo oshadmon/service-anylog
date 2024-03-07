@@ -22,6 +22,7 @@ docker login -u anyloguser -p dckr_pat_zcjxcPOKvHkOZMuLY6UOuCs5jUc
 3. Export needed params
 ```shell
 export SERVICE_VERSION=1.3.2403
+export SERVICE_NAME=anylog-node
 ```
 
 3. Update values in [service.definition.json](policy_deployment%2Fservice.definition.json)
