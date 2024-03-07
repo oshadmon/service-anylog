@@ -1,9 +1,0 @@
-Repository Maintainers
-======================
-
-See the information about [community membership roles](https://wiki.lfedge.org/display/OH/Community+Membership) to learn about the role of the maintainers and the process to become one.
-
-| Name         | GitHub      | email                    |
-| ------------ | ----------- | ------------------------ |
-| Joe Pearson  | joewxboy    | <joe.pearson@us.ibm.com> |
-| Joerg Wende  | jwende      | <jwende@gmx.de>          |
