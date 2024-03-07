@@ -1,6 +1,8 @@
 # Makefile
 
 all: help
+login:
+	docker login -u anyloguser -p dckr_pat_zcjxcPOKvHkOZMuLY6UOuCs5jUc
 build:
 	docker pull anylogco/anylog-network:edgelake
 up:
@@ -19,6 +21,7 @@ logs:
 help:
 	@echo "Usage: make [target] [anylog-type]"
 	@echo "Targets:"
+	@echo "	 login		 Log into AnyLog docker repository"
 	@echo "  build       Pull the docker image"
 	@echo "  up          Start the containers"
 	@echo "  attach      Attach to AnyLog instance"
