@@ -41,4 +41,7 @@ hzn exchange deployment addpolicy -f deployment.policy.json anylog/anylog-node
 hzn register --policy node.policy.json
 ```
 
-
+7. Track workload agreement negotiation
+```shell
+[watch] hzn agreement list
+```
