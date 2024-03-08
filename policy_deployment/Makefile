@@ -12,7 +12,7 @@ export DOCKER_HUB_ID ?= anyloguser
 export HZN_ORG_ID ?= examples
 
 # Variables required by Home Assistant, can be overridden by your environment variables
-export MY_TIME_ZONE ?= America/New_York
+#export MY_TIME_ZONE ?= America/New_York
 
 # Open Horizon settings for publishing metadata about the service
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-anylog
@@ -50,7 +50,6 @@ check:
 	@echo "=================="
 	@cat service.definition.json | envsubst
 	@echo ""
-
 stop:
 	@docker rm -f $(DOCKER_IMAGE_NAME) >/dev/null 2>&1 || :
 

@@ -2,12 +2,12 @@
     "properties": [
 		{
 			"name": "openhorizon.allowPrivileged",
-			"value": true
+				"value": true
 		},
 		{
 			"name": "purpose",
 			"value": "automation"
 		}
-],
+	],
 	"constraints": []
 }
