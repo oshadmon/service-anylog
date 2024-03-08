@@ -1,33 +1,37 @@
 {
-  "label": "anylog-node Deployment Policy",
-  "description": "A super-simple sample Horizon Deployment Policy",
-  "service": {
-    "name": "anylog-node",
-    "org": "$HZN_ORG_ID",
-    "arch": "*",
-    "serviceVersions": [
-      {
-        "version": "$SERVICE_VERSION",
-        "priority":{}
-      }
-    ]
-  },
-  "properties": [
-  ],
-  "constraints": [
-    "anylog.monitor == true"
-  ],
-  "userInput": [
-    {
-      "serviceOrgid": "$HZN_ORG_ID",
-      "serviceUrl": "anylog-node",
-      "serviceVersionRange": "[0.0.0,INFINITY)",
-      "inputs": [
+    "label": "$SERVICE_NAME Deployment Policy",      
+    "description": "Policy to auto deploy $SERVICE_NAME",
+    "service": {       
+      "name": "$SERVICE_NAME",
+      "org": "$HZN_ORG_ID",    
+      "arch": "*",    
+      "serviceVersions": [ 
         {
-          "name": "HW_WHO",
-          "value": "from the EDGE!"
+          "version": "$SERVICE_VERSION",
+          "priority":{}
         }
       ]
-    }
-  ]
-}
+    },
+    "properties": [
+    ],
+    "constraints": [ 
+         "purpose == automation",
+         "openhorizon.allowPrivileged == true"
+    ], 
+    "userInput": [ 
+      {            
+        "serviceOrgid": "$HZN_ORG_ID",
+        "serviceUrl": "$SERVICE_NAME",
+        "serviceVersionRange": "[0.0.0,INFINITY)",
+        "inputs": [
+          {"name": "INIT_TYPE", "value": "prod"},
+          {"name": "NODE_TYPE", "value": "generic"},
+          {"name": "COMPANY_NAME", "value": "New Company"},
+          {"name": "ANYLOG_SERVER_PORT", "value": "32548"},
+          {"name": "ANYLOG_REST_PORT", "value": "32549"},
+          {"name": "TCP_BIND", "value": "false"},
+          {"name": "REST_BIND", "value": "false"}
+        ]
+      }
+    ]
+}  

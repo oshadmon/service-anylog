@@ -1,14 +1,15 @@
 {
-    "org": "$HZN_ORG_ID",
+	"org": "$HZN_ORG_ID",
 	"label": "$SERVICE_NAME for $ARCH",
-    "description": "A sample AnyLog service to deploy a Master Node",
+	"description": "A sample AnyLog service to deploy a Master Node",
     "documentation": "https://github.com/open-horizon-services/service-anylog/tree/main/README.md",
-    "url": "anylog-node",
-    "version": "$SERVICE_VERSION",
-    "arch": "$ARCH",
-    "sharable": "multiple",
-    "requiredServices": [],
-    "userInput": [
+	"url": "$SERVICE_NAME",
+	"version": "$SERVICE_VERSION",
+	"arch": "$ARCH",
+	"public": false,
+	"sharable": "singleton",
+	"requiredServices": [],
+	"userInput": [
         {
             "name": "INIT_TYPE",
             "label": "Whether to start docker container with AnyLog/EdgeLake running (prod) or as a shell interface",
@@ -93,21 +94,13 @@
             "type": "bool",
             "defaultValue": "false"
         }
-
-    ],
-    "deployment": {
-        "services": {
-            "anylog-node": {
-                "image": "anylogco/anylog-network:edgelake",
-                "network": "host",
-                "binds": [
-                    "anylog-node-anylog:/app/AnyLog-Network/anylog",
-                    "anylog-node-blockchain:/app/AnyLog-Network/blockchain",
-                    "anylog-node-data:/app/AnyLog-Network/data",
-                    "anylog-node-local-scripts:/app/deployment-scripts"
-                ]
-
-            }
-        }
-    }
+	],
+	"deployment": {
+		"services": {
+			"$SERVICE_NAME": {
+				"image": "$DOCKER_IMAGE_BASE:$DOCKER_IMAGE_VERSION",
+				"network": "host"
+			}
+		}
+   }
 }

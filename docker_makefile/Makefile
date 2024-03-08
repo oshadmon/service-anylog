@@ -11,7 +11,7 @@ up:
 down:
 	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml down
 clean:
-	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml down -v --remove-orphans
+	docker-compose -f docker-compose-$(filter-out $@,$(MAKECMDGOALS)).yaml down -v --remove-orphans --rmi alls
 attach:
 	docker attach --detach-keys=ctrl-d anylog-$(filter-out $@,$(MAKECMDGOALS))
 exec:

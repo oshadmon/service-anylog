@@ -121,25 +121,8 @@ hzn eventlog list -f
   "2024-03-06 00:37:59:   Workload service containers for IBM/ibm.helloworld are up and running."
 ```
 
-3. Unregister _IBM/pattern-ibm.helloworld_
-```shell
-hzn unregister -f
-```
 
-4. Validate _hzn_ is installed 
-
-**Command**
-```shell
-hzn version
-```
-
-**Output**
-```shell
-Horizon CLI version: 2.30.0-1435
-Horizon Agent version: 2.30.0-1435
-```
-
-5. View general information about this Horizon edge node.
+3. View general information about this Horizon edge node.
 
 **Command**:
 ```shell
@@ -171,6 +154,25 @@ hzn node list
     "horizon_version": "2.30.0-1435"
   }
 }
+```
+
+
+4. Unregister _IBM/pattern-ibm.helloworld_
+```shell
+hzn unregister -f
+```
+
+5. Validate _hzn_ is installed 
+
+**Command**
+```shell
+hzn version
+```
+
+**Output**
+```shell
+Horizon CLI version: 2.30.0-1435
+Horizon Agent version: 2.30.0-1435
 ```
 
 6. Docker is already installed via `hzn`, however needs permissions to use not as root

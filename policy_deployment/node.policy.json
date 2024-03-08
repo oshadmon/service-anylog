@@ -1,7 +1,13 @@
 {
-  "properties": [
-    { "name": "anylog.monitor", "value": "true" }
-  ],
-  "constraints": [
-  ]
+    "properties": [
+		{
+			"name": "openhorizon.allowPrivileged",
+			"value": true
+		},
+		{
+			"name": "purpose",
+			"value": "automation"
+		}
+],
+	"constraints": []
 }
