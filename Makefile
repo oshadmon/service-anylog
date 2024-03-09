@@ -26,13 +26,15 @@ clean:
 attach:
 	docker attach --detach-keys=ctrl-d anylog-$(ANYLOG_TYPE)
 test:
-	ifeq ($(ANYLOG_TYPE),master)
-		@curl -X GET 127.0.0.1:32049 -H "command: test node" -H "User-Agent: AnyLog/1.23"
-	else ifeq ($(ANYLOG_TYPE),operator)
-		@curl -X GET 127.0.0.1:32149 -H "command: test node" -H "User-Agent: AnyLog/1.23"
-	else ifeq ($(ANYLOG_TYPE),query)
-		@curl -X GET 127.0.0.1:32349 -H "command: test node" -H "User-Agent: AnyLog/1.23"
-	endif
+	@echo $(ANYLOG_TYPE)
+	@if [ "$(ANYLOG_TYPE)" = "master" ]; then \
+		curl -X GET 127.0.0.1:32049 -H "command: test node" -H "User-Agent: AnyLog/1.23"; \
+	elif [ "$(ANYLOG_TYPE)" = "operator" ]; then \
+		curl -X GET 127.0.0.1:32149 -H "command: test node" -H "User-Agent: AnyLog/1.23"; \
+	elif [ "$(ANYLOG_TYPE)" = "query" ]; then \
+		curl -X GET 127.0.0.1:32349 -H "command: test node" -H "User-Agent: AnyLog/1.23"; \
+	fi
+
 exec:
 	docker exec -it anylog-$(ANYLOG_TYPE)
 logs:
