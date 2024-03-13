@@ -1,9 +1,37 @@
 # Makefile
 
-ANYLOG_TYPE := operator
+ANYLOG_TYPE := generic
 ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 	ANYLOG_TYPE = $(filter-out $@,$(MAKECMDGOALS))
 endif
+
+
+export DOCKER_IMAGE_BASE ?= grafana/grafana-oss
+export DOCKER_IMAGE_NAME ?= grafana
+export DOCKER_IMAGE_VERSION ?= latest
+export DOCKER_VOLUME_NAME ?= grafana-storage
+
+# DockerHub ID of the third party providing the image (usually yours if building and pushing)
+export DOCKER_HUB_ID ?= grafana
+
+# The Open Horizon organization ID namespace where you will be publishing the service definition file
+export HZN_ORG_ID ?= examples
+
+# Variables required by Home Assistant, can be overridden by your environment variables
+export MY_TIME_ZONE ?= America/New_York
+
+# Open Horizon settings for publishing metadata about the service
+export DEPLOYMENT_POLICY_NAME ?= deployment-policy-grafana
+export NODE_POLICY_NAME ?= node-policy-grafana
+export SERVICE_NAME ?= service-grafana
+export SERVICE_VERSION ?= 0.0.1
+
+# Default ARCH to the architecture of this machine (assumes hzn CLI installed)
+export ARCH ?= amd64
+
+# Detect Operating System running Make
+OS := $(shell uname -s)
+
 
 all: help
 login:
@@ -39,6 +67,66 @@ exec:
 	docker exec -it anylog-$(ANYLOG_TYPE)
 logs:
 	docker logs anylog-$(ANYLOG_TYPE)
+
+# Makefile for policy
+publish-service:
+	@echo "=================="
+	@echo "PUBLISHING SERVICE"
+	@echo "=================="
+	@hzn exchange service publish -O -P --json-file=policy_deployment/service.definition.json
+	@echo ""
+remove-service:
+	@echo "=================="
+	@echo "REMOVING SERVICE"
+	@echo "=================="
+	@hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+
+publish-service-policy:
+	@echo "========================="
+	@echo "PUBLISHING SERVICE POLICY"
+	@echo "========================="
+	@hzn exchange service addpolicy -f policy_deployment/service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+
+remove-service-policy:
+	@echo "======================="
+	@echo "REMOVING SERVICE POLICY"
+	@echo "======================="
+	@hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+
+publish-deployment-policy:
+	@echo "============================"
+	@echo "PUBLISHING DEPLOYMENT POLICY"
+	@echo "============================"
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@echo ""
+
+remove-deployment-policy:
+	@echo "=========================="
+	@echo "REMOVING DEPLOYMENT POLICY"
+	@echo "=========================="
+	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@echo ""
+
+agent-run:
+	@echo "================"
+	@echo "REGISTERING NODE"
+	@echo "================"
+	@hzn register --policy=policy_deployment/node.policy.json
+	@watch hzn agreement list
+
+agent-stop:
+	@echo "==================="
+	@echo "UN-REGISTERING NODE"
+	@echo "==================="
+	@hzn unregister -f
+	@echo ""
+
+deploy-check:
+	@hzn deploycheck all -t device -B policy_deployment/deployment.policy.json --service=policy_deployment/service.definition.json --service-pol=policy_deployment/service.policy.json --node-pol=policy_deployment/node.policy.json
+
 help:
 	@echo "Usage: make [target] [anylog-type]"
 	@echo "Targets:"
@@ -52,5 +140,5 @@ help:
 	@echo "  logs        View logs of the containers"
 	@echo "  clean       Clean up volumes and network"
 	@echo "  help        Show this help message"
-	@echo "  supported AnyLog types: master, operator, and query"
+	@echo "  supported AnyLog types: generic, master, operator, and query"
 	@echo "Sample calls: make up ANYLOG_TYPE=master | make attach ANYLOG_TYPE=master | make clean ANYLOG_TYPE=master"
