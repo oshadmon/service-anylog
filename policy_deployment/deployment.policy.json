@@ -24,7 +24,18 @@
         "serviceUrl": "$SERVICE_NAME",
         "serviceVersionRange": "[0.0.0,INFINITY)",
         "inputs": [
-            {"name":"MY_TIME_ZONE","value":"$MY_TIME_ZONE"}
+            {"name":"INIT_TYPE","value":"prod"},
+            {"name":"NODE_TYPE","value":"generic"},
+            {"name":"NODE_NAME","value":"anylog-node"},
+            {"name":"COMPANY_NAME","value":"New Company"},
+            {"name":"ANYLOG_SERVER_PORT","value":"32548"},
+            {"name":"ANYLOG_REST_PORT","value":"32549"},
+            {"name":"ANYLOG_BROKER_PORT","value":""},
+            {"name":"TCP_BIND","value":"false"},
+            {"name":"REST_BIND","value":"false"},
+            {"name":"BROKER_BIND","value":"false"},
+            {"name":"ENABLE_MQTT","value":"false"},
+            {"name":"DEPLOY_LOCAL_SCRIPT","value":"false"}
         ]
       }
     ]
