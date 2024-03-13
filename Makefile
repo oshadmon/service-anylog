@@ -32,6 +32,8 @@ test:
 		curl -X GET 127.0.0.1:32149 -H "command: test node" -H "User-Agent: AnyLog/1.23"; \
 	elif [ "$(ANYLOG_TYPE)" = "query" ]; then \
 		curl -X GET 127.0.0.1:32349 -H "command: test node" -H "User-Agent: AnyLog/1.23"; \
+	elif [ "$(NODE_TYPE)" == "generic" ]; then
+	  curl -X GET 127.0.0.1:32549 -H "command: test node" -H "User-Agent: AnyLog/1.23"; \
 	fi
 exec:
 	docker exec -it anylog-$(ANYLOG_TYPE)
