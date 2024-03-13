@@ -6,13 +6,13 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 endif
 
 
-export DOCKER_IMAGE_BASE ?= grafana/grafana-oss
-export DOCKER_IMAGE_NAME ?= grafana
-export DOCKER_IMAGE_VERSION ?= latest
+export DOCKER_IMAGE_BASE ?= anylogco/anylog-network
+export DOCKER_IMAGE_NAME ?= anylog-network
+export DOCKER_IMAGE_VERSION ?= edgelake
 export DOCKER_VOLUME_NAME ?= grafana-storage
 
 # DockerHub ID of the third party providing the image (usually yours if building and pushing)
-export DOCKER_HUB_ID ?= grafana
+export DOCKER_HUB_ID ?= anylogco
 
 # The Open Horizon organization ID namespace where you will be publishing the service definition file
 export HZN_ORG_ID ?= examples
@@ -21,10 +21,10 @@ export HZN_ORG_ID ?= examples
 export MY_TIME_ZONE ?= America/New_York
 
 # Open Horizon settings for publishing metadata about the service
-export DEPLOYMENT_POLICY_NAME ?= deployment-policy-grafana
-export NODE_POLICY_NAME ?= node-policy-grafana
-export SERVICE_NAME ?= service-grafana
-export SERVICE_VERSION ?= 0.0.1
+export DEPLOYMENT_POLICY_NAME ?= deployment-policy-anylog
+export NODE_POLICY_NAME ?= node-policy-anylog
+export SERVICE_NAME ?= service-anylog
+export SERVICE_VERSION ?= 1.3.2403
 
 # Default ARCH to the architecture of this machine (assumes hzn CLI installed)
 export ARCH ?= amd64
