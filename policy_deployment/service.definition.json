@@ -11,6 +11,12 @@
 	"requiredServices": [],
 	"userInput": [
 		{
+			"name": "INIT_TYPE",
+			"label": "Whether to deploy AnyLog or shell as a docker container",
+			"type": "string",
+			"defaultValue": "prod"
+		},
+		{
 			"name": "MY_TIME_ZONE",
 			"label": "User time zone",
 			"type": "string",
