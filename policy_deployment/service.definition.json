@@ -78,15 +78,12 @@
 		"services": {
 			"$SERVICE_NAME": {
 				"image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-				"ports": [
-					{ "HostIP": "0.0.0.0", "HostPort": "3000:3000/tcp" }
-				],
+				"network_mode": "host",
 				"binds": [
-					"anylog-${ANYLOG_TYPE}-anylog:/app/AnyLog-Network/anylog",
-					"anylog-${ANYLOG_TYPE}-blockchain:/app/AnyLog-Network/blockchain",
-					"anylog-${ANYLOG_TYPE}-data:/app/AnyLog-Network/data",
-					"anylog-${ANYLOG_TYPE}-local-scripts:/app/deployment-scripts"
-
+					"${ANYLOG_VOLUME}:/app/AnyLog-Network/anylog",
+					"${BLOCKCHAIN_VOLUME}:/app/AnyLog-Network/blockchain",
+					"${DATA_VOLUME}:/app/AnyLog-Network/data",
+					"${LOCAL_SCRIPTS}:/app/deployment-scripts"
 				]
 			}
 		}

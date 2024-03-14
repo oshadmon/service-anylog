@@ -5,7 +5,6 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 	ANYLOG_TYPE = $(filter-out $@,$(MAKECMDGOALS))
 endif
 
-
 export DOCKER_IMAGE_BASE ?= anylogco/anylog-network
 export DOCKER_IMAGE_NAME ?= anylog-network
 export DOCKER_IMAGE_VERSION ?= edgelake
@@ -73,6 +72,10 @@ publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
 	@echo "=================="
+	@export ANYLOG_VOLUME := anylog-$(ANYLOG_TYPE)-anylog
+	@export BLOCKCHAIN_VOLUME := anylog-$(ANYLOG_TYPE)-blockchain
+	@export DATA_VOLUME := anylog-$(ANYLOG_TYPE)-DATA
+	@export LOCAL_SCRIPTS := anylog-$(ANYLOG_TYPE)-local-scripts
 	@hzn exchange service publish -O -P --json-file=policy_deployment/service.definition.json
 	@echo ""
 remove-service:
@@ -100,6 +103,10 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
+	@export ANYLOG_VOLUME := anylog-$(ANYLOG_TYPE)-anylog
+	@export BLOCKCHAIN_VOLUME := anylog-$(ANYLOG_TYPE)-blockchain
+	@export DATA_VOLUME := anylog-$(ANYLOG_TYPE)-DATA
+	@export LOCAL_SCRIPTS := anylog-$(ANYLOG_TYPE)-local-scripts
 	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 
