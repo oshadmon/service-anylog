@@ -35,6 +35,12 @@
 			"defaultValue": "New Company"
 		},
 		{
+			"name": "LEDGER_CONN",
+			"label": "TCP connection information for Master Node",
+			"type": "string",
+			"defaultValue": "127.0.0.1:32048"
+		},
+		{
 			"name": "MY_TIME_ZONE",
 			"label": "User time zone",
 			"type": "string",
