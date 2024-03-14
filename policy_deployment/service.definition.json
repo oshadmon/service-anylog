@@ -78,7 +78,9 @@
 		"services": {
 			"$SERVICE_NAME": {
 				"image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-				"network_mode": "host",
+				"ports": [
+					{ "HostIP": "0.0.0.0", "HostPort": "3000:3000/tcp" }
+				],
 				"binds": [
 					"anylog-${ANYLOG_TYPE}-anylog:/app/AnyLog-Network/anylog",
 					"anylog-${ANYLOG_TYPE}-blockchain:/app/AnyLog-Network/blockchain",
