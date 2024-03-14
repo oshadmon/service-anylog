@@ -66,6 +66,7 @@
 			"defaultValue": "false"
 		},
 
+
 		{
 			"name": "MY_TIME_ZONE",
 			"label": "User time zone",
@@ -76,12 +77,14 @@
 	"deployment": {
 		"services": {
 			"$SERVICE_NAME": {
-				"image": "$DOCKER_IMAGE_BASE:$DOCKER_IMAGE_VERSION",
-				"ports": [
-					{ "HostIP": "0.0.0.0", "HostPort": "3000:3000/tcp" }
-				],
-			        "binds": [
-					"$DOCKER_VOLUME_NAME:/var/lib/grafana"
+				"image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
+				"network_mode": "host",
+				"binds": [
+					"${SERVICE_NAME}-anylog:/app/AnyLog-Network/anylog",
+					"${SERVICE_NAME}-blockchain:/app/AnyLog-Network/blockchain",
+					"${SERVICE_NAME}-data:/app/AnyLog-Network/data",
+					"${SERVICE_NAME}-local-scripts:/app/deployment-scripts"
+
 				]
 			}
 		}
