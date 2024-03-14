@@ -40,6 +40,32 @@
 			"type": "string",
 			"defaultValue": "127.0.0.1:32048"
 		},
+
+		{
+			"name": "ANYLOG_SERVER_PORT",
+			"label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
+			"type": "int",
+			"defaultValue": 32548
+		},
+		{
+			"name": "ANYLOG_REST_PORT",
+			"label": "Port address used by AnyLog's REST protocol",
+			"type": "int",
+			"defaultValue": 32549
+		},
+		{
+			"name": "TCP_BIND",
+			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
+			"type": "bool",
+			"defaultValue": false
+		},
+		{
+			"name": "REST_BIND",
+			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
+			"type": "bool",
+			"defaultValue": false
+		},
+
 		{
 			"name": "MY_TIME_ZONE",
 			"label": "User time zone",
