@@ -34,61 +34,6 @@
 			"type": "string",
 			"defaultValue": "New Company"
 		},
-
-		{
-			"name": "ANYLOG_SERVER_PORT",
-			"label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
-			"type": "string",
-			"defaultValue": "32548"
-		},
-		{
-			"name": "ANYLOG_REST_PORT",
-			"label": "Port address used by AnyLog's REST protocol",
-			"type": "string",
-			"defaultValue": "32549"
-		},
-		{
-			"name": "ANYLOG_BROKER_PORT",
-			"label": "Port value to be used as an MQTT broker, or some other third-party broker",
-			"type": "string",
-			"defaultValue": ""
-		},
-		{
-			"name": "TCP_BIND",
-			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-			"type": "string",
-			"defaultValue": "false"
-		},
-		{
-			"name": "REST_BIND",
-			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-			"type": "string",
-			"defaultValue": "false"
-		},
-		{
-			"name": "BROKER_BIND",
-			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-			"type": "string",
-			"defaultValue": "false"
-		},
-		{
-			"name": "LEDGER_CONN",
-			"label": "TCP connection information for Master Node",
-			"type": "string",
-			"defaultValue": "127.0.0.1:32048"
-		},
-		{
-			"name": "ENABLE_MQTT",
-			"label": "Whether to enable the default MQTT process",
-			"type": "string",
-			"defaultValue": "false"
-		},
-		{
-			"name": "DEPLOY_LOCAL_SCRIPT",
-			"label": "Whether to automatically run a local (or personalized) script at the end of the process",
-			"type": "string",
-			"defaultValue": "false"
-		},
 		{
 			"name": "MY_TIME_ZONE",
 			"label": "User time zone",
