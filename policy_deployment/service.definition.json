@@ -80,10 +80,10 @@
 				"image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
 				"network_mode": "host",
 				"binds": [
-					"${SERVICE_NAME}-anylog:/app/AnyLog-Network/anylog",
-					"${SERVICE_NAME}-blockchain:/app/AnyLog-Network/blockchain",
-					"${SERVICE_NAME}-data:/app/AnyLog-Network/data",
-					"${SERVICE_NAME}-local-scripts:/app/deployment-scripts"
+					"anylog-${ANYLOG_TYPE}-anylog:/app/AnyLog-Network/anylog",
+					"anylog-${ANYLOG_TYPE}-blockchain:/app/AnyLog-Network/blockchain",
+					"anylog-${ANYLOG_TYPE}-data:/app/AnyLog-Network/data",
+					"anylog-${ANYLOG_TYPE}-local-scripts:/app/deployment-scripts"
 
 				]
 			}
