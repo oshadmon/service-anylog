@@ -65,7 +65,18 @@
 			"type": "bool",
 			"defaultValue": "false"
 		},
-
+		{
+			"name": "ENABLE_MQTT",
+			"label": "Whether to enable the default MQTT process",
+			"type": "bool",
+			"defaultValue": "false"
+		},
+		{
+			"name": "DEPLOY_LOCAL_SCRIPT",
+			"label": "Whether to automatically run a local (or personalized) script at the end of the process",
+			"type": "bool",
+			"defaultValue": "false"
+		},
 
 		{
 			"name": "MY_TIME_ZONE",

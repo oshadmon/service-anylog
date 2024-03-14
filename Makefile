@@ -107,7 +107,7 @@ publish-deployment-policy:
 	@export BLOCKCHAIN_VOLUME=anylog-$(ANYLOG_TYPE)-blockchain
 	@export DATA_VOLUME=anylog-$(ANYLOG_TYPE)-DATA
 	@export LOCAL_SCRIPTS=anylog-$(ANYLOG_TYPE)-local-scripts
-	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(ANYLOG_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 
 remove-deployment-policy:
@@ -132,7 +132,7 @@ agent-stop:
 	@echo ""
 
 deploy-check:
-	@hzn deploycheck all -t device -B policy_deployment/deployment.policy.json --service=policy_deployment/service.definition.json --service-pol=policy_deployment/service.policy.json --node-pol=policy_deployment/node.policy.json
+	@hzn deploycheck all -t device -B policy_deployment/deployment.policy.$(ANYLOG_TYPE).json --service=policy_deployment/service.definition.json --service-pol=policy_deployment/service.policy.json --node-pol=policy_deployment/node.policy.json
 
 help:
 	@echo "Usage: make [target] [anylog-type]"
