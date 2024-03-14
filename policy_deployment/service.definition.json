@@ -57,13 +57,13 @@
 			"name": "TCP_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
-			"defaultValue": false
+			"defaultValue": "false"
 		},
 		{
 			"name": "REST_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
-			"defaultValue": false
+			"defaultValue": "false"
 		},
 
 		{
