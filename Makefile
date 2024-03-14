@@ -110,7 +110,7 @@ remove-deployment-policy:
 	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 
-	agent-run:
+agent-run:
 	@echo "================"
 	@echo "REGISTERING NODE"
 	@echo "================"
