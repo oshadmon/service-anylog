@@ -45,13 +45,13 @@
 			"name": "ANYLOG_SERVER_PORT",
 			"label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
 			"type": "int",
-			"defaultValue": 32548
+			"defaultValue": "32548"
 		},
 		{
 			"name": "ANYLOG_REST_PORT",
 			"label": "Port address used by AnyLog's REST protocol",
 			"type": "int",
-			"defaultValue": 32549
+			"defaultValue": "32549"
 		},
 		{
 			"name": "TCP_BIND",
