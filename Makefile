@@ -8,7 +8,7 @@ endif
 export DOCKER_IMAGE_BASE ?= anylogco/anylog-network
 export DOCKER_IMAGE_NAME ?= anylog-network
 export DOCKER_IMAGE_VERSION ?= edgelake
-export DOCKER_VOLUME_NAME ?= grafana-storage
+#export DOCKER_VOLUME_NAME ?= grafana-storage
 
 # DockerHub ID of the third party providing the image (usually yours if building and pushing)
 export DOCKER_HUB_ID ?= anylogco
@@ -17,7 +17,7 @@ export DOCKER_HUB_ID ?= anylogco
 export HZN_ORG_ID ?= examples
 
 # Variables required by Home Assistant, can be overridden by your environment variables
-export MY_TIME_ZONE ?= America/New_York
+#export MY_TIME_ZONE ?= America/New_York
 
 # Open Horizon settings for publishing metadata about the service
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-anylog-$(ANYLOG_TYPE)

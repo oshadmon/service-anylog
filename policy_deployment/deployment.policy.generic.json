@@ -23,9 +23,7 @@
         "serviceOrgid": "$HZN_ORG_ID",
         "serviceUrl": "$SERVICE_NAME",
         "serviceVersionRange": "[0.0.0,INFINITY)",
-        "inputs": [
-          {"name":"MY_TIME_ZONE","value":"$MY_TIME_ZONE"}
-        ]
+        "inputs": []
       }
     ]
 }  
