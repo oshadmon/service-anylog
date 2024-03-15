@@ -29,8 +29,8 @@
           {"name":"COMPANY_NAME","value":"New Company"},
           {"name":"LEDGER_CONN","value":"127.0.0.1:32048"},
           {"name":"ANYLOG_SERVER_PORT","value":"32348"},
-          {"name":"ANYLOG_REST_PORT","value":"32349"}
-
+          {"name":"ANYLOG_REST_PORT","value":"32349"},
+          {"name":"MY_TIME_ZONE","value":"$MY_TIME_ZONE"}
         ]
       }
     ]

@@ -17,7 +17,7 @@ export DOCKER_HUB_ID ?= anylogco
 export HZN_ORG_ID ?= examples
 
 # Variables required by Home Assistant, can be overridden by your environment variables
-#export MY_TIME_ZONE ?= America/New_York
+export MY_TIME_ZONE ?= America/New_York
 
 # Open Horizon settings for publishing metadata about the service
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-anylog-$(ANYLOG_TYPE)

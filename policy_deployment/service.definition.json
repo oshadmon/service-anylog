@@ -76,7 +76,14 @@
 			"label": "Whether to automatically run a local (or personalized) script at the end of the process",
 			"type": "bool",
 			"defaultValue": "false"
+		},
+		{
+			"name": "MY_TIME_ZONE",
+			"label": "User time zone",
+			"type": "string",
+			"defaultValue": "America/New_York"
 		}
+
 	],
 	"deployment": {
 		"services": {
