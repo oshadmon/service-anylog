@@ -33,7 +33,7 @@ OS := $(shell uname -s)
 
 export ANYLOG_VOLUME := anylog-$(ANYLOG_TYPE)-anylog
 export BLOCKCHAIN_VOLUME := anylog-$(ANYLOG_TYPE)-blockchain
-export DATA_VOLUME := anylog-$(ANYLOG_TYPE)-DATA
+export DATA_VOLUME := anylog-$(ANYLOG_TYPE)-data
 export LOCAL_SCRIPTS := anylog-$(ANYLOG_TYPE)-local-scripts
 
 all: help
@@ -103,6 +103,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
+	@echo $(ANYLOG_TYPE)
 	@export ANYLOG_VOLUME=anylog-$(ANYLOG_TYPE)-anylog
 	@export BLOCKCHAIN_VOLUME=anylog-$(ANYLOG_TYPE)-blockchain
 	@export DATA_VOLUME=anylog-$(ANYLOG_TYPE)-DATA
