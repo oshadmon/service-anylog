@@ -9,9 +9,9 @@ Software. Joining a network requires the following steps:
 
 **Table of Content**:
 * [Install OpenHorizon](OpenHorizon_install.md) - Steps to install OpenHorizon
+* [AnyLog via Makefile](Deploying_AnyLog.md) - Using [_Makefile_](Makefile), install AnyLog via _Open Horizon policy_ or _docker-compose_ 
 * [AnyLog via EdgeService](OpenHorizon_EdgeService.md) - Steps to install AnyLog as an OpenHorizon EdgeService
-* [AnyLog via Policy](OpenHorizon_policy.md) - Steps to install AnyLog via policy
-* [AnyLog via Makefile](docker_makefile/) - Install a docker container of AnyLog using [_makefile_](docker_makefile/Makefile.bkup)  
+* [AnyLog via Policy](OpenHorizon_policy.md) - Steps to install AnyLog via policy 
 * [KubeArmor](AnyLog_KubeArmor) - Accept data into AnyLog from KubeArmor via [_gRPC_](https://grpc.io/)
 * [Grafana](AnyLog_Grafana.md) - Generate Grafana dashboards for AnyLog
 
