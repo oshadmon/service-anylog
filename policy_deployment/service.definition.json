@@ -54,6 +54,12 @@
 			"defaultValue": "32549"
 		},
 		{
+			"name": "ANYLOG_BROKER_PORT",
+			"label": "Port address used by AnyLog's Message Broker protocol",
+			"type": "int",
+			"defaultValue": ""
+		},
+		{
 			"name": "TCP_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
@@ -61,6 +67,12 @@
 		},
 		{
 			"name": "REST_BIND",
+			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
+			"type": "bool",
+			"defaultValue": "false"
+		},
+		{
+			"name": "BROKER_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
 			"defaultValue": "false"
