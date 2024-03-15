@@ -8,7 +8,7 @@ endif
 export DOCKER_IMAGE_BASE ?= anylogco/anylog-network
 export DOCKER_IMAGE_NAME ?= anylog-network
 export DOCKER_IMAGE_VERSION ?= edgelake
-#export DOCKER_VOLUME_NAME ?= grafana-storage
+export DOCKER_VOLUME_NAME ?= grafana-storage
 
 # DockerHub ID of the third party providing the image (usually yours if building and pushing)
 export DOCKER_HUB_ID ?= anylogco
@@ -21,7 +21,7 @@ export MY_TIME_ZONE ?= America/New_York
 
 # Open Horizon settings for publishing metadata about the service
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-anylog-$(ANYLOG_TYPE)
-export NODE_POLICY_NAME ?= node-policy-anylog-$(ANYLOG_TYPE)
+export NODE_POLICY_NAME ?= node-policy-anylog-
 export SERVICE_NAME ?= service-anylog
 export SERVICE_VERSION ?= 1.3.2403
 

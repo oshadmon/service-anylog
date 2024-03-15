@@ -54,12 +54,6 @@
 			"defaultValue": "32549"
 		},
 		{
-			"name": "ANYLOG_BROKER_PORT",
-			"label": "Port address used by AnyLog's Message Broker protocol",
-			"type": "int",
-			"defaultValue": ""
-		},
-		{
 			"name": "TCP_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
@@ -67,12 +61,6 @@
 		},
 		{
 			"name": "REST_BIND",
-			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-			"type": "bool",
-			"defaultValue": "false"
-		},
-		{
-			"name": "BROKER_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
 			"defaultValue": "false"
@@ -89,33 +77,19 @@
 			"type": "bool",
 			"defaultValue": "false"
 		},
+
 		{
 			"name": "MY_TIME_ZONE",
 			"label": "User time zone",
 			"type": "string",
 			"defaultValue": "America/New_York"
 		}
-
 	],
 	"deployment": {
 		"services": {
 			"$SERVICE_NAME": {
 				"image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-				"ports": [
-					{"HostIP":  "0.0.0.0", "HostPort":  "32048:32048"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32049:32049"},
-
-					{"HostIP":  "0.0.0.0", "HostPort":  "32348:32348"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32349:32349"},
-
-					{"HostIP":  "0.0.0.0", "HostPort":  "32148:32148"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32149:32149"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32150:32150"},
-
-					{"HostIP":  "0.0.0.0", "HostPort":  "32548:32548"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32549:32549"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32550:32550"}
-				],
+				"network_mode": "host",
 				"binds": [
 					"${ANYLOG_VOLUME}:/app/AnyLog-Network/anylog",
 					"${BLOCKCHAIN_VOLUME}:/app/AnyLog-Network/blockchain",

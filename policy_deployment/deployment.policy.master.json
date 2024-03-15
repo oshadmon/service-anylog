@@ -31,6 +31,7 @@
           {"name":"ANYLOG_SERVER_PORT","value":"32048"},
           {"name":"ANYLOG_REST_PORT","value":"32049"},
           {"name":"MY_TIME_ZONE","value":"$MY_TIME_ZONE"}
+
         ]
       }
     ]
