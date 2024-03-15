@@ -103,7 +103,6 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@echo $(ANYLOG_TYPE)
 	@export ANYLOG_VOLUME=anylog-$(ANYLOG_TYPE)-anylog
 	@export BLOCKCHAIN_VOLUME=anylog-$(ANYLOG_TYPE)-blockchain
 	@export DATA_VOLUME=anylog-$(ANYLOG_TYPE)-DATA
