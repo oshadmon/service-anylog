@@ -21,7 +21,7 @@ export HZN_ORG_ID ?= examples
 
 # Open Horizon settings for publishing metadata about the service
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-anylog-$(ANYLOG_TYPE)
-export NODE_POLICY_NAME ?= node-policy-anylog-
+export NODE_POLICY_NAME ?= node-policy-anylog-$(ANYLOG_TYPE)
 export SERVICE_NAME ?= service-anylog
 export SERVICE_VERSION ?= 1.3.2403
 
