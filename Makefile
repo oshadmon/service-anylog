@@ -103,14 +103,14 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(ANYLOG_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(ANYLOG_TYPE)_$(SERVICE_VERSION)
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(ANYLOG_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 
 remove-deployment-policy:
 	@echo "=========================="
 	@echo "REMOVING DEPLOYMENT POLICY"
 	@echo "=========================="
-	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(ANYLOG_TYPE)_$(SERVICE_VERSION)
+	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 
 agent-run:
