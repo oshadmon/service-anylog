@@ -22,7 +22,7 @@ export MY_TIME_ZONE ?= America/New_York
 # Open Horizon settings for publishing metadata about the service
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-anylog-$(ANYLOG_TYPE)
 export NODE_POLICY_NAME ?= node-policy-anylog-$(ANYLOG_TYPE)
-export SERVICE_NAME ?= service-anylog
+export SERVICE_NAME ?= service-anylog-$(ANYLOG_TYPE)
 export SERVICE_VERSION ?= 1.3.2403
 
 # Default ARCH to the architecture of this machine (assumes hzn CLI installed)
@@ -103,10 +103,6 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@export ANYLOG_VOLUME=anylog-$(ANYLOG_TYPE)-anylog
-	@export BLOCKCHAIN_VOLUME=anylog-$(ANYLOG_TYPE)-blockchain
-	@export DATA_VOLUME=anylog-$(ANYLOG_TYPE)-data
-	@export LOCAL_SCRIPTS=anylog-$(ANYLOG_TYPE)-local-scripts
 	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(ANYLOG_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(ANYLOG_TYPE)_$(SERVICE_VERSION)
 	@echo ""
 
