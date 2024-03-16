@@ -107,7 +107,7 @@ publish-deployment-policy:
 	@export BLOCKCHAIN_VOLUME=anylog-$(ANYLOG_TYPE)-blockchain
 	@export DATA_VOLUME=anylog-$(ANYLOG_TYPE)-DATA
 	@export LOCAL_SCRIPTS=anylog-$(ANYLOG_TYPE)-local-scripts
-	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(ANYLOG_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(ANYLOG_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(ANYLOG_TYPE)_$(SERVICE_VERSION)
 	@echo ""
 
 remove-deployment-policy:
