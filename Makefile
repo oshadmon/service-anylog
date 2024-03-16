@@ -72,6 +72,11 @@ logs:
 	docker logs anylog-$(ANYLOG_TYPE)
 
 # Makefile for policy
+register-node:
+	@echo "=================="
+	@echo "Register Node to Open Horizon"
+	@echo "=================="
+	@sudo sudo -s -E ~/agent-install.sh -i 'css:' -p IBM/pattern-ibm.helloworld -w '*' -T 120
 publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
