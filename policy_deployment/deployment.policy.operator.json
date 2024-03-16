@@ -25,7 +25,7 @@
         "serviceVersionRange": "[0.0.0,INFINITY)",
         "inputs": [
           {"name":"NODE_TYPE","value":"operator"},
-          {"name":"NODE_NAME","value":"anylog-query"},
+          {"name":"NODE_NAME","value":"anylog-operator"},
           {"name":"COMPANY_NAME","value":"New Company"},
           {"name":"LEDGER_CONN","value":"127.0.0.1:32048"},
           {"name":"ANYLOG_SERVER_PORT","value":"32148"},
