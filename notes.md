@@ -11,5 +11,5 @@ OR - configurable ports to open
 
 4. I really like the makefile and am thinking of implementing it for us - thoughts
 
-5. When we are done, I want Joe/Troy to take a look and decide what they want to keep  / remove
+
 
