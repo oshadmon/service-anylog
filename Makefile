@@ -33,7 +33,7 @@ export BLOCKCHAIN_VOLUME := edgelake-$(EDGELAKE_TYPE)-blockchain
 export DATA_VOLUME := edgelake-$(EDGELAKE_TYPE)-data
 export LOCAL_SCRIPTS_VOLUME := edgelake-$(EDGELAKE_TYPE)-local-scripts
 
-all: help
+all: help-docker help-horizon
 build:
 	docker pull anylogco/edgelake:latest
 up:
@@ -143,8 +143,8 @@ agent-stop:
 
 deploy-check:
 	@hzn deploycheck all -t device -B policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json --service=policy_deployment/service.definition.json --service-pol=policy_deployment/service.policy.json --node-pol=policy_deployment/node.policy.json
-help:
-	@echo "Usage: make [target] [edgelake-type]"
+help-docker:
+	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
 	@echo "Targets:"
 	@echo "  build       Pull the docker image"
 	@echo "  up          Start the containers"

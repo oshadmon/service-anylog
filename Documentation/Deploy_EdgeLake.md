@@ -21,6 +21,7 @@ sudo apt-get -y install make
 3. Clone [service-edgelake](https://github.com/open-horizon-services/service-edgelake) 
 ```shell
 git clone https://github.com/open-horizon-services/service-edgelake
+cd service-edgelake
 ```
 
 **Option 2**: Manually install requirements (without OpenHorizon)
@@ -46,7 +47,60 @@ sudo apt-get -y install docker-compose
 4. Clone [service-edgelake](https://github.com/open-horizon-services/service-edgelake) 
 ```shell
 git clone https://github.com/open-horizon-services/service-edgelake
+cd service-edgelake
 ```
+
+## Deploy via OpenHorizon Patterns 
+1. Update _input_ section for _userInput_ section for deployment policy pattern - Edit `LEDGER_CONN` in _Query_ and _Operator_ using IP address of _Master node_
+    * [deployment.policy.master.json](../policy_deployment/deployment.policy.master.json)
+    * [deployment.policy.operator.json](../policy_deployment/deployment.policy.master.json)
+    * [deployment.policy.query.json](../policy_deployment/deployment.policy.query.json)
+```json
+{            
+    "serviceOrgid": "$HZN_ORG_ID",
+    "serviceUrl": "$SERVICE_NAME",
+    "serviceVersionRange": "[0.0.0,INFINITY)",
+    "inputs": [
+        {"name":"NODE_TYPE","value":"master"},
+        {"name":"NODE_NAME","value":"edgelake-master"},
+        {"name":"COMPANY_NAME","value":"New Company"},
+        {"name":"ANYLOG_SERVER_PORT","value":"32048"},
+        {"name":"ANYLOG_REST_PORT","value":"32049"},
+        {"name":"TCP_BIND","value":"false"},
+        {"name":"REST_BIND","value":"false"},
+        {"name":  "DB_TYPE", "value":  "sqlite"},
+        {"name":  "DB_USER", "value":  ""},
+        {"name":  "DB_PASSWD", "value":  ""},
+        {"name":  "DB_IP", "value":  "127.0.0.1"},
+        {"name":  "DB_PORT", "value":  "5432"},
+        {"name":  "AUTOCOMMIT", "value":  "false"},
+        {"name":"LEDGER_CONN","value":"127.0.0.1:32048"},
+        {"name":"DEPLOY_LOCAL_SCRIPT","value":"false"}
+    ]
+}
+```
+
+2. Publish Service 
+```shell
+make publish-service EDGELAKE_TYPE=master
+```
+
+3. Publish Policy for Service
+```shell
+make service-policy EDGELAKE_TYPE=master
+```
+
+4. Publish deployment policy 
+```shell
+make publish-deployment-policy EDGELAKE_TYPE=master
+```
+
+5. Start EdgeLake service
+```shell
+make agent-run EDGELAKE_TYPE=master
+```
+
+
 
 ## Deploy via make and docker-compose 
 1. Update .env configurations for the node(s) being deployed - Edit `LEDGER_CONN` in _Query_ and _Operator_ using IP address of _Master node_
