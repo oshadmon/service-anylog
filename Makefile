@@ -88,7 +88,7 @@ logs:
 # Makefile for policy
 publish-service:
 	@echo "=================="
-	@echo "PUBLISHING SERVICE"
+	@echo "PUBLISHING SERVICE" - $(SERVICE_VERSION)
 	@echo "=================="
 	@hzn exchange service publish -O -P --json-file=policy_deployment/service.definition.json
 	@echo ""
