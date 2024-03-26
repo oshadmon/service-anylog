@@ -6,7 +6,7 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 endif
 include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 
-export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
+export NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_IMAGE_VERSION ?= latest
@@ -20,8 +20,7 @@ export HZN_ORG_ID ?= examples
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-edgelake-$(EDGELAKE_TYPE)
 export NODE_POLICY_NAME ?= node-policy-edgelake-$(EDGELAKE_TYPE)
 export SERVICE_NAME ?= service-edgelake
-export SERVICE_VERSION := 1.3.2403
-#export SERVICE_VERSION := $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $2}')
+export SERVICE_VERSION := $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $$2}')
 
 export ARCH := $(shell uname -m)
 OS := $(shell uname -s)
@@ -118,8 +117,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@echo $(EXTRACT_NODE_NAME)
-#	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
 	@echo ""
 
 remove-deployment-policy:
