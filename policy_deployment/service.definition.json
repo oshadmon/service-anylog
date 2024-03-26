@@ -228,7 +228,7 @@
 					{"HostIP":  "0.0.0.0", "HostPort":  "32550:32550"}
 				],
 				"binds": [
-					"${ANYLOG_VOLUME}:/app/AnyLog-Network/anylog",
+					"${EDGELAKE_VOLUME}:/app/AnyLog-Network/anylog",
 					"${BLOCKCHAIN_VOLUME}:/app/AnyLog-Network/blockchain",
 					"${DATA_VOLUME}:/app/AnyLog-Network/data",
 					"${LOCAL_SCRIPTS}:/app/deployment-scripts"
