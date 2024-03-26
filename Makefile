@@ -119,10 +119,6 @@ publish-deployment-policy:
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
 	@echo $(NODE_NAME)
-	@export ANYLOG_VOLUME=anylog-$(EDGELAKE_TYPE)-anylog
-	@export BLOCKCHAIN_VOLUME=anylog-$(EDGELAKE_TYPE)-blockchain
-	@export DATA_VOLUME=anylog-$(EDGELAKE_TYPE)-data
-	@export LOCAL_SCRIPTS=anylog-$(EDGELAKE_TYPE)-local-scripts
 #	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
 	@echo ""
 
