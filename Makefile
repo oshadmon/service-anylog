@@ -4,6 +4,7 @@ EDGELAKE_TYPE := generic
 ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 	EDGELAKE_TYPE = $(filter-out $@,$(MAKECMDGOALS))
 endif
+include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
@@ -33,7 +34,7 @@ export LOCAL_SCRIPTS_VOLUME := edgelake-$(EDGELAKE_TYPE)-local-scripts
 
 all: help
 build:
-	docker pull anylogco/edgelake:latest
+    docker pull anylogco/edgelake:latest
 up:
 	@echo "Deploy AnyLog with config file: anylog_$(EDGELAKE_TYPE).env"
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
@@ -83,6 +84,68 @@ exec:
 	docker exec -it edgelake-$(EDGELAKE_TYPE) bash
 logs:
 	docker logs edgelake-$(EDGELAKE_TYPE)
+# Makefile for policy
+publish-service:
+	@echo "=================="
+	@echo "PUBLISHING SERVICE"
+	@echo "=================="
+	@hzn exchange service publish -O -P --json-file=policy_deployment/service.definition.json
+	@echo ""
+remove-service:
+	@echo "=================="
+	@echo "REMOVING SERVICE"
+	@echo "=================="
+	@hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+
+publish-service-policy:
+	@echo "========================="
+	@echo "PUBLISHING SERVICE POLICY"
+	@echo "========================="
+	@hzn exchange service addpolicy -f policy_deployment/service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+
+remove-service-policy:
+	@echo "======================="
+	@echo "REMOVING SERVICE POLICY"
+	@echo "======================="
+	@hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+
+publish-deployment-policy:
+	@echo "============================"
+	@echo "PUBLISHING DEPLOYMENT POLICY"
+	@echo "============================"
+	@export ANYLOG_VOLUME=anylog-$(EDGELAKE_TYPE)-anylog
+	@export BLOCKCHAIN_VOLUME=anylog-$(EDGELAKE_TYPE)-blockchain
+	@export DATA_VOLUME=anylog-$(EDGELAKE_TYPE)-data
+	@export LOCAL_SCRIPTS=anylog-$(EDGELAKE_TYPE)-local-scripts
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)
+	@echo ""
+
+remove-deployment-policy:
+	@echo "=========================="
+	@echo "REMOVING DEPLOYMENT POLICY"
+	@echo "=========================="
+	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)
+	@echo ""
+
+agent-run:
+	@echo "================"
+	@echo "REGISTERING NODE"
+	@echo "================"
+	@hzn register --policy=policy_deployment/node.policy.json
+	@watch hzn agreement list
+
+agent-stop:
+	@echo "==================="
+	@echo "UN-REGISTERING NODE"
+	@echo "==================="
+	@hzn unregister -f
+	@echo ""
+
+deploy-check:
+	@hzn deploycheck all -t device -B policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json --service=policy_deployment/service.definition.json --service-pol=policy_deployment/service.policy.json --node-pol=policy_deployment/node.policy.json
 help:
 	@echo "Usage: make [target] [edgelake-type]"
 	@echo "Targets:"
