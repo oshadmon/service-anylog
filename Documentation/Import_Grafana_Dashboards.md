@@ -3,17 +3,17 @@
 Instructions to create and manage your Grafana instance with AnyLog, can be found in AnyLog's [official documentation](https://github.com/AnyLog-co/documentation/blob/master/northbound%20connectors/using%20grafana.md).
 
 The following document provides 3 sample Grafana dashboards
-* [Network Map](grafana/network_summary.json) - The dashboard consists of a map showing all the nodes in the network, a list of 
+* [Network Map](../grafana/network_summary.json) - The dashboard consists of a map showing all the nodes in the network, a list of 
 operator nodes and a list of  tables supported in the network.
 ![grafana_network_map.png](..%2Fimgs%2Fgrafana_network_map.png)
 
 
-* [Kubernetes Alert](grafana/kubearmor_alert.json) - A dashboard representing alerts from kubearmor-relay. The use case is detailed in 
+* [Kubernetes Alert](../grafana/kubearmor_alert.json) - A dashboard representing alerts from kubearmor-relay. The use case is detailed in 
 [integration wiki page](https://wiki.lfedge.org/display/OH/AnyLog+-+KubeArmor+Integration). 
 ![grafana_alert.png](..%2Fimgs%2Fgrafana_alert.png)
 
 
-* [Kubernetes Log](grafana/kubearmor_log.json) - A dashboard representing logs from kubearmor-relay.
+* [Kubernetes Log](../grafana/kubearmor_log.json) - A dashboard representing logs from kubearmor-relay.
 ![grafana_log.png](..%2Fimgs%2Fgrafana_log.png)
 
 Directions for deploying KubeArmor with AnyLog can be found [here](../AnyLog_Kubearmor.md).
@@ -63,7 +63,7 @@ Directions to install Grafana as a OpenHorizon service can be found [here](https
 <img src="../imgs/grafana_base_dashboard.png" alt="Empty Dashboard" />
 
 
-2. Go _JSON Model_ and add desired model - A model is the JSON object being used to generate the grafana dashboard (for example: [Kubernetes Alert](grafana/kubearmor_alert.json)).
+2. Go _JSON Model_ and add desired model - A model is the JSON object being used to generate the grafana dashboard (for example: [Kubernetes Alert](../grafana/kubearmor_alert.json)).
 
 | <img src="../imgs/grafana_json_model_empty.png" alt="Empty JSON Model" width="75%" height="75%" /> | <img src="../imgs/grafana_json_model.png" alt="JSON Model" width="75%" height="75%"/> |
 |:--------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|
