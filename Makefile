@@ -6,7 +6,7 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 endif
 include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 
-export NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $2}')
+export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_IMAGE_VERSION ?= latest
@@ -118,7 +118,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@echo $(NODE_NAME)
+	@echo $(EXTRACT_NODE_NAME)
 #	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
 	@echo ""
 
