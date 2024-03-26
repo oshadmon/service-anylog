@@ -1,0 +1,4 @@
+1. can we attach / detach node
+2. network host as opposed to port list
+3. specify container name
+
