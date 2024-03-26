@@ -9,7 +9,7 @@ Software. Joining a network requires the following steps:
 **Table of Content**:
 * [Install OpenHorizon](Documentation/OpenHorizon_install.md) - Steps to install OpenHorizon
 * [EdgeLake via Makefile](Documentation/Deploy_EdgeLake.md)) - Using [_Makefile_](Makefile), install EdgeLake via _Open Horizon policy_ or _docker-compose_
-* [EdgeLake_KubeArmor_integration.md](Documentation/EdgeLake_KubeArmor_integration.md) - Accepting KubeArmor data into EdgeLake
+* [EdgeLake KubeArmor Integration](Documentation/EdgeLake_KubeArmor_integration.md) - Accepting KubeArmor data into EdgeLake
 * [Import_Grafana_Dashboards.md](Documentation/Import_Grafana_Dashboards.md) - Importing KubeArmor related gauges into Grafana 
 
 # General Configuration of Network
