@@ -6,7 +6,7 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 endif
 include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 
-export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $2}')
+export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_IMAGE_VERSION ?= latest
