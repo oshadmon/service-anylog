@@ -118,6 +118,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
+	@echo $(NODE_NAME)
 	@export ANYLOG_VOLUME=anylog-$(EDGELAKE_TYPE)-anylog
 	@export BLOCKCHAIN_VOLUME=anylog-$(EDGELAKE_TYPE)-blockchain
 	@export DATA_VOLUME=anylog-$(EDGELAKE_TYPE)-data
