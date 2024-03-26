@@ -6,6 +6,7 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 endif
 include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 
+export NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_IMAGE_VERSION ?= latest
@@ -120,14 +121,14 @@ publish-deployment-policy:
 	@export BLOCKCHAIN_VOLUME=anylog-$(EDGELAKE_TYPE)-blockchain
 	@export DATA_VOLUME=anylog-$(EDGELAKE_TYPE)-data
 	@export LOCAL_SCRIPTS=anylog-$(EDGELAKE_TYPE)-local-scripts
-	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
 	@echo ""
 
 remove-deployment-policy:
 	@echo "=========================="
 	@echo "REMOVING DEPLOYMENT POLICY"
 	@echo "=========================="
-	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)
+	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
 	@echo ""
 
 agent-run:

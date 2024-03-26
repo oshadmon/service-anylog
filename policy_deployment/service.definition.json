@@ -1,8 +1,8 @@
 {
 	"org": "$HZN_ORG_ID",
 	"label": "$SERVICE_NAME for $ARCH",
-	"description": "A service to deploy Grafana with Open Horizon",
-	"documentation": "https://grafana.com/docs/grafana/latest/",
+	"description": "A service to deploy EdgeLake with Open Horizon",
+	"documentation": "https://github.com/open-horizon-services/service-edgelake/",
 	"url": "$SERVICE_NAME",
 	"version": "$SERVICE_VERSION",
 	"arch": "$ARCH",
@@ -96,11 +96,18 @@
 			"type": "string",
 			"defaultValue": "127.0.0.1"
 		},
-
-
-
-
-
+		{
+			"name": "DB_IP",
+			"label": "Database port number",
+			"type": "int",
+			"defaultValue": "5432"
+		},
+		{
+			"name": "AUTOCOMMIT",
+			"label": "Whether to set autocommit data",
+			"type": "bool",
+			"defaultValue": "false"
+		},
 
 		{
 			"name": "LEDGER_CONN",
@@ -109,6 +116,18 @@
 			"defaultValue": "127.0.0.1:32048"
 	},
 
+		{
+			"name": "CLUSTER_NAME",
+			"label": "Owner of the cluster",
+			"type": "string",
+			"defaultValue": "company-cluster1"
+		},
+		{
+			"name": "DEFAULT_DBMS",
+			"label": "Logical database name",
+			"type": "string",
+			"defaultValue": "new_company"
+		},
 
 		{
 			"name": "ENABLE_MQTT",
@@ -116,6 +135,75 @@
 			"type": "bool",
 			"defaultValue": "false"
 		},
+		{
+			"name": "MQTT_BROKER",
+			"label": "IP address of MQTT broker",
+			"type": "string",
+			"defaultValue": "139.144.46.246"
+		},
+		{
+			"name": "MQTT_PORT",
+			"label": "Port associated with MQTT broker",
+			"type": "int",
+			"defaultValue": "1883"
+		},
+		{
+			"name": "MQTT_USER",
+			"label": "User associated with MQTT broker",
+			"type": "string",
+			"defaultValue": "anyloguser"
+		},
+		{
+			"name": "MQTT_PASSWD",
+			"label": "Password associated with MQTT user",
+			"type": "string",
+			"defaultValue": "mqtt4AnyLog!"
+		},
+
+		{
+			"name": "MQTT_LOG",
+			"label": "Whether to enable MQTT logging process",
+			"type": "bool",
+			"defaultValue": "false"
+		},
+
+		{
+			"name": "MSG_TOPIC",
+			"label": "Topic to get data for",
+			"type": "string",
+			"defaultValue": "anylog-demo"
+		},
+		{
+			"name": "MSG_DBMS",
+			"label": "Logical database name",
+			"type": "string",
+			"defaultValue": "new_company"
+		},
+		{
+			"name": "MSG_TABLE",
+			"label": "Table where to store data",
+			"type": "string",
+			"defaultValue": "bring [table]"
+		},
+		{
+			"name": "MSG_TIMESTAMP_COLUMN",
+			"label": "Timestamp column name",
+			"type": "string",
+			"defaultValue": "bring [timestamp]"
+		},
+		{
+			"name": "MSG_VALUE_COLUMN",
+			"label": "Value column name",
+			"type": "string",
+			"defaultValue": "bring [value]"
+	},
+		{
+			"name": "MSG_VALUE_COLUMN_TYPE",
+			"label": "Value column type",
+			"type": "string",
+			"defaultValue": "float"
+		},
+
 		{
 			"name": "DEPLOY_LOCAL_SCRIPT",
 			"label": "Whether to automatically run a local (or personalized) script at the end of the process",
