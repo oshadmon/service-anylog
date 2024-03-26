@@ -49,7 +49,7 @@ git clone https://github.com/open-horizon-services/service-edgelake
 ```
 
 ## Deploy via make and docker-compose 
-1. Update .env configurations for the node(s) being deployed - Edit `LEDGER_CONN` in query and operator using IP address of _Master node_
+1. Update .env configurations for the node(s) being deployed - Edit `LEDGER_CONN` in _Query_ and _Operator_ using IP address of _Master node_
     * [docker_makefile/edgelake_master.env](../docker_makefile/edgelake_master.env)
     * [docker_makefile/edgelake_operator.env](../docker_makefile/edgelake_operator.env)
     * [docker_makefile/edgelake_query.env](../docker_makefile/edgelake_query.env)
