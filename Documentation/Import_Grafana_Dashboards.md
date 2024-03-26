@@ -44,7 +44,7 @@ Directions to install Grafana as a OpenHorizon service can be found [here](https
    * URL: http://localhost:3000/ 
    * username: admin | password: admin
 
-<img src="imgs/grafana_login.png" alt="Grafana page" width="50%" height="50%" />
+<img src="../imgs/grafana_login.png" alt="Grafana page" width="50%" height="50%" />
 
 2. In _Data Sources_ section, create a new JSON data source
    * select a JSON data source.
@@ -53,19 +53,19 @@ Directions to install Grafana as a OpenHorizon service can be found [here](https
    * On the ***Custom HTTP Headers***, name the default database. If no header is set, then all AnyLog hosted databases will be available to a query process.
 
 
-|<img src="imgs/grafana_datasource_connector.png" alt="Data Source Option" /> | <img src="imgs/grafana_datasource_configuration.png" alt="Data Source Config" /> | 
+|<img src="../imgs/grafana_datasource_connector.png" alt="Data Source Option" /> | <img src="../imgs/grafana_datasource_configuration.png" alt="Data Source Config" /> | 
 | :---: | :---: |
 
 
 ## Uploading Dashboard
 
 1. In a new Dashboard goto the _Settings_  
-<img src="imgs/grafana_base_dashboard.png" alt="Empty Dashboard" />
+<img src="../imgs/grafana_base_dashboard.png" alt="Empty Dashboard" />
 
 
 2. Go _JSON Model_ and add desired model - A model is the JSON object being used to generate the grafana dashboard (for example: [Kubernetes Alert](grafana/kubearmor_alert.json)).
 
-| <img src="imgs/grafana_json_model_empty.png" alt="Empty JSON Model" width="75%" height="75%" /> | <img src="imgs/grafana_json_model.png" alt="JSON Model" width="75%" height="75%"/> |
+| <img src="../imgs/grafana_json_model_empty.png" alt="Empty JSON Model" width="75%" height="75%" /> | <img src="../imgs/grafana_json_model.png" alt="JSON Model" width="75%" height="75%"/> |
 |:--------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|
 
 3. Save Changes
@@ -75,7 +75,7 @@ Directions to install Grafana as a OpenHorizon service can be found [here](https
 
 | Before |                                After                                |
 | :---: |:-------------------------------------------------------------------:|
-| <img src="imgs/grafana_no_dashboard.png" alt="No Dashboards" /> | <img src="imgs/grafana_new_dashboard.png" alt="New Dashboard" /> | 
+| <img src="../imgs/grafana_no_dashboard.png" alt="No Dashboards" /> | <img src="../imgs/grafana_new_dashboard.png" alt="New Dashboard" /> | 
 
 5. For each of the widgets update the following information:
    * Data Source 
