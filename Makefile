@@ -6,7 +6,7 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 endif
 include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 
-export NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $2}')
+export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_IMAGE_VERSION ?= latest
@@ -20,7 +20,7 @@ export HZN_ORG_ID ?= examples
 export DEPLOYMENT_POLICY_NAME ?= deployment-policy-edgelake-$(EDGELAKE_TYPE)
 export NODE_POLICY_NAME ?= node-policy-edgelake-$(EDGELAKE_TYPE)
 export SERVICE_NAME ?= service-edgelake
-export SERVICE_VERSION ?= $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $2}')
+export SERVICE_VERSION := $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $$2}')
 
 export ARCH := $(shell uname -m)
 OS := $(shell uname -s)
@@ -33,9 +33,9 @@ export BLOCKCHAIN_VOLUME := edgelake-$(EDGELAKE_TYPE)-blockchain
 export DATA_VOLUME := edgelake-$(EDGELAKE_TYPE)-data
 export LOCAL_SCRIPTS_VOLUME := edgelake-$(EDGELAKE_TYPE)-local-scripts
 
-all: help
+all: help-docker help-horizon
 build:
-    docker pull anylogco/edgelake:latest
+	docker pull anylogco/edgelake:latest
 up:
 	@echo "Deploy AnyLog with config file: anylog_$(EDGELAKE_TYPE).env"
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
@@ -117,18 +117,14 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@export ANYLOG_VOLUME=anylog-$(EDGELAKE_TYPE)-anylog
-	@export BLOCKCHAIN_VOLUME=anylog-$(EDGELAKE_TYPE)-blockchain
-	@export DATA_VOLUME=anylog-$(EDGELAKE_TYPE)-data
-	@export LOCAL_SCRIPTS=anylog-$(EDGELAKE_TYPE)-local-scripts
-	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
+	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME)
 	@echo ""
 
 remove-deployment-policy:
 	@echo "=========================="
 	@echo "REMOVING DEPLOYMENT POLICY"
 	@echo "=========================="
-	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(NODE_NAME}
+	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)__$(EXTRACT_NODE_NAME)
 	@echo ""
 
 agent-run:
@@ -147,8 +143,8 @@ agent-stop:
 
 deploy-check:
 	@hzn deploycheck all -t device -B policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json --service=policy_deployment/service.definition.json --service-pol=policy_deployment/service.policy.json --node-pol=policy_deployment/node.policy.json
-help:
-	@echo "Usage: make [target] [edgelake-type]"
+help-docker:
+	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
 	@echo "Targets:"
 	@echo "  build       Pull the docker image"
 	@echo "  up          Start the containers"
