@@ -50,7 +50,7 @@ git clone https://github.com/open-horizon-services/service-edgelake
 cd service-edgelake
 ```
 
-## Deploy via OpenHorizon Patterns 
+## Deploy via Open-Horizon Patterns 
 1. Update _input_ section for _userInput_ section for deployment policy pattern - Edit `LEDGER_CONN` in _Query_ and _Operator_ using IP address of _Master node_
     * [deployment.policy.master.json](../policy_deployment/deployment.policy.master.json)
     * [deployment.policy.operator.json](../policy_deployment/deployment.policy.master.json)

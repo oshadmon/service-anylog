@@ -42,17 +42,23 @@ gRPC connector are available [here](https://medium.com/anylog-network/the-anylog
    
 ## Deployment Instructions
 
+Use the same process to deploy each type of node as explained in section 
+[Deploy via OpenHorizon Patterns](Deploy_EdgeLake.md#deploy-via-open-horizon-patterns),
+however, use the node type as detailed below:
+
 ### Deploy an EdgeLake Master Node 
-**One node for each EdgeLake Network.**
 
-
+**One Master Node for each EdgeLake Network.**  
+For Steps 2-5 use **EDGELAKE_TYPE=master**
 
 ### Deploy an EdgeLake Query Node
-**A node can service multiple applications, multiple nodes are deplpyed to reduce the load.**
-
+**A Query Node can service multiple applications, multiple nodes are deployed to reduce the load.**  
+For Steps 2-5 use **EDGELAKE_TYPE=query** (for each Query Node deployed).
 
 ### Deploy an EdgeLake Operator Node
-**Multiple nodes that satisfy the KuberArmor generated data. A single AnyLog node can service multiple KubeArmor instances.**
+**Multiple Operator Nodes host KuberArmor generated data. A single Operator Node can service multiple KubeArmor instances.**
+For Steps 2-5 use **EDGELAKE_TYPE=operator** (for each Operator Node deployed).
+
 
 
 
