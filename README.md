@@ -2,8 +2,10 @@
 
 EdgeLake is a decentralized network to manage IoT data. Nodes in the network are compute instances that execute the EdgeLake 
 Software. Joining a network requires the following steps:
-1. Install the EdgeLake Software on computer instance
-2. Configure a node such that it can join an exiting network (or create a new network).
+1. Install the EdgeLake Software on one or more computer instances.
+2. Configure each installed node (compute instance) such that:
+   1. The node joins an exiting network (or creates a new network).
+   2. The node offers data management and monitoring services.  
 
 
 **Table of Content**:
@@ -14,15 +16,16 @@ Software. Joining a network requires the following steps:
 
 # General Configuration of Network
 
-A basic network setup consists of a _master_, 2 or more _operators_  and a _query_ node - as shown in the image below. These nodes 
-can be deployed either on the same physical machine, or unique machines.
+A basic network setup consists of a _master node_, 2 or more _operator nodes_  and a _query_ node - as shown in the image below. 
+These nodes can be deployed either on the same physical machine, or unique machines.
 
 ![Demo Diagram](imgs/deployment_diagram.png)
 
 
 ## Usage
 
-The [make](Makefile) command allows deploying an EdgeLake node based on a user-define node type (_Master_, _Operator_ or _Query_).
+The [make](Makefile) command allows deploying an EdgeLake node based on a user-define 
+[node type (_Master_, _Operator_ or _Query_)](https://github.com/EdgeLake/EdgeLake/blob/main/README.md#edgelake).
 
 ### All Makefile targets
 
