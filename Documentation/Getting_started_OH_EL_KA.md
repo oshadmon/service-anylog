@@ -12,11 +12,12 @@ An overview of the deployment is with the following link: [AnyLog - KubeArmor In
 Notes:
 1) EdgeLake is the Open-Source release of the AnyLog Edge Software Platform.  
 2) Below are the links to the technical documentation of the platform.
-3) The setup EdgeLake-KubeArmor setup is using the EdgeLake code base regardless if the documentation or scripts reference AnyLog.
+3) The EdgeLake-KubeArmor setup detailed in this doc is using the EdgeLake code base regardless 
+   if the documentation or scripts reference AnyLog.
 
 ## AnyLog Documentation
-This document guides through the deployment process. For a detailed technical understanding and training, please review the 
-resources provided in this section.
+This document guides through the EdgeLake deployment process. For a detailed technical understanding and training, 
+please review the AnyLog resources provided in this section.
 
 * [Install Presentation](https://www.youtube.com/watch?v=mQS_VwQMYJc)
 * [Product Documentation](https://github.com/AnyLog-co/documentation/blob/master/README.md)
@@ -29,12 +30,12 @@ resources provided in this section.
 
 ## Deployment setup
 
-The setup includes the following instances:
-* Deploy KubeArmor instances to monitor events on pods, containers, and virtual machines.
-* Deploy an EdgeLake Network with the following components:
-    * One or more **Operator Nodes**. These nodes host the KubeArmor generated data.
+The setup requires the following deployments:
+* KubeArmor instances to monitor events on pods, containers, and virtual machines.
+* An EdgeLake Network with the following components:
+    * One or more **Operator Nodes**. These nodes host the KubeArmor events data.
     * One or more **Query Nodes**. These nodes service the KubeArmor data to applications that need the data.
-    * One **Master Node**. The Master Node hosts the shared metadata. 
+    * One **Master Node**. The Master Node hosts the shared metadata. The shared metadata facilitates the EdgeLake operations. 
 
 Note:  
 Data is transferred between KubeArmor and an EdgeLake Node using a gRPC connector. Details on the EdgeLake 
@@ -46,8 +47,9 @@ KuberArmor is in the middle (brown) circle, monitors the Pods and VMs and genera
 The EdgeLake nodes are of 3 types:
 * 1 Master Node (M) - hosts the shared metadata.
 * 1 Query Node (Q) - Interacts with the applications to service the data.
-* 3 Operator Node (O) - host the KubeArmor data.
-The process is by issuing a query to the Query Node, the Query Node is using the shared Metadata to determines which are
+* 3 Operator Node (O) - host the KubeArmor data.  
+
+Queries are processed by issuing a query to the Query Node, the Query Node is using the shared Metadata to determines which are
   the target Operators that host the data. It transfers the query to the target Operators, the replies from all 
   target Operators are aggregated and returned as a unified reply to the application.
   
