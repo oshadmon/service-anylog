@@ -1,12 +1,13 @@
 # Importing EdgeLake related dashboards into Grafana
 
-Related documentation:
+## Related documentation:
 * An overview of the AnyLog KubeARmor integration is available in 
 [integration wiki page](https://wiki.lfedge.org/display/OH/AnyLog+-+KubeArmor+Integration).
 * Directions for deploying KubeArmor with EdgeLake can be found [here](EdgeLake_KubeArmor_integration.md).
 * Instructions to create and manage Grafana instances with EdgeLake/AnyLog,
   can be found in AnyLog's [official documentation - Using Grafana](https://github.com/AnyLog-co/documentation/blob/master/northbound%20connectors/using%20grafana.md).
 
+## Grafana Dashboards examples (for KubeArmor)
 The following document provides 3 sample Grafana dashboards
 * [Network Map](../grafana/network_summary.json) - The dashboard consists of:
   1. a map showing the nodes in the network
