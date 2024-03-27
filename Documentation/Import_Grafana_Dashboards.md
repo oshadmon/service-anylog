@@ -1,6 +1,6 @@
 # Importing EdgeLake related dashboards into Grafana
 
-## Related documentation:
+## Related documentation
 * An overview of the AnyLog KubeARmor integration is available in 
 [integration wiki page](https://wiki.lfedge.org/display/OH/AnyLog+-+KubeArmor+Integration).
 * Directions for deploying KubeArmor with EdgeLake can be found [here](EdgeLake_KubeArmor_integration.md).
