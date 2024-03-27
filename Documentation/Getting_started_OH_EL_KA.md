@@ -39,6 +39,19 @@ The setup includes the following instances:
 Note:  
 Data is transferred between KubeArmor and an EdgeLake Node using a gRPC connector. Details on the EdgeLake 
 gRPC connector are available [here](https://medium.com/anylog-network/the-anylog-grpc-service-f02ec3bd8a6a).
+
+In the diagram below, the gray (outer) circle represents the Pods and VMs that are monitored.    
+KuberArmor is in the middle (brown) circle, monitors the Pods and VMs and generates event logs that are pulled 
+(using gRPC connector) by EdgeLake instances (in the innermost, blue, circle).  
+The EdgeLake nodes are of 3 types:
+* 1 Master Node (M) - hosts the shared metadata.
+* 1 Query Node (Q) - Interacts with the applications to service the data.
+* 3 Operator Node (O) - host the KubeArmor data.
+The process is by issuing a query to the Query Node, the Query Node is using the shared Metadata to determines which are
+  the target Operators that host the data. It transfers the query to the target Operators, the replies from all 
+  target Operators are aggregated and returned as a unified reply to the application.
+  
+This setup hosts the KubeArmor data at the edge and satisfies queries without centralizing the data. 
    
 ## Deployment Instructions
 
