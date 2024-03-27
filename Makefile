@@ -33,7 +33,7 @@ export BLOCKCHAIN_VOLUME := edgelake-$(EDGELAKE_TYPE)-blockchain
 export DATA_VOLUME := edgelake-$(EDGELAKE_TYPE)-data
 export LOCAL_SCRIPTS_VOLUME := edgelake-$(EDGELAKE_TYPE)-local-scripts
 
-all: help-docker help-horizon
+all: help-docker help-open-horizon
 build:
 	docker pull anylogco/edgelake:latest
 up:
@@ -157,3 +157,18 @@ help-docker:
 	@echo "  help        Show this help message"
 	@echo "  supported EdgeLake types: generic, master, operator, and query"
 	@echo "Sample calls: make up master | make attach master | make clean master"
+help-open-horizon:
+	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
+	@echo "Targets:"
+	@echo "  build                               Pull the docker image"
+	@echo "  publish-service                     Publish service to OpenHorizon"
+	@echo "  remove-service                      Remove service from OpenHorizon"
+	@echo "  publish-service-policy              Publish service policy to OpenHorizon"
+	@echo "  remove-service-policy               Remove service policy from OpenHorizon"
+	@echo "  publish-deployment-policy           Publish deployment policy to OpenHorizon"
+	@echo "  remove-deployment-policy            Remove deployment policy from OpenHorizon"
+	@echo "  agent-run                           Start service via OpenHorizon"
+	@echo "  agent-stop                          Stop service via OpenHorizon"
+	@echo "  deploy-check                        Check status of machine against OpenHorizon"
+	@echo "  supported EdgeLake types: generic, master, operator, and query"
+
