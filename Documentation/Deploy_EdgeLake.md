@@ -102,11 +102,12 @@ make agent-run EDGELAKE_TYPE=[node_type]
 
 Once Service and Service Policy are defined, then users just need to execute steps 4 and 5 for each unique node being deployed 
 
-### Makefile Commands for docker deployment 
+### Makefile Commands for OpenHorizon deployment 
 * help 
 ```text
 Usage: make [target] EDGELAKE_TYPE=[edgelake-type]
 Targets:
+  all                                 Get help for both OpenHorizon and docker deployments
   build                               Pull the docker image
   publish-service                     Publish service to OpenHorizon
   remove-service                      Remove service from OpenHorizon
@@ -117,6 +118,7 @@ Targets:
   agent-run                           Start service via OpenHorizon
   agent-stop                          Stop service via OpenHorizon
   deploy-check                        Check status of machine against OpenHorizon
+  help-open-horizon                   Show this help message
   supported EdgeLake types: generic, master, operator, and query
 ```
 
@@ -199,15 +201,17 @@ make up EDGELAKE_TYPE=[NODE_TYPE]
 ```text
 Usage: make [target] EDGELAKE_TYPE=[anylog-type]
 Targets:
-  build       Pull the docker image
-  up          Start the containers
-  attach      Attach to EdgeLake instance
-  exec        Attach to shell interface for container
-  down        Stop and remove the containers
-  logs        View logs of the containers
-  clean       Clean up volumes and network
-  help        Show this help message
-         supported EdgeLake types: master, operator and query
+  all           Get help for both docker and OpenHorizon deployments
+  build         Pull the docker image
+  up            Start the containers
+  attach        Attach to EdgeLake instance
+  test          Using cURL validate node is running
+  exec          Attach to shell interface for container
+  down          Stop and remove the containers
+  logs          View logs of the containers
+  clean         Clean up volumes and network
+  help-docker   Show this help message
+  supported EdgeLake types: master, operator and query
 Sample calls: make up EDGELAKE_TYPE=[node_type] | make attach EDGELAKE_TYPE=[node_type] | make clean EDGELAKE_TYPE=[node_type]
 ```
 
