@@ -2,8 +2,10 @@
 
 EdgeLake is a decentralized network to manage IoT data. Nodes in the network are compute instances that execute the EdgeLake 
 Software. Joining a network requires the following steps:
-1. Install the EdgeLake Software on computer instance
-2. Configure a node such that it can join an exiting network (or create a new network).
+1. Install the EdgeLake Software on one or more computer instances.
+2. Configure each installed node (compute instance) such that:
+   a) The node joins an exiting network (or creates a new network).
+   b) The node offers data management and monitoring services.  
 
 
 **Table of Content**:
