@@ -1,6 +1,6 @@
-# Importing AnyLog related dashboards into Grafana
+# Importing EdgeLake related dashboards into Grafana
 
-Instructions to create and manage your Grafana instance with AnyLog, can be found in AnyLog's [official documentation](https://github.com/AnyLog-co/documentation/blob/master/northbound%20connectors/using%20grafana.md).
+Instructions to create and manage your Grafana instance with EdgeLake/AnyLog, can be found in AnyLog's [official documentation](https://github.com/AnyLog-co/documentation/blob/master/northbound%20connectors/using%20grafana.md).
 
 The following document provides 3 sample Grafana dashboards
 * [Network Map](../grafana/network_summary.json) - The dashboard consists of a map showing all the nodes in the network, a list of 
@@ -16,7 +16,7 @@ operator nodes and a list of  tables supported in the network.
 * [Kubernetes Log](../grafana/kubearmor_log.json) - A dashboard representing logs from kubearmor-relay.
 ![grafana_log.png](..%2Fimgs%2Fgrafana_log.png)
 
-Directions for deploying KubeArmor with AnyLog can be found [here](../AnyLog_Kubearmor.md).
+Directions for deploying KubeArmor with EdgeLake can be found [here](EdgeLake_KubeArmor_integration.md).
 
 ## Setting Up Grafana
 
@@ -49,8 +49,8 @@ Directions to install Grafana as a OpenHorizon service can be found [here](https
 2. In _Data Sources_ section, create a new JSON data source
    * select a JSON data source.
    * On the name tab provide a unique name to the connection.
-   * On the URL tab add the REST address offered by the AnyLog node (i.e. http://10.0.0.25:2049)
-   * On the ***Custom HTTP Headers***, name the default database. If no header is set, then all AnyLog hosted databases will be available to a query process.
+   * On the URL tab add the REST address offered by the EdgeLake node (i.e. http://10.0.0.25:2049)
+   * On the ***Custom HTTP Headers***, name the default database. If no header is set, then all EdgeLake hosted databases will be available to a query process.
 
 
 |<img src="../imgs/grafana_datasource_connector.png" alt="Data Source Option" /> | <img src="../imgs/grafana_datasource_configuration.png" alt="Data Source Config" /> | 
@@ -79,7 +79,7 @@ Directions to install Grafana as a OpenHorizon service can be found [here](https
 
 5. For each of the widgets update the following information:
    * Data Source 
-   * Metric value (AnyLog table name)
+   * Metric value (EdgeLake table name)
 
 Once these changes are saved, the outcome should look something like this:
 
