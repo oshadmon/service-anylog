@@ -52,7 +52,10 @@ The process is by issuing a query to the Query Node, the Query Node is using the
   target Operators are aggregated and returned as a unified reply to the application.
   
 This setup hosts the KubeArmor data at the edge and satisfies queries without centralizing the data. 
-   
+
+<img src="../imgs/kubearmor_anylog_diagram.png" height="20%" width="20%" /> 
+
+
 ## Deployment Instructions
 
 Use the same process to deploy each type of node as explained in section 
