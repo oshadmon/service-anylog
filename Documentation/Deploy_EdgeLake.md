@@ -87,10 +87,10 @@ make publish-service EDGELAKE_TYPE=[node_type]
 
 3. Publish Policy for Service
 ```shell
-make service-policy EDGELAKE_TYPE=[node_type]
+make publish-service-policy EDGELAKE_TYPE=[node_type]
 ```
 
-4. Publish deployment policy 
+4. Publish Deployment policy 
 ```shell
 make publish-deployment-policy EDGELAKE_TYPE=[node_type]
 ```
