@@ -17,11 +17,13 @@ sudo python3 -m pip install grpcio-tools
    * [Deploy AnyLog](Deploy_EdgeLake.md) 
    * [Deploy Kubearmor](https://docs.kubearmor.io/kubearmor/quick-links/deployment_guide) with proxy
 
-2. For _KubeArmor_, deploy a proxy service 
+2. For _KubeArmor_, deploy a proxy service
+   * For demo purposes, KubeArmor deployed their _NginX_ test application - Steps can be found [here](https://docs.kubearmor.io/kubearmor/quick-links/deployment_guide)
 ```shell
 # proxy command 
 kubectl port-forward --address ${INTERNAL_IP} service/kubearmor 32769:32767 -n kubearmor
 ```
+ 
 
 3. Locate the EdgeLake volume for local-scripts
 ```shell
