@@ -16,8 +16,8 @@ Notes:
    if the documentation or scripts reference AnyLog.
 
 ## AnyLog Documentation
-This document guides through the EdgeLake deployment process. For a detailed technical understanding and training, 
-please review the AnyLog resources provided in this section.
+The documents listed below provide basic training on AnyLog as an Edge Platform. They review the basic concepts,
+usage of the CLI and AnyLog commands.
 
 * [Install Presentation](https://www.youtube.com/watch?v=mQS_VwQMYJc)
 * [Product Documentation](https://github.com/AnyLog-co/documentation/blob/master/README.md)
@@ -57,10 +57,9 @@ This setup hosts the KubeArmor data at the edge and satisfies queries without ce
 
 <img src="../imgs/kubearmor_anylog_diagram.png" height="20%" width="20%" /> 
 
-## Deployment Instructions
-
-Available in the [README](../README.md) file.
-
-
+## Support Links 
+* [Installing EdgeLake](Deploy_EdgeLake.md) - Steps to deploy EdgeLake via _OpenHorizon_ or _docker-compose_ 
+* [Integrating EdgeLake-KubeArmor](EdgeLake_KubeArmor_integration.md) - EdgeLake-KubeArmor Integration Instructions
+* [Generating Grafana for KubeArmor data](Import_Grafana_Dashboards.md)
 
 
