@@ -90,7 +90,7 @@ publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
 	@echo "=================="
-	@hzn exchange service publish -O -P --json-file=policy_deployment/service.definition.json
+	@hzn exchange service publish -O -P --json-file=hzn/service.definition.json
 	@echo ""
 remove-service:
 	@echo "=================="
@@ -103,7 +103,7 @@ publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
 	@echo "========================="
-	@hzn exchange service addpolicy -f policy_deployment/service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@hzn exchange service addpolicy -f hzn/service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 
 remove-service-policy:
@@ -117,7 +117,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@hzn exchange deployment addpolicy -f policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME)
+	@hzn exchange deployment addpolicy -f hzn/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME)
 	@echo ""
 
 remove-deployment-policy:
@@ -131,7 +131,7 @@ agent-run:
 	@echo "================"
 	@echo "REGISTERING NODE"
 	@echo "================"
-	@hzn register --policy=policy_deployment/node.policy.json
+	@hzn register --policy=hzn/node.policy.json
 	@watch hzn agreement list
 
 agent-stop:
@@ -142,7 +142,7 @@ agent-stop:
 	@echo ""
 
 deploy-check:
-	@hzn deploycheck all -t device -B policy_deployment/deployment.policy.$(EDGELAKE_TYPE).json --service=policy_deployment/service.definition.json --service-pol=policy_deployment/service.policy.json --node-pol=policy_deployment/node.policy.json
+	@hzn deploycheck all -t device -B hzn/deployment.policy.$(EDGELAKE_TYPE).json --service=hzn/service.definition.json --service-pol=hzn/service.policy.json --node-pol=hzn/node.policy.json
 help-docker:
 	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
 	@echo "Targets:"
