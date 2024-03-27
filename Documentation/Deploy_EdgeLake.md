@@ -122,26 +122,61 @@ Targets:
   supported EdgeLake types: generic, master, operator, and query
 ```
 
-* Setup Service against OpenHorizon
+* Master Node 
 ```shell
-make publish-service EDGELAKE_TYPE=master 
+# Publish Service 
+make publish-service EDGELAKE_TYPE=master
+
+# Publish Service Policy 
 make service-policy EDGELAKE_TYPE=master
-```
 
-* Declare deployment policy 
-```shell
+# Publish Deployment Policy 
 make publish-deployment-policy EDGELAKE_TYPE=master
-```
 
-* Start Service
-```shell
+# Start container (deploy agent) 
 make agent-run EDGELAKE_TYPE=master
-```
 
-* Stop Service 
-```shell
+# Unregister Node / takedown container 
 make agent-stop EDGELAKE_TYPE=master
 ```
+
+* Query Node 
+```shell
+# Publish Deployment Policy 
+make publish-deployment-policy EDGELAKE_TYPE=query
+
+# Start container (deploy agent) 
+make agent-run EDGELAKE_TYPE=query
+
+# Unregister Node / takedown container 
+make agent-stop EDGELAKE_TYPE=query
+```
+
+* Operator Node 
+```shell
+# Publish Deployment Policy 
+make publish-deployment-policy EDGELAKE_TYPE=query
+
+# Start container (deploy agent) 
+make agent-run EDGELAKE_TYPE=query
+
+# Unregister Node / takedown container 
+make agent-stop EDGELAKE_TYPE=query
+```
+
+* Validate Connectivity commands - configured with _default_ port values
+```shell
+# validate node is accessible via REST
+make test-node EDGELAKE_TYPE=operator 
+
+# validate node is able to communicate and has a valid blockchain file 
+make test-node EDGELAKE_TYPE=operator 
+
+# validate node is able to communicate with other nodes witin its network
+make test-network EDGELAKE_TYPE=operator 
+```
+
+**Note**: Once a _Service_ and _Service-Policy_ have been published, there is no need to republish them 
 
 ## Deploy via make and docker-compose 
 1. Update .env configurations for the node(s) being deployed - Edit `LEDGER_CONN` in _Query_ and _Operator_ using IP address of _Master node_
@@ -215,20 +250,58 @@ Targets:
 Sample calls: make up EDGELAKE_TYPE=[node_type] | make attach EDGELAKE_TYPE=[node_type] | make clean EDGELAKE_TYPE=[node_type]
 ```
 
-* Bring up a _query_ node
+* Master Node 
 ```shell
-make up EDGELAKE_TYPE=query
-```
+# deploy container 
+make up EDGELAKE_TYPE=master 
 
-* Attach to _query_ node
-```shell
-# to detach: ctrl-d
-make attach EDGELAKE_TYPE=query  
-```
+# attach to container (ctrl-d to detach) 
+make up attach EDGELAKE_TYPE=master 
 
-* Bring down _query_ node
+# bring down container 
+make down EDGELAKE_TYPE=master
+
+# Clean container from system
+make clean EDGELAKE_TYPE=master
+```
+* Query Node 
 ```shell
+# deploy container 
+make up EDGELAKE_TYPE=query 
+
+# attach to container (ctrl-d to detach)   
+make up attach EDGELAKE_TYPE=query 
+
+# bring down container
 make down EDGELAKE_TYPE=query
-```
-If a _node-type_ is not set, then a generic node would automatically be used    
 
+# clean container from system
+make clean EDGELAKE_TYPE=query
+```
+
+* Operator Node 
+```shell
+# deploy container 
+make up EDGELAKE_TYPE=operator 
+
+# attach to container (ctrl-d to detach)   
+make up attach EDGELAKE_TYPE=operator 
+
+# bring down container
+make down EDGELAKE_TYPE=operator
+
+# Clean container from system
+make clean EDGELAKE_TYPE=operator
+```
+
+* Validate Connectivity commands - configured with _default_ port values
+```shell
+# validate node is accessible via REST
+make test-node EDGELAKE_TYPE=operator 
+
+# validate node is able to communicate and has a valid blockchain file 
+make test-node EDGELAKE_TYPE=operator 
+
+# validate node is able to communicate with other nodes witin its network
+make test-network EDGELAKE_TYPE=operator 
+```
