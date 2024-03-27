@@ -84,7 +84,7 @@ make agent-run EDGELAKE_TYPE=[node_type]
 make agent-stop EDGELAKE_TYPE=[node_type]
 ```
 
-Review [Deploy EdgeLake](Documentation/Deploy_EdgeLake.md) for specific examples - 
+Review [Deploy EdgeLake](Documentation/Deploy_EdgeLake.md) for farther details and specific examples - 
 [Docker-based](Documentation/Deploy_EdgeLake.md#makefile-commands-for-docker-deployment-) and 
 [OpenHorizon-Based](Documentation/Deploy_EdgeLake.md#makefile-commands-for-openhorizon-deployment-)
  
