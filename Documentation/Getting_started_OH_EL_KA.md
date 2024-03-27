@@ -55,7 +55,6 @@ This setup hosts the KubeArmor data at the edge and satisfies queries without ce
 
 <img src="../imgs/kubearmor_anylog_diagram.png" height="20%" width="20%" /> 
 
-
 ## Deployment Instructions
 
 Use the same process to deploy each type of node as explained in section 
