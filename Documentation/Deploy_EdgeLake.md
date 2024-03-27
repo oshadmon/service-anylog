@@ -82,25 +82,66 @@ cd service-edgelake
 
 2. Publish Service 
 ```shell
-make publish-service EDGELAKE_TYPE=master
+make publish-service EDGELAKE_TYPE=[node_type]
 ```
 
 3. Publish Policy for Service
 ```shell
-make service-policy EDGELAKE_TYPE=master
+make service-policy EDGELAKE_TYPE=[node_type]
 ```
 
 4. Publish deployment policy 
 ```shell
-make publish-deployment-policy EDGELAKE_TYPE=master
+make publish-deployment-policy EDGELAKE_TYPE=[node_type]
 ```
 
 5. Start EdgeLake service
 ```shell
+make agent-run EDGELAKE_TYPE=[node_type]
+```
+
+Once Service and Service Policy are defined, then users just need to execute steps 4 and 5 for each unique node being deployed 
+
+### Makefile Commands for OpenHorizon deployment 
+* help 
+```text
+Usage: make [target] EDGELAKE_TYPE=[edgelake-type]
+Targets:
+  all                                 Get help for both OpenHorizon and docker deployments
+  build                               Pull the docker image
+  publish-service                     Publish service to OpenHorizon
+  remove-service                      Remove service from OpenHorizon
+  publish-service-policy              Publish service policy to OpenHorizon
+  remove-service-policy               Remove service policy from OpenHorizon
+  publish-deployment-policy           Publish deployment policy to OpenHorizon
+  remove-deployment-policy            Remove deployment policy from OpenHorizon
+  agent-run                           Start service via OpenHorizon
+  agent-stop                          Stop service via OpenHorizon
+  deploy-check                        Check status of machine against OpenHorizon
+  help-open-horizon                   Show this help message
+  supported EdgeLake types: generic, master, operator, and query
+```
+
+* Setup Service against OpenHorizon
+```shell
+make publish-service EDGELAKE_TYPE=master 
+make service-policy EDGELAKE_TYPE=master
+```
+
+* Declare deployment policy 
+```shell
+make publish-deployment-policy EDGELAKE_TYPE=master
+```
+
+* Start Service
+```shell
 make agent-run EDGELAKE_TYPE=master
 ```
 
-
+* Stop Service 
+```shell
+make agent-stop EDGELAKE_TYPE=master
+```
 
 ## Deploy via make and docker-compose 
 1. Update .env configurations for the node(s) being deployed - Edit `LEDGER_CONN` in _Query_ and _Operator_ using IP address of _Master node_
@@ -157,19 +198,21 @@ make up EDGELAKE_TYPE=[NODE_TYPE]
 ### Makefile Commands for docker deployment 
 
 * help
-```shell
+```text
 Usage: make [target] EDGELAKE_TYPE=[anylog-type]
 Targets:
-  build       Pull the docker image
-  up          Start the containers
-  attach      Attach to EdgeLake instance
-  exec        Attach to shell interface for container
-  down        Stop and remove the containers
-  logs        View logs of the containers
-  clean       Clean up volumes and network
-  help        Show this help message
-         supported EdgeLake types: master, operator and query
-Sample calls: make up EDGELAKE_TYPE=master | make attach EDGELAKE_TYPE=master | make clean EDGELAKE_TYPE=master
+  all           Get help for both docker and OpenHorizon deployments
+  build         Pull the docker image
+  up            Start the containers
+  attach        Attach to EdgeLake instance
+  test          Using cURL validate node is running
+  exec          Attach to shell interface for container
+  down          Stop and remove the containers
+  logs          View logs of the containers
+  clean         Clean up volumes and network
+  help-docker   Show this help message
+  supported EdgeLake types: master, operator and query
+Sample calls: make up EDGELAKE_TYPE=[node_type] | make attach EDGELAKE_TYPE=[node_type] | make clean EDGELAKE_TYPE=[node_type]
 ```
 
 * Bring up a _query_ node

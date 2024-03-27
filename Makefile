@@ -33,7 +33,7 @@ export BLOCKCHAIN_VOLUME := edgelake-$(EDGELAKE_TYPE)-blockchain
 export DATA_VOLUME := edgelake-$(EDGELAKE_TYPE)-data
 export LOCAL_SCRIPTS_VOLUME := edgelake-$(EDGELAKE_TYPE)-local-scripts
 
-all: help-docker help-horizon
+all: help-docker help-open-horizon
 build:
 	docker pull anylogco/edgelake:latest
 up:
@@ -146,14 +146,32 @@ deploy-check:
 help-docker:
 	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
 	@echo "Targets:"
-	@echo "  build       Pull the docker image"
-	@echo "  up          Start the containers"
-	@echo "  attach      Attach to EdgeLake instance"
-	@echo "  test		 Using cURL validate node is running"
-	@echo "  exec        Attach to shell interface for container"
-	@echo "  down        Stop and remove the containers"
-	@echo "  logs        View logs of the containers"
-	@echo "  clean       Clean up volumes and network"
-	@echo "  help        Show this help message"
+	@echo "  all           Get help for both docker and OpenHorizon deployments"
+	@echo "  build         Pull the docker image"
+	@echo "  up            Start the containers"
+	@echo "  attach        Attach to EdgeLake instance"
+	@echo "  test          Using cURL validate node is running"
+	@echo "  exec          Attach to shell interface for container"
+	@echo "  down          Stop and remove the containers"
+	@echo "  logs          View logs of the containers"
+	@echo "  clean         Clean up volumes and network"
+	@echo "  help-docker   Show this help message"
 	@echo "  supported EdgeLake types: generic, master, operator, and query"
 	@echo "Sample calls: make up master | make attach master | make clean master"
+help-open-horizon:
+	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
+	@echo "Targets:"
+	@echo "  all                                 Get help for both OpenHorizon and docker deployments"
+	@echo "  build                               Pull the docker image"
+	@echo "  publish-service                     Publish service to OpenHorizon"
+	@echo "  remove-service                      Remove service from OpenHorizon"
+	@echo "  publish-service-policy              Publish service policy to OpenHorizon"
+	@echo "  remove-service-policy               Remove service policy from OpenHorizon"
+	@echo "  publish-deployment-policy           Publish deployment policy to OpenHorizon"
+	@echo "  remove-deployment-policy            Remove deployment policy from OpenHorizon"
+	@echo "  agent-run                           Start service via OpenHorizon"
+	@echo "  agent-stop                          Stop service via OpenHorizon"
+	@echo "  deploy-check                        Check status of machine against OpenHorizon"
+	@echo "  help-open-horizon                   Show this help message"
+	@echo "  supported EdgeLake types: generic, master, operator, and query"
+
