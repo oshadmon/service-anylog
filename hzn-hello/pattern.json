@@ -1,5 +1,5 @@
 {
-  "name": "$PATTERN_NAME",
+  "name": "anylogco/edgelake:latest",
   "services": [
     {
       "serviceUrl": "anylogco/edgelake:latest",
