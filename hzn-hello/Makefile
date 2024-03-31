@@ -77,10 +77,10 @@ publish-service:
         hzn exchange service publish -O $(CONTAINER_CREDS) -f service.json --pull-image
 
 publish-pattern:
-	@ARCH=$(ARCH) \
-        SERVICE_NAME="$(SERVICE_NAME)" \
-        SERVICE_VERSION="$(SERVICE_VERSION)"\
-        PATTERN_NAME="$(PATTERN_NAME)" \
+#	@ARCH=$(ARCH) \
+#        SERVICE_NAME="$(SERVICE_NAME)" \
+#        SERVICE_VERSION="$(SERVICE_VERSION)"\
+#        PATTERN_NAME="$(PATTERN_NAME)" \
 	hzn exchange pattern publish -f pattern.json
 
 stop:
