@@ -37,7 +37,7 @@ check-syft:
 	syft $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION) > syft-output
 	cat syft-output
 
-# add SBOM for the source code
+# add SBOM for the source code 
 check-grype:
 	grype $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION) > grype-output
 	cat grype-output
@@ -67,7 +67,7 @@ test: run
 
 
 push:
-	docker push $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION)
+	docker push $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION) 
 
 publish-service:
 	@ARCH=$(ARCH) \
@@ -76,11 +76,11 @@ publish-service:
         SERVICE_CONTAINER="$(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION)" \
         hzn exchange service publish -O $(CONTAINER_CREDS) -f service.json --pull-image
 
-publish-pattdeployment.policy.jsoern:
-#	@ARCH=$(ARCH) \
-#        SERVICE_NAME="$(SERVICE_NAME)" \
-#        SERVICE_VERSION="$(SERVICE_VERSION)"\
-#        PATTERN_NAME="$(PATTERN_NAME)" \
+publish-pattern:
+	@ARCH=$(ARCH) \
+        SERVICE_NAME="$(SERVICE_NAME)" \
+        SERVICE_VERSION="$(SERVICE_VERSION)"\
+        PATTERN_NAME="$(PATTERN_NAME)" \
 	hzn exchange pattern publish -f pattern.json
 
 stop:
@@ -90,7 +90,7 @@ clean:
 	@docker rmi -f $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION) >/dev/null 2>&1 || :
 
 agent-run: agent-stop
-	@hzn register --pattern "$(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)"
+	@hzn register --pattern "${HZN_ORG_ID}/$(PATTERN_NAME)"
 
 agent-stop:
 	@hzn unregister -f
