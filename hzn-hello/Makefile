@@ -37,7 +37,7 @@ check-syft:
 	syft $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION) > syft-output
 	cat syft-output
 
-# add SBOM for the source code 
+# add SBOM for the source code
 check-grype:
 	grype $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION) > grype-output
 	cat grype-output
@@ -67,7 +67,7 @@ test: run
 
 
 push:
-	docker push $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION) 
+	docker push $(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION)
 
 publish-service:
 	@ARCH=$(ARCH) \
@@ -76,7 +76,7 @@ publish-service:
         SERVICE_CONTAINER="$(DOCKER_HUB_ID)/$(SERVICE_NAME):$(SERVICE_VERSION)" \
         hzn exchange service publish -O $(CONTAINER_CREDS) -f service.json --pull-image
 
-publish-pattern:
+publish-pattdeployment.policy.jsoern:
 #	@ARCH=$(ARCH) \
 #        SERVICE_NAME="$(SERVICE_NAME)" \
 #        SERVICE_VERSION="$(SERVICE_VERSION)"\

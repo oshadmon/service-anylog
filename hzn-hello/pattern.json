@@ -1,9 +1,9 @@
 {
-  "name": "edgelake-service",
+  "name": "$PATTERN_NAME",
   "services": [
     {
       "serviceUrl": "anylogco/edgelake:latest",
-      "serviceOrgid": "",
+      "serviceOrgid": "alog",
       "serviceArch": "amd64",
       "serviceVersions": [ { "version": "latest" } ]
     }
