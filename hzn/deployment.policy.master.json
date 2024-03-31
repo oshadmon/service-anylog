@@ -13,10 +13,10 @@
       ]
     },
     "properties": [
-      "openhorizon.allowPrivileged == true"
     ],
-    "constraints": [ 
-         "purpose == edgelake-master"
+    "constraints": [
+      "purpose == edgelake-master",
+      "openhorizon.allowPrivileged == true"
     ], 
     "userInput": [ 
       {            
