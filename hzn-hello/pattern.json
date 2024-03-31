@@ -3,7 +3,7 @@
   "services": [
     {
       "serviceUrl": "anylogco/edgelake:latest",
-      "serviceOrgid": "alog",
+      "serviceOrgid": "",
       "serviceArch": "amd64",
       "serviceVersions": [ { "version": "latest" } ]
     }
