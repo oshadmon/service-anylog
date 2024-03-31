@@ -3,9 +3,9 @@
   "services": [
     {
       "serviceUrl": "anylogco/edgelake:latest",
-      "serviceOrgid": "$DOCKER_HUB_ID",
-      "serviceArch": "$ARCH",
-      "serviceVersions": [ { "version": "$SERVICE_VERSION" } ]
+      "serviceOrgid": "alog",
+      "serviceArch": "amd64",
+      "serviceVersions": [ { "version": "latest" } ]
     }
   ]
 }
