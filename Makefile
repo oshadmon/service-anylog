@@ -131,7 +131,7 @@ agent-run:
 	@echo "================"
 	@echo "REGISTERING NODE"
 	@echo "================"
-	@hzn register --policy=hzn/node.policy.json
+	@hzn register --policy=hzn/node.policy.$(EDGELAKE_TYPE).json
 	@watch hzn agreement list
 
 agent-stop:

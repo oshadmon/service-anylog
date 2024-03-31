@@ -75,7 +75,7 @@ make clean EDGELAKE_TYPE=[NODE_TYPE]
 make publish-service EDGELAKE_TYPE=[node_type]
 
 # Publish Service Policy 
-make service-policy EDGELAKE_TYPE=[node_type]
+make publish-service-policy EDGELAKE_TYPE=[node_type]
 
 # Publish Deployment Policy 
 make publish-deployment-policy EDGELAKE_TYPE=[node_type]
