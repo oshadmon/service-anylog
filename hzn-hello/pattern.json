@@ -1,8 +1,8 @@
 {
-  "name": "$SERVICE_CONTAINER",
+  "name": "$PATTERN_NAME",
   "services": [
     {
-      "serviceUrl": "$SERVICE_NAME",
+      "serviceUrl": "$SERVICE_CONTAINER",
       "serviceOrgid": "$HZN_ORG_ID",
       "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "$SERVICE_VERSION" } ]
