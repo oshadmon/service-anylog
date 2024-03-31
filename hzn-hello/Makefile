@@ -2,7 +2,7 @@
 
 DOCKER_HUB_ID ?= anylogco
 SERVICE_NAME ?= edgelake
-SERVICE_VERSION ?= latest
+SERVICE_VERSION ?= 1.0.0
 PATTERN_NAME ?= pattern-web-hello-python
 ARCH ?= amd64
 MATCH ?= "Hello"
