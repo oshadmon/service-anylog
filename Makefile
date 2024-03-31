@@ -124,7 +124,7 @@ remove-deployment-policy:
 	@echo "=========================="
 	@echo "REMOVING DEPLOYMENT POLICY"
 	@echo "=========================="
-	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)__$(EXTRACT_NODE_NAME)
+	@hzn exchange deployment removepolicy -f $(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME)
 	@echo ""
 
 agent-run:
