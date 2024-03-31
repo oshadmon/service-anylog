@@ -117,14 +117,14 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@hzn exchange deployment addpolicy -f hzn/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME)
+	@hzn exchange deployment addpolicy -f hzn/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME).json
 	@echo ""
 
 remove-deployment-policy:
 	@echo "=========================="
 	@echo "REMOVING DEPLOYMENT POLICY"
 	@echo "=========================="
-	@hzn exchange deployment removepolicy -f hzn/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME)
+	@hzn exchange deployment removepolicy -f hzn/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME).json
 	@echo ""
 
 agent-run:
