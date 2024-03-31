@@ -2,7 +2,7 @@
   "name": "$PATTERN_NAME",
   "services": [
     {
-      "serviceUrl": "$SERVICE_CONTAINER",
+      "serviceUrl": "anylogco/edgelake:latest",
       "serviceOrgid": "$DOCKER_HUB_ID",
       "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "$SERVICE_VERSION" } ]
