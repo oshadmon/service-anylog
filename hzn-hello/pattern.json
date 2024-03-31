@@ -1,5 +1,5 @@
 {
-  "name": "$PATTERN_NAME",
+  "name": "$SERVICE_CONTAINER",
   "services": [
     {
       "serviceUrl": "$SERVICE_NAME",
