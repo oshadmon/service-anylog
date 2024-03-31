@@ -3,7 +3,7 @@
   "services": [
     {
       "serviceUrl": "$SERVICE_CONTAINER",
-      "serviceOrgid": "$HZN_ORG_ID",
+      "serviceOrgid": "$DOCKER_HUB_ID",
       "serviceArch": "$ARCH",
       "serviceVersions": [ { "version": "$SERVICE_VERSION" } ]
     }
