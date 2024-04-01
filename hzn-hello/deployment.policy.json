@@ -2,12 +2,12 @@
   "label": "web-hello-python Deployment Policy",
   "description": "A Horizon Deployment Policy example to run web-hello-python",
   "service": {
-    "name": "$SERVICE_NAME",
+    "name": "edgelake",
     "org": "$HZN_ORG_ID",
     "arch": "$ARCH",
     "serviceVersions": [
       {
-        "version": "$SERVICE_VERSION",
+        "version": "1.0.0",
         "priority":{}
       }
     ]
