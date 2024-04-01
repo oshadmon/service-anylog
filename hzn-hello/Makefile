@@ -96,6 +96,6 @@ agent-stop:
 	@hzn unregister -f
 
 deploy-check:
-	@hzn deploycheck all -t device -B deployment.policy.json --service-pol=service.policy.json --node-pol=node.policy.json
+	@hzn deploycheck all -t device -B deployment.policy.json --service-pol=service.json --node-pol=node.policy.json
 
 .PHONY: build dev run push publish-service publish-pattern test stop clean agent-run agent-stop
