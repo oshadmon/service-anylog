@@ -5,4 +5,5 @@ See the information about [community membership roles](https://wiki.lfedge.org/d
 
 | Name        | GitHub   | email               |
 |-------------|----------|---------------------|
+| Moshe Shdamon | mshadmon-anylog | <moshe@anylog.co> |
 | Ori Shdamon | oshadmon | <oshdmon@gmail.com> |

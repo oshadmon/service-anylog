@@ -1,15 +1,13 @@
 {
-	"org": "$HZN_ORG_ID",
-	"label": "$SERVICE_NAME for $ARCH",
-	"description": "A service to deploy EdgeLake with Open Horizon",
-	"documentation": "https://github.com/open-horizon-services/service-edgelake/",
-	"url": "$SERVICE_NAME",
-	"version": "$SERVICE_VERSION",
-	"arch": "$ARCH",
-	"public": true,
-	"sharable": "singleton",
-	"requiredServices": [],
-	"userInput": [
+  "org": "$HZN_ORG_ID",
+  "label": "$SERVICE_NAME for $ARCH",
+  "url": "$SERVICE_NAME",
+  "version": "$SERVICE_VERSION",
+  "arch": "$ARCH",
+  "public": true,
+  "sharable": "singleton",
+  "requiredServices": [],
+  "userInput": [
 		{
 			"name": "INIT_TYPE",
 			"label": "Whether to deploy AnyLog or shell as a docker container",
@@ -211,11 +209,11 @@
 			"defaultValue": "false"
 		}
 	],
-	"deployment": {
-		"services": {
-			"$SERVICE_NAME": {
-				"image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
-				"ports": [
+  "deployment": {
+    "services": {
+      "$SERVICE_NAME": {
+        "image": "$SERVICE_CONTAINER",
+        "ports": [
 					{"HostIP":  "0.0.0.0", "HostPort":  "32048:32048"},
 					{"HostIP":  "0.0.0.0", "HostPort":  "32049:32049"},
 					{"HostIP":  "0.0.0.0", "HostPort":  "32348:32348"},
@@ -226,14 +224,9 @@
 					{"HostIP":  "0.0.0.0", "HostPort":  "32548:32548"},
 					{"HostIP":  "0.0.0.0", "HostPort":  "32549:32549"},
 					{"HostIP":  "0.0.0.0", "HostPort":  "32550:32550"}
-				],
-				"binds": [
-					"${ANYLOG_VOLUME}:/app/AnyLog-Network/anylog",
-					"${BLOCKCHAIN_VOLUME}:/app/AnyLog-Network/blockchain",
-					"${DATA_VOLUME}:/app/AnyLog-Network/data",
-					"${LOCAL_SCRIPTS}:/app/deployment-scripts"
 				]
-			}
-		}
-   }
+      }
+    }
+  }
 }
+
