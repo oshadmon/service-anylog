@@ -142,7 +142,7 @@ agent-stop:
 	@echo ""
 
 deploy-check:
-	@hzn deploycheck all -t device -B hzn/deployment.policy.$(EDGELAKE_TYPE).json --service=hzn/service.definition.json --node-pol=hzn/node.policy.master.json
+	@hzn deploycheck all -t device -B hzn/deployment.policy.$(EDGELAKE_TYPE).json --service=hzn/service.definition.json --node-pol=hzn/node.policy.$(EDGELAKE_TYPE).json
 
 help-docker:
 	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
