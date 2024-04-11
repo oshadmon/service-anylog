@@ -22,7 +22,7 @@ export NODE_POLICY_NAME ?= troy-node-policy-edgelake-$(EDGELAKE_TYPE)
 export SERVICE_NAME ?= troy-service-edgelake
 export SERVICE_VERSION := $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $$2}')
 
-export ARCH := $(shell uname -m)
+#export ARCH := $(shell uname -m)
 OS := $(shell uname -s)
 ifeq ($(ARCH), arm64)
 	export DOCKER_IMAGE_VERSION := latest-arm64
