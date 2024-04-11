@@ -31,7 +31,7 @@
           {"name":  "ANYLOG_SERVER_PORT", "value":  "32048"},
           {"name":  "ANYLOG_REST_PORT", "value":  "32049"},
 
-          {"name": "MONITOR_NODES", "valaue":  "true"}
+          {"name": "MONITOR_NODES", "value":  "true"}
         ]
       }
     ]
