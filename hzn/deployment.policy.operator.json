@@ -30,7 +30,7 @@
 
           {"name":  "ANYLOG_SERVER_PORT", "value":  "32148"},
           {"name":  "ANYLOG_REST_PORT", "value":  "32149"},
-
+          {"name":  "LEDGER_CONN", "value":  "127.0.0.1:32048"},
           {"name": "ENABLE_MQTT", "value":  "true"},
           {"name": "MONITOR_NODES", "value":  "true"}
 
