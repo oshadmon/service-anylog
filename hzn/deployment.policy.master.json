@@ -2,7 +2,7 @@
     "label": "$SERVICE_NAME Deployment Policy",      
     "description": "Policy to auto deploy $SERVICE_NAME",
     "service": {       
-      "name": "service-edgelake",
+      "name": "troy-service-edgelake",
       "org": "$HZN_ORG_ID",    
       "arch": "*",    
       "serviceVersions": [ 
@@ -15,18 +15,18 @@
     "properties": [
     ],
     "constraints": [
-      "purpose == edgelake-master",
+      "purpose == troy-edgelake-master",
       "openhorizon.allowPrivileged == true"
     ], 
     "userInput": [ 
       {            
         "serviceOrgid": "$HZN_ORG_ID",
-        "serviceUrl": "service-edgelake",
+        "serviceUrl": "troy-service-edgelake",
         "serviceVersionRange": "[0.0.0,INFINITY)",
         "inputs": [
           {"name":"NODE_TYPE","value":"master"},
           {"name":"NODE_NAME","value":"edgelake-master"},
-          {"name":"COMPANY_NAME","value":"New Company"},
+          {"name":"COMPANY_NAME","value":"Fine Company"},
 
           {"name":  "ANYLOG_SERVER_PORT", "value":  "32048"},
           {"name":  "ANYLOG_REST_PORT", "value":  "32049"},
