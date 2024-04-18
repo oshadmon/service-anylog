@@ -1,0 +1,38 @@
+{
+    "label": "$SERVICE_NAME Deployment Policy",      
+    "description": "Policy to auto deploy $SERVICE_NAME",
+    "service": {       
+      "name": "service-edgelake",
+      "org": "$HZN_ORG_ID",    
+      "arch": "*",    
+      "serviceVersions": [ 
+        {
+          "version": "$SERVICE_VERSION",
+          "priority":{}
+        }
+      ]
+    },
+    "properties": [
+    ],
+    "constraints": [
+      "purpose == edgelake-query",
+      "openhorizon.allowPrivileged == true"
+    ], 
+    "userInput": [ 
+      {            
+        "serviceOrgid": "$HZN_ORG_ID",
+        "serviceUrl": "service-edgelake",
+        "serviceVersionRange": "[0.0.0,INFINITY)",
+        "inputs": [
+          {"name":"NODE_TYPE","value":"query"},
+          {"name":"NODE_NAME","value":"edgelake-query"},
+          {"name":"COMPANY_NAME","value":"New Company"},
+
+          {"name":  "ANYLOG_SERVER_PORT", "value":  "32348"},
+          {"name":  "ANYLOG_REST_PORT", "value":  "32349"},
+
+          {"name": "MONITOR_NODES", "value":  "true"}
+        ]
+      }
+    ]
+}  
