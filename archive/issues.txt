@@ -1,2 +1,0 @@
-1.
-2. use network as opposed to specific IPs
