@@ -7,7 +7,7 @@ Machine 1:
     make publish-service EDGELAKE_TYPE=master
     make publish-deployment-policy EDGELAKE_TYPE=master
     make agent-run EDGELAKE_TYPE=master
-
+Machine 2:
     - HZN_DEVICE_ID=edgelake-operator
     make publish-service EDGELAKE_TYPE=operator
     make publish-deployment-policy EDGELAKE_TYPE=operator
