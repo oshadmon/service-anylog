@@ -6,7 +6,7 @@
 		},
 		{
 			"name": "purpose",
-			"value": "troy-edgelake-operator"
+			"value": "edgelake-operator"
 		}
 ],
 	"constraints": []

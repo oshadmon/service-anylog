@@ -17,9 +17,9 @@ export DOCKER_HUB_ID ?= anylogco
 export HZN_ORG_ID ?= alog
 
 # Open Horizon settings for publishing metadata about the service
-export DEPLOYMENT_POLICY_NAME ?= troy-deployment-policy-edgelake-$(EDGELAKE_TYPE)
-export NODE_POLICY_NAME ?= troy-node-policy-edgelake-$(EDGELAKE_TYPE)
-export SERVICE_NAME ?= troy-service-edgelake
+export DEPLOYMENT_POLICY_NAME ?= deployment-policy-edgelake-$(EDGELAKE_TYPE)
+export NODE_POLICY_NAME ?= node-policy-edgelake-$(EDGELAKE_TYPE)
+export SERVICE_NAME ?= service-edgelake
 export SERVICE_VERSION := $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $$2}')
 
 export ARCH := $(shell uname -m)
