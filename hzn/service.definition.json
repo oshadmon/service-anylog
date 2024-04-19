@@ -115,6 +115,12 @@
 					{"HostIP":  "0.0.0.0", "HostPort":  "32548:32548"},
 					{"HostIP":  "0.0.0.0", "HostPort":  "32549:32549"},
 					{"HostIP":  "0.0.0.0", "HostPort":  "32550:32550"}
+				],
+				"binds": [
+					"anylog-node-anylog:/app/EdgeLake/anylog:rw",
+					"anylog-node-blockchain:/app/EdgeLake/blockchain:rw",
+					"anylog-node-data:/app/EdgeLake/data:rw",
+					"anylog-node-local-scripts:/app/deployment-scripts:rw"
 				]
 			}
 		}
