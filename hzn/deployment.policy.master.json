@@ -26,7 +26,7 @@
         "inputs": [
           {"name":"NODE_TYPE","value":"master"},
           {"name":"NODE_NAME","value":"edgelake-master"},
-          {"name":"COMPANY_NAME","value":"New Company"},
+          {"name":"COMPANY_NAME","value":"Fine Company"},
 
           {"name":  "ANYLOG_SERVER_PORT", "value":  "32048"},
           {"name":  "ANYLOG_REST_PORT", "value":  "32049"},
