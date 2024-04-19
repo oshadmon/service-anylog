@@ -14,8 +14,10 @@ Machine 1:
     make agent-run EDGELAKE_TYPE=operator
 
 Expect: Sucucess - both nodes run
-Actual - Nodee 1 (edgeelake-master stops)
+Actual - Nodee 1 (edgeelake-master) stops
 
+3. can we have multiple patterns on the same machine?
 
-3. volume bind?
-4. network mode?
+4. volume bind? https://github.com/open-horizon-services/service-minecraft/blob/main/horizon/service.definition.json
+5. network mode?
+
