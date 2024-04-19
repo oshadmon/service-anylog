@@ -2,7 +2,7 @@
     "label": "$SERVICE_NAME Deployment Policy",      
     "description": "Policy to auto deploy $SERVICE_NAME",
     "service": {       
-      "name": "service-edgelake",
+      "name": "troy-service-edgelake",
       "org": "$HZN_ORG_ID",    
       "arch": "*",    
       "serviceVersions": [ 
@@ -15,13 +15,13 @@
     "properties": [
     ],
     "constraints": [
-      "purpose == edgelake-query",
+      "purpose == troy-edgelake-query",
       "openhorizon.allowPrivileged == true"
     ], 
     "userInput": [ 
       {            
         "serviceOrgid": "$HZN_ORG_ID",
-        "serviceUrl": "service-edgelake",
+        "serviceUrl": "troy-service-edgelake",
         "serviceVersionRange": "[0.0.0,INFINITY)",
         "inputs": [
           {"name":"NODE_TYPE","value":"query"},

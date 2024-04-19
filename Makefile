@@ -9,7 +9,7 @@ include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
-export DOCKER_IMAGE_VERSION ?= 0.0.0
+export DOCKER_IMAGE_VERSION ?= 1.0.0
 
 # DockerHub ID of the third party providing the image (usually yours if building and pushing)
 export DOCKER_HUB_ID ?= anylogco
@@ -17,9 +17,9 @@ export DOCKER_HUB_ID ?= anylogco
 export HZN_ORG_ID ?= alog
 
 # Open Horizon settings for publishing metadata about the service
-export DEPLOYMENT_POLICY_NAME ?= deployment-policy-edgelake-$(EDGELAKE_TYPE)
-export NODE_POLICY_NAME ?= node-policy-edgelake-$(EDGELAKE_TYPE)
-export SERVICE_NAME ?= service-edgelake
+export DEPLOYMENT_POLICY_NAME ?= troy-deployment-policy-edgelake-$(EDGELAKE_TYPE)
+export NODE_POLICY_NAME ?= troy-node-policy-edgelake-$(EDGELAKE_TYPE)
+export SERVICE_NAME ?= troy-service-edgelake
 export SERVICE_VERSION := $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $$2}')
 
 export ARCH := $(shell uname -m)
