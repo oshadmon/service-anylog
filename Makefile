@@ -9,7 +9,11 @@ include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
-export DOCKER_IMAGE_VERSION ?= 1.0.0
+
+export DOCKER_IMAGE_VERSION := 1.3.2405
+ifeq ($(shell uname -m), arm64)
+	export DOCKER_IMAGE_VERSION := 1.3.2405-arm64
+endif
 
 # DockerHub ID of the third party providing the image (usually yours if building and pushing)
 export DOCKER_HUB_ID ?= anylogco
