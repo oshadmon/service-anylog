@@ -10,7 +10,7 @@ export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | gr
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 
-export DOCKER_IMAGE_VERSION := 1.3.2405
+export DOCKER_IMAGE_VERSION := 1.3.2407-beta1
 ifeq ($(shell uname -m), arm64)
 	export DOCKER_IMAGE_VERSION := 1.3.2405-arm64
 endif
@@ -37,21 +37,23 @@ export BLOCKCHAIN_VOLUME := edgelake-$(EDGELAKE_TYPE)-blockchain
 export DATA_VOLUME := edgelake-$(EDGELAKE_TYPE)-data
 export LOCAL_SCRIPTS_VOLUME := edgelake-$(EDGELAKE_TYPE)-local-scripts
 
+DOCKER_COMPOSE=$(shell command -v docker-compose 2>/dev/null || echo "docker compose")
+
 all: help-docker help-open-horizon
 build:
 	docker pull anylogco/edgelake:latest
 up:
 	@echo "Deploy AnyLog with config file: anylog_$(EDGELAKE_TYPE).env"
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	@docker-compose -f docker_makefile/docker-compose.yaml up -d
+	@${DOCKER_COMPOSE} -f docker_makefile/docker-compose.yaml up -d
 	@rm -rf docker_makefile/docker-compose.yaml
 down:
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	@docker-compose -f docker_makefile/docker-compose.yaml down
+	@${DOCKER_COMPOSE} -f docker_makefile/docker-compose.yaml down
 	@rm -rf docker_makefile/docker-compose.yaml
 clean:
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	@docker-compose -f docker_makefile/docker-compose.yaml down -v --remove-orphans --rmi all
+	@${DOCKER_COMPOSE} -f docker_makefile/docker-compose.yaml down -v --remove-orphans --rmi all
 	@rm -rf docker_makefile/docker-compose.yaml
 attach:
 	docker attach --detach-keys=ctrl-d edgelake-$(EDGELAKE_TYPE)
