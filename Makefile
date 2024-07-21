@@ -11,6 +11,7 @@ export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | gr
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 
+export ARCH := $(shell uname -m)
 export DOCKER_IMAGE_VERSION := 1.3.2407-beta1
 ifeq ($(ARCH), arm64)
 	export DOCKER_IMAGE_VERSION := 1.3.2405-arm64
