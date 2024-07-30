@@ -7,7 +7,7 @@ endif
 
 # include docker-makefiles/edgelake_$(EDGELAKE_TYPE).env
 
-export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
+export EXTRACT_NODE_NAME := $(shell cat docker-makefiles/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 
@@ -40,19 +40,19 @@ build:
 
 up:
 	@echo "Deploying AnyLog with config file: anylog_$(EDGELAKE_TYPE).env"
-	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	$(DOCKER_COMPOSE) -f docker_makefile/docker-compose.yaml up -d
-	@rm -rf docker_makefile/docker-compose.yaml
+	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
+	$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml up -d
+	@rm -rf docker-makefiles/docker-compose.yaml
 
 down:
-	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	$(DOCKER_COMPOSE) -f docker_makefile/docker-compose.yaml down
-	@rm -rf docker_makefile/docker-compose.yaml
+	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
+	$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down
+	@rm -rf docker-makefiles/docker-compose.yaml
 
 clean:
-	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	$(DOCKER_COMPOSE) -f docker_makefile/docker-compose.yaml down -v --remove-orphans --rmi all
-	@rm -rf docker_makefile/docker-compose.yaml
+	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
+	$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --remove-orphans --rmi all
+	@rm -rf docker-makefiles/docker-compose.yaml
 
 attach:
 	docker attach --detach-keys=ctrl-d edgelake-$(EDGELAKE_TYPE)
