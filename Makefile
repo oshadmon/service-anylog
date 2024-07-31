@@ -77,6 +77,7 @@ test-node:
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT)
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test node"
 test-network:
+	@echo "Test Network Against: $(HZN_LISTEN_IP):$(REST_PORT)"
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test network"
 attach:
 	@docker attach --detach-keys=ctrl-d $(EDGELAKE_NODE_NAME)
