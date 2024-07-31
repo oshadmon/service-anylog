@@ -35,7 +35,7 @@ export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env |
 # Docker deployment call
 DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker compose")
 
-all: help-docker help-open-horizon
+help: help-docker help-open-horizon
 generate-docker-compose:
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
 remove-docker-compose: 
@@ -90,6 +90,18 @@ attach:
 logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
 publish-service:
-	hzn exchange service publish -O -P --json-file=service.definition.json
+	hzn exchange service publish -o $(HZN_ORG_ID) -O -P --json-file=service.definition.json
 publish-service-policy:
 	hzn exchange service addpolicy -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+help-docker:
+	@echo "====================="
+	@echo "Docker Deployment Options"
+	@echo "====================="
+	@echo "build			pull latest image for $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
+	@echo "up				bring up docker container based on EDGELAKE_TYPE"
+	@echo "attach			attach to docker container based on EDGELAKE_TYPE"
+	@echo "logs				view docker container logs based on EDGELAKE_TYPE"
+	@echo "down				stop docker container based on EDGELAKE_TYPE"
+	@echo "clean			(stop and) remove volumes and iamges for a docker container basd on EDGELAKE_TYPE"
+	@echo "tset-node		using cURL make sure EdgeLake is accessible and is configured properly"
+	@echo "test-network		using cURL make sure EdgeLake node is able to communicate with nodes in the network"
