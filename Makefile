@@ -17,6 +17,12 @@ endif
 # Open Horizon Configs
 export HZN_ORG_ID ?= myorg
 export HZN_LISTEN_IP ?= 127.0.0.1
+export SERVICE_NAME ?= service-edgelake
+export SERVICE_VERSION ?= 0.0.1
+export ARCH=amd64
+ifeq ($(ARCH), arm64)
+	export ARCH=arm64
+endif
 
 # Node Deployment configs
 export EDGELAKE_NODE_NAME := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep NODE_NAME | awk -F "=" '{print $$2}')
@@ -49,9 +55,9 @@ check:
 # 	@echo "MY_TIME_ZONE           default: America/New_York                      actual: ${MY_TIME_ZONE}"
 # 	@echo "DEPLOYMENT_POLICY_NAME default: deployment-policy-homeassistant       actual: ${DEPLOYMENT_POLICY_NAME}"
 # 	@echo "NODE_POLICY_NAME       default: node-policy-homeassistant             actual: ${NODE_POLICY_NAME}"
-# 	@echo "SERVICE_NAME           default: service-homeassistant                 actual: ${SERVICE_NAME}"
-# 	@echo "SERVICE_VERSION        default: 0.0.1                                 actual: ${SERVICE_VERSION}"
-# 	@echo "ARCH                   default: amd64                                 actual: ${ARCH}"
+ 	@echo "SERVICE_NAME           default: service-edgelake                 	 actual: ${SERVICE_NAME}"
+ 	@echo "SERVICE_VERSION        default: 0.0.1                                 actual: ${SERVICE_VERSION}"
+ 	@echo "ARCH                   default: amd64                                 actual: ${ARCH}"
 	@echo "=================="
 	@echo "SERVICE DEFINITION"
 	@echo "=================="
@@ -83,3 +89,7 @@ attach:
 	@docker attach --detach-keys=ctrl-d $(EDGELAKE_NODE_NAME)
 logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
+publish-service:
+	hzn exchange service publish -O -P --json-file=service.definition.json
+publish-service-policy:
+	hzn exchange service addpolicy -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
