@@ -23,6 +23,7 @@ export EDGELAKE_VOLUME := $(EDGELAKE_NODE_NAME)-anylog
 export BLOCKCHAIN_VOLUME := $(EDGELAKE_NODE_NAME)-blockchain
 export DATA_VOLUME := $(EDGELAKE_NODE_NAME)-data
 export LOCAL_SCRIPTS_VOLUME := $(EDGELAKE_NODE_NAME)-local-scripts
+export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $$2}')
 
 # Docker deployment call
 DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker compose")
@@ -70,5 +71,5 @@ clean: generate-docker-compose
 	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --rmi all
 	@$(MAKE) remove-docker-compose
 test-node:
-	@curl -X GET 127.0.0.1:32049 
-	@curl -X GET 127.0.0.1:32049 -H "command: test node"
+	@curl -X GET 127.0.0.1:$(REST_PORT)
+	@curl -X GET 127.0.0.1:$(REST_PORT) -H "command: test node"
