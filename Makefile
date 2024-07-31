@@ -16,6 +16,7 @@ endif
 
 # Open Horizon Configs
 export HZN_ORG_ID ?= myorg
+export HZN_LISTEN_IP ?= 127.0.0.1
 
 # Node Deployment configs
 export EDGELAKE_NODE_NAME := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep NODE_NAME | awk -F "=" '{print $$2}')
