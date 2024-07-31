@@ -70,7 +70,5 @@ clean: generate-docker-compose
 	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --rmi all
 	@$(MAKE) remove-docker-compose
 test-node:
-	export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $$2}')
-	export NODE_IP := $(shell hostname -I | awk -F " " '{print $1}')
-	curl -X GET ${NODE_IP}:${REST_PORT}
-	curl -X GET ${NODE_IP}:${REST_PORT} -H "command: test node"
+	@curl -X GET 127.0.0.1:32049 
+	@curl -X GET 127.0.0.1:32049 -H "command: test node"
