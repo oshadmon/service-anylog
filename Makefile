@@ -73,5 +73,12 @@ clean: generate-docker-compose
 	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --rmi all
 	@$(MAKE) remove-docker-compose
 test-node:
+	@echo "Test Node Against: $(HZN_LISTEN_IP):$(REST_PORT)"
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT)
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test node"
+test-network:
+	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test network"
+attach:
+	@docker attach --detach-keys=ctrl-d $(EDGELAKE_NODE_NAME)
+logs:
+	@docker logs $(EDGELAKE_NODE_NAME)
