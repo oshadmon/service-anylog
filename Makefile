@@ -71,5 +71,5 @@ clean: generate-docker-compose
 	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --rmi all
 	@$(MAKE) remove-docker-compose
 test-node:
-	@curl -X GET 127.0.0.1:$(REST_PORT)
-	@curl -X GET 127.0.0.1:$(REST_PORT) -H "command: test node"
+	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT)
+	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test node"
