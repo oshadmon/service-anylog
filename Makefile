@@ -54,8 +54,7 @@ check:
 
 build:
 	@echo "Pulling image $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
-    @$(DOCKER_COMPOSE) pull $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)
-
+    $(DOCKER_COMPOSE) pull $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)
 up:
     @echo "Deploying EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
     EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
