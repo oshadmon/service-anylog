@@ -45,7 +45,7 @@ export-dotenv:
 	@echo "Loading environment variables from docker-makefiles/edgelake_$(EDGELAKE_TYPE).env"
 	@cp docker-makefiles/edgelake_$(EDGELAKE_TYPE).env docker-makefiles/edgelake_configs_tmp.env
 	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1"\2"/; s/\(MSG_TABLE=\)\(.*\)/\1"\2"/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1"\2"/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1"\2"/' docker-makefiles/edgelake_configs_tmp.env
-	@set -o allexport; source docker-makefiles/edgelake_configs_tmp.env; set +o allexport; \
+	@set -o allexport; source docker-makefiles/edgelake_configs_tmp.env; set +o allexport
 internal-check:
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
