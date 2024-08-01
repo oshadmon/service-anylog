@@ -26,12 +26,12 @@ ifeq ($(ARCH), arm64)
 endif
 
 # Node Deployment configs
-export EDGELAKE_NODE_NAME := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep NODE_NAME | awk -F "=" '{print $2}')
+export EDGELAKE_NODE_NAME := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep NODE_NAME | awk -F "=" '{print $$2}')
 export EDGELAKE_VOLUME := $(EDGELAKE_NODE_NAME)-anylog
 export BLOCKCHAIN_VOLUME := $(EDGELAKE_NODE_NAME)-blockchain
 export DATA_VOLUME := $(EDGELAKE_NODE_NAME)-data
 export LOCAL_SCRIPTS_VOLUME := $(EDGELAKE_NODE_NAME)-local-scripts
-export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $2}')
+export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $$2}')
 
 # Docker deployment call
 DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker compose")
@@ -39,33 +39,32 @@ DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker 
 help: help-docker help-open-horizon
 generate-docker-compose:
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
-remove-docker-compose: 
+remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
 export-dotenv:
 	@cp docker-makefiles/edgelake_operator.env docker-makefiles/edgelake_configs_tmp.env
 	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1"\2"/; s/\(MSG_TABLE=\)\(.*\)/\1"\2"/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1"\2"/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1"\2"/' docker-makefiles/edgelake_configs_tmp.env
-	@source docker-makefiles/edgelake_configs_tmp.env
 check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
 	@echo "====================="
-	echo "EDGELAKE_TYPE          default: generic                               actual: $EDGELAKE_TYPE"; \
-	echo "DOCKER_IMAGE_BASE      default: anylogco/edgelake                     actual: $DOCKER_IMAGE_BASE"; \
-	echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: $DOCKER_IMAGE_NAME"; \
-	echo "DOCKER_IMAGE_VERSION   default: latest                                actual: $DOCKER_IMAGE_VERSION"; \
-	echo "DOCKER_HUB_ID          default: anylogco                              actual: $DOCKER_HUB_ID"; \
-	echo "HZN_ORG_ID             default: myorg                                 actual: $HZN_ORG_ID"; \
-	echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: $HZN_LISTEN_IP"; \
-	echo "==================="; \
-	echo "EDGELAKE DEFINITION"; \
-	echo "==================="; \
-	echo "NODE_TYPE              default: generic                               actual: $NODE_TYPE"; \
-	echo "NODE_NAME              default: edgelake-node                         actual: $NODE_NAME"; \
-	echo "COMPANY_NAME           default: New Company                           actual: $COMPANY_NAME"; \
-	echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: $ANYLOG_SERVER_PORT"; \
-	echo "ANYLOG_REST_PORT       default: 32549                                 actual: $ANYLOG_REST_PORT"; \
-	echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: $LEDGER_CONN"; \
-	echo ""
+	@echo "EDGELAKE_TYPE          default: generic                               actual: $$EDGELAKE_TYPE"
+	@echo "DOCKER_IMAGE_BASE      default: anylogco/edgelake                     actual: $$DOCKER_IMAGE_BASE"
+	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: $$DOCKER_IMAGE_NAME"
+	@echo "DOCKER_IMAGE_VERSION   default: latest                                actual: $$DOCKER_IMAGE_VERSION"
+	@echo "DOCKER_HUB_ID          default: anylogco                              actual: $$DOCKER_HUB_ID"
+	@echo "HZN_ORG_ID             default: myorg                                 actual: $$HZN_ORG_ID"
+	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: $$HZN_LISTEN_IP"
+	@echo "==================="
+	@echo "EDGELAKE DEFINITION"
+	@echo "==================="
+	@echo "NODE_TYPE              default: generic                               actual: $$NODE_TYPE"
+	@echo "NODE_NAME              default: edgelake-node                         actual: $$NODE_NAME"
+	@echo "COMPANY_NAME           default: New Company                           actual: $$COMPANY_NAME"
+	@echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: $$ANYLOG_SERVER_PORT"
+	@echo "ANYLOG_REST_PORT       default: 32549                                 actual: $$ANYLOG_REST_PORT"
+	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: $$LEDGER_CONN"
+	@echo ""
 
 build:
 	@echo "Pulling image $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
