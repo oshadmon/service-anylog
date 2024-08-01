@@ -44,7 +44,8 @@ remove-docker-compose:
 export-dotenv:
 	@echo "Loading environment variables from docker-makefiles/edgelake_$(EDGELAKE_TYPE).env"
 	@set -o allexport; source docker-makefiles/edgelake_$(EDGELAKE_TYPE).env; set +o allexport;
-check: export-dotenv
+check:
+	${MAKE} export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
 	@echo "====================="
@@ -65,7 +66,7 @@ check: export-dotenv
 	@echo "==================="
 	@echo "EDGELAKE DEFINITION"
 	@echo "==================="
-	@echo "NODE_TYPE              default: generic                               actual: $(NODE_TYPE)"
+	@echo "NODE_TYPE              default: generic                               actual: ${NODE_TYPE}"
 	@echo "NODE_NAME              default: edgelake-node                         actual: ${NODE_NAME}"
 	@echo "COMPANY_NAME           default: New Company                           actual: ${COMPANY_NAME}"
 	@echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: ${ANYLOG_SERVER_PORT}"
