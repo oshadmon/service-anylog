@@ -65,7 +65,7 @@ check: export-dotenv
 	@echo "==================="
 	@echo "EDGELAKE DEFINITION"
 	@echo "==================="
-	@echo "NODE_TYPE              default: generic                               actual: ${NODE_TYPE}"
+	@echo "NODE_TYPE              default: generic                               actual: $(NODE_TYPE)"
 	@echo "NODE_NAME              default: edgelake-node                         actual: ${NODE_NAME}"
 	@echo "COMPANY_NAME           default: New Company                           actual: ${COMPANY_NAME}"
 	@echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: ${ANYLOG_SERVER_PORT}"
