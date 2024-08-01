@@ -1,5 +1,6 @@
 #!/bin/Makefile
 
+SHELL := /bin/bash
 EDGELAKE_TYPE := generic
 ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 	EDGELAKE_TYPE := $(filter-out $@,$(MAKECMDGOALS))
