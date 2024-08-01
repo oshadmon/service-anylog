@@ -41,7 +41,7 @@ generate-docker-compose:
 remove-docker-compose: 
 	@rm -rf docker-makefiles/docker-compose.yaml
 export-dotenv:
-	@echo "Loading environment variables from docker-makefiles/edgelake_$(EDGELAKE_TYPE).env
+	@echo "Loading environment variables from docker-makefiles/edgelake_$(EDGELAKE_TYPE).env"
 	@set -o allexport; source docker-makefiles/edgelake_$(EDGELAKE_TYPE).env; set +o allexport
 check: export-dotenv
 	@echo "====================="
