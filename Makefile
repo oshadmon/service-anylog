@@ -40,7 +40,9 @@ generate-docker-compose:
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
 remove-docker-compose: 
 	@rm -rf docker-makefiles/docker-compose.yaml
-check:
+export-dotenv:
+	include docker-makefiles/edgelake_$(EDGELAKE_TYPE)
+check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
 	@echo "====================="
@@ -58,10 +60,15 @@ check:
 # 	@echo "SERVICE_NAME           default: service-edgelake                 	 actual: ${SERVICE_NAME}"
 # 	@echo "SERVICE_VERSION        default: 0.0.1                                 actual: ${SERVICE_VERSION}"
 # 	@echo "ARCH                   default: amd64                                 actual: ${ARCH}"
-	@echo "=================="
-	@echo "SERVICE DEFINITION"
-	@echo "=================="
-#	@cat service.definition.json | envsubst
+	@echo "==================="
+	@echo "EDGELAKE DEFINITION"
+	@echo "==================="
+	@echo "NODE_TYPE              default: generic                               actual: ${NODE_TYPE}"
+	@echo "NODE_NAME              default: edgelake-node                         actual: ${NODE_NAME}"
+	@echo "COMPANY_NAME           default: New Company                           actual: ${COMPANY_NAME}"
+	@echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: ${ANYLOG_SERVER_PORT}"
+	@echo "ANYLOG_REST_PORT       default: 32549                                 actual: ${ANYLOG_REST_PORT}"
+	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: ${LEDGER_CONN}"
 	@echo ""
 build:
 	@echo "Pulling image $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
@@ -91,7 +98,7 @@ logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
 publish-service:
 	hzn exchange service publish -o $(HZN_ORG_ID) -O -P --json-file=service.definition.json
-publish-service-policy:
+publish-service-policy: export-dotenv
 	hzn exchange service addpolicy -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 help-docker:
 	@echo "====================="
