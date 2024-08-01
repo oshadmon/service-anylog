@@ -46,8 +46,7 @@ export-dotenv:
 	@cp docker-makefiles/edgelake_$(EDGELAKE_TYPE).env docker-makefiles/edgelake_configs_tmp.env
 	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1"\2"/; s/\(MSG_TABLE=\)\(.*\)/\1"\2"/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1"\2"/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1"\2"/' docker-makefiles/edgelake_configs_tmp.env
 	@echo "Creating temporary environment file"
-	@set -o allexport; source docker-makefiles/edgelake_configs_tmp.env; set +o allexport; \
-		env | grep -E '^(EDGELAKE_TYPE|DOCKER_IMAGE_BASE|DOCKER_IMAGE_NAME|DOCKER_IMAGE_VERSION|DOCKER_HUB_ID|HZN_ORG_ID|HZN_LISTEN_IP|NODE_TYPE|NODE_NAME|COMPANY_NAME|ANYLOG_SERVER_PORT|ANYLOG_REST_PORT|LEDGER_CONN)=' > docker-makefiles/edgelake_env_vars.sh
+	@set -o allexport; source docker-makefiles/edgelake_configs_tmp.env; env | grep -E '^(EDGELAKE_TYPE|DOCKER_IMAGE_BASE|DOCKER_IMAGE_NAME|DOCKER_IMAGE_VERSION|DOCKER_HUB_ID|HZN_ORG_ID|HZN_LISTEN_IP|NODE_TYPE|NODE_NAME|COMPANY_NAME|ANYLOG_SERVER_PORT|ANYLOG_REST_PORT|LEDGER_CONN)=' > docker-makefiles/edgelake_env_vars.sh; set +o allexport
 
 check: export-dotenv
 	@echo "====================="
