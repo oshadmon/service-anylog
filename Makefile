@@ -44,7 +44,7 @@ remove-docker-compose:
 export-dotenv:
 	@cp docker-makefiles/edgelake_operator.env docker-makefiles/edgelake_configs_tmp.env
 	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1"\2"/; s/\(MSG_TABLE=\)\(.*\)/\1"\2"/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1"\2"/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1"\2"/' docker-makefiles/edgelake_configs_tmp.env
-	@export docker-makefiles/edgelake_configs_tmp.env
+	@source docker-makefiles/edgelake_configs_tmp.env
 check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
