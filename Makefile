@@ -55,7 +55,7 @@ check: export-dotenv
 # 	@echo "DOCKER_VOLUME_NAME     default: homeassistant_config                  actual: ${DOCKER_VOLUME_NAME}"
 	@echo "DOCKER_HUB_ID          default: anylogco                              actual: ${DOCKER_HUB_ID}"
 	@echo "HZN_ORG_ID             default: myorg                                 actual: ${HZN_ORG_ID}"
-	@echo "HZN_LISTEN_IP		  default: 127.0.0.1                             actual: $(HZN_LISTEN_IP)"
+	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: $(HZN_LISTEN_IP)"
 # 	@echo "MY_TIME_ZONE           default: America/New_York                      actual: ${MY_TIME_ZONE}"
 # 	@echo "DEPLOYMENT_POLICY_NAME default: deployment-policy-homeassistant       actual: ${DEPLOYMENT_POLICY_NAME}"
 # 	@echo "NODE_POLICY_NAME       default: node-policy-homeassistant             actual: ${NODE_POLICY_NAME}"
