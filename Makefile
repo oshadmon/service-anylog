@@ -43,9 +43,8 @@ remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
 export-dotenv:
 	@echo "Loading environment variables from docker-makefiles/edgelake_$(EDGELAKE_TYPE).env"
-	@set -o allexport
-	@source docker-makefiles/edgelake_$(EDGELAKE_TYPE).env
-	@set +o allexport
+	@cp docker-makefiles/edgelake_$(EDGELAKE_TYPE).env docker-makefiles/edgelake_configs_tmp.env
+	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1"\2"/; s/\(MSG_TABLE=\)\(.*\)/\1"\2"/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1"\2"/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1"\2"/' docker-makefiles/edgelake_configs_tmp.env
 check:export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
