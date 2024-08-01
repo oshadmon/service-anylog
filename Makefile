@@ -45,8 +45,10 @@ export-dotenv:
 	@echo "Loading environment variables from docker-makefiles/edgelake_$(EDGELAKE_TYPE).env"
 	@cp docker-makefiles/edgelake_$(EDGELAKE_TYPE).env docker-makefiles/edgelake_configs_tmp.env
 	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1"\2"/; s/\(MSG_TABLE=\)\(.*\)/\1"\2"/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1"\2"/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1"\2"/' docker-makefiles/edgelake_configs_tmp.env
-	@source docker-makefiles/edgelake_configs_tmp.env
-check:export-dotenv
+	@set -o allexport; source docker-makefiles/edgelake_configs_tmp.env; set +o allexport; \
+	$(MAKE) --no-print-directory internal-check
+
+internal-check:
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
 	@echo "====================="
@@ -54,16 +56,16 @@ check:export-dotenv
 	@echo "DOCKER_IMAGE_BASE      default: anylogco/edgelake                     actual: ${DOCKER_IMAGE_BASE}"
 	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: ${DOCKER_IMAGE_NAME}"
 	@echo "DOCKER_IMAGE_VERSION   default: latest                                actual: ${DOCKER_IMAGE_VERSION}"
-# 	@echo "DOCKER_VOLUME_NAME     default: homeassistant_config                  actual: ${DOCKER_VOLUME_NAME}"
+	# @echo "DOCKER_VOLUME_NAME     default: homeassistant_config                  actual: ${DOCKER_VOLUME_NAME}"
 	@echo "DOCKER_HUB_ID          default: anylogco                              actual: ${DOCKER_HUB_ID}"
 	@echo "HZN_ORG_ID             default: myorg                                 actual: ${HZN_ORG_ID}"
-	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: $(HZN_LISTEN_IP)"
-# 	@echo "MY_TIME_ZONE           default: America/New_York                      actual: ${MY_TIME_ZONE}"
-# 	@echo "DEPLOYMENT_POLICY_NAME default: deployment-policy-homeassistant       actual: ${DEPLOYMENT_POLICY_NAME}"
-# 	@echo "NODE_POLICY_NAME       default: node-policy-homeassistant             actual: ${NODE_POLICY_NAME}"
-# 	@echo "SERVICE_NAME           default: service-edgelake                 	 actual: ${SERVICE_NAME}"
-# 	@echo "SERVICE_VERSION        default: 0.0.1                                 actual: ${SERVICE_VERSION}"
-# 	@echo "ARCH                   default: amd64                                 actual: ${ARCH}"
+	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: ${HZN_LISTEN_IP}"
+	# @echo "MY_TIME_ZONE           default: America/New_York                      actual: ${MY_TIME_ZONE}"
+	# @echo "DEPLOYMENT_POLICY_NAME default: deployment-policy-homeassistant       actual: ${DEPLOYMENT_POLICY_NAME}"
+	# @echo "NODE_POLICY_NAME       default: node-policy-homeassistant             actual: ${NODE_POLICY_NAME}"
+	# @echo "SERVICE_NAME           default: service-edgelake                      actual: ${SERVICE_NAME}"
+	# @echo "SERVICE_VERSION        default: 0.0.1                                 actual: ${SERVICE_VERSION}"
+	# @echo "ARCH                   default: amd64                                 actual: ${ARCH}"
 	@echo "==================="
 	@echo "EDGELAKE DEFINITION"
 	@echo "==================="
@@ -74,6 +76,7 @@ check:export-dotenv
 	@echo "ANYLOG_REST_PORT       default: 32549                                 actual: ${ANYLOG_REST_PORT}"
 	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: ${LEDGER_CONN}"
 	@echo ""
+check: export-dotenv
 build:
 	@echo "Pulling image $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
 	docker pull $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)
