@@ -44,7 +44,7 @@ remove-docker-compose:
 export-dotenv:
 	ENV_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
 	include $(ENV_FILE)
-	export
+	$(eval export $(shell sed -ne 's/ *#.*$$//; /./ s/=.*$$// p' $(ENV_FILE)))
 #	ifneq ("$(wildcard $(ENV_FILE))","")
 #
 #	endif
