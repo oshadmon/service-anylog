@@ -50,10 +50,11 @@ remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
 export-dotenv:
 	ENV_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
-	ifneq ("$(wildcard $(ENV_FILE))","")
-    	include $(ENV_FILE)
-    	export
-	endif
+	include $(ENV_FILE)
+	export
+#	ifneq ("$(wildcard $(ENV_FILE))","")
+#
+#	endif
 check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
