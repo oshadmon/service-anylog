@@ -49,30 +49,34 @@ generate-docker-compose:
 remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
 export-dotenv:
-	@cp docker-makefiles/edgelake_operator.env docker-makefiles/edgelake_configs_tmp.env
-	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1\2/; s/\(MSG_TABLE=\)\(.*\)/\1\2/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1\2/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1\2/' docker-makefiles/edgelake_configs_tmp.env
-	@source docker-makefiles/edgelake_configs_tmp.env
+	YAML_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.yml
+	# Command to extract values from the YAML file
+	define YAML_PARSER
+		$(eval $(1) = $(shell yq eval ".$(2)" $(YAML_FILE)))
+	endef
+#	@cp docker-makefiles/edgelake_operator.env docker-makefiles/edgelake_configs_tmp.env
+#	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1\2/; s/\(MSG_TABLE=\)\(.*\)/\1\2/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1\2/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1\2/' docker-makefiles/edgelake_configs_tmp.env
+#	@source docker-makefiles/edgelake_configs_tmp.env
 check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
 	@echo "====================="
 	@echo "EDGELAKE_TYPE          default: generic                               actual: ${EDGELAKE_TYPE}"
 	@echo "DOCKER_IMAGE_BASE      default: anylogco/edgelake                     actual: ${DOCKER_IMAGE_BASE}"
-	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: $$DOCKER_IMAGE_NAME"
-	@echo "DOCKER_IMAGE_VERSION   default: latest                                actual: $$DOCKER_IMAGE_VERSION"
-	@echo "DOCKER_HUB_ID          default: anylogco                              actual: $$DOCKER_HUB_ID"
-	@echo "HZN_ORG_ID             default: myorg                                 actual: $$HZN_ORG_ID"
-	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: $$HZN_LISTEN_IP"
+	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: ${DOCKER_IMAGE_NAME}"
+	@echo "DOCKER_IMAGE_VERSION   default: latest                                actual: ${DOCKER_IMAGE_VERSION}"
+	@echo "DOCKER_HUB_ID          default: anylogco                              actual: ${DOCKER_HUB_ID}"
+	@echo "HZN_ORG_ID             default: myorg                                 actual: ${HZN_ORG_ID}"
+	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: ${HZN_LISTEN_IP}"
 	@echo "==================="
 	@echo "EDGELAKE DEFINITION"
 	@echo "==================="
-	@echo "$$YAML_FILE"
-	@echo "NODE_TYPE              default: generic                               actual: $$NODE_TYPE"
-	@echo "NODE_NAME              default: edgelake-node                         actual: $$NODE_NAME"
-	@echo "COMPANY_NAME           default: New Company                           actual: \"$$COMPANY_NAME\""
-	@echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: $$ANYLOG_SERVER_PORT"
-	@echo "ANYLOG_REST_PORT       default: 32549                                 actual: $$ANYLOG_REST_PORT"
-	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: $$LEDGER_CONN"
+	@echo "NODE_TYPE              default: generic                               actual: ${NODE_TYPE}"
+	@echo "NODE_NAME              default: edgelake-node                         actual: ${NODE_NAME}"
+	@echo "COMPANY_NAME           default: New Company                           actual: ${COMPANY_NAME}"
+	@echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: ${ANYLOG_SERVER_PORT}"
+	@echo "ANYLOG_REST_PORT       default: 32549                                 actual: ${ANYLOG_REST_PORT}"
+	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: ${LEDGER_CONN}"
 	@echo ""
 
 build:
