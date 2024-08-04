@@ -10,9 +10,9 @@ endif
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_HUB_ID ?= anylogco
-export DOCKER_IMAGE_VERSION := 1.3.2407
+export DOCKER_IMAGE_VERSION := 1.3.2407-beta2
 ifeq ($(ARCH), arm64)
-	export DOCKER_IMAGE_VERSION := 1.3.2407-arm64
+	export DOCKER_IMAGE_VERSION := 1.3.2407-beta2-arm64
 endif
 
 # Open Horizon Configs
