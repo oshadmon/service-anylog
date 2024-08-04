@@ -1,8 +1,8 @@
 {
 	"org": "$HZN_ORG_ID",
 	"label": "$SERVICE_NAME for $ARCH",
-	"description": "A service to deploy EdgeLake with Open Horizon",
-	"documentation": "https://github.com/open-horizon-services/service-edgelake/",
+	"description": "A service to deploy Grafana with Open Horizon",
+	"documentation": "https://grafana.com/docs/grafana/latest/",
 	"url": "$SERVICE_NAME",
 	"version": "$SERVICE_VERSION",
 	"arch": "$ARCH",
@@ -11,110 +11,21 @@
 	"requiredServices": [],
 	"userInput": [
 		{
-			"name": "INIT_TYPE",
-			"label": "Whether to deploy AnyLog or shell as a docker container",
+			"name": "MY_TIME_ZONE",
+			"label": "User time zone",
 			"type": "string",
-			"defaultValue": "prod"
-		},
-		{
-			"name": "DISABLE_CLI",
-			"label": "Disable CLI",
-			"type": "bool",
-			"defaultValue": "true"
-		},
-
-		{
-			"name": "NODE_TYPE",
-			"label": "Information regarding which AnyLog node configurations to enable. By default, even if everything is disabled, AnyLog starts TCP and REST connection protocols",
-			"type": "string",
-			"defaultValue": "generic"
-		},
-		{
-			"name": "NODE_NAME",
-			"label": "Name of the AnyLog instance",
-			"type": "string",
-			"defaultValue": "anylog-node"
-		},
-		{
-			"name": "COMPANY_NAME",
-			"label": "Owner of the AnyLog instance",
-			"type": "string",
-			"defaultValue": "New Company"
-		},
-
-		{
-			"name": "ANYLOG_SERVER_PORT",
-			"label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
-			"type": "int",
-			"defaultValue": "32548"
-		},
-		{
-			"name": "ANYLOG_REST_PORT",
-			"label": "Port address used by AnyLog's REST protocol",
-			"type": "int",
-			"defaultValue": "32549"
-		},
-		{
-			"name": "TCP_BIND",
-			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-			"type": "bool",
-			"defaultValue": "false"
-		},
-		{
-			"name": "REST_BIND",
-			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-			"type": "bool",
-			"defaultValue": "false"
-		},
-
-		{
-			"name": "LEDGER_CONN",
-			"label": "TCP connection information for Master Node",
-			"type": "string",
-			"defaultValue": "127.0.0.1:32048"
-		},
-
-		{
-			"name": "CLUSTER_NAME",
-			"label": "Owner of the cluster",
-			"type": "string",
-			"defaultValue": "company-cluster1"
-		},
-		{
-			"name": "DEFAULT_DBMS",
-			"label": "Logical database name",
-			"type": "string",
-			"defaultValue": "new_company"
-		},
-
-		{
-			"name": "ENABLE_MQTT",
-			"label": "Whether to enable the default MQTT process",
-			"type": "bool",
-			"defaultValue": "false"
-		},
-		{
-			"name":  "MONITOR_NODES",
-			"label": "Whether to monitor node health",
-			"type": "bool",
-			"defaultValue": "false"
+			"defaultValue": "America/New_York"
 		}
 	],
 	"deployment": {
 		"services": {
 			"$SERVICE_NAME": {
-				"image": "${DOCKER_IMAGE_BASE}:${DOCKER_IMAGE_VERSION}",
+				"image": "$DOCKER_IMAGE_BASE:$DOCKER_IMAGE_VERSION",
 				"ports": [
-					{"HostIP":  "0.0.0.0", "HostPort":  "32048:32048"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32049:32049"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32348:32348"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32349:32349"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32148:32148"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32149:32149"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32150:32150"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32548:32548"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32549:32549"},
-					{"HostIP":  "0.0.0.0", "HostPort":  "32550:32550"}
+					{ "HostIP": "0.0.0.0", "HostPort": "3000:3000/tcp" }
+				],
+			        "binds": [
+					"$DOCKER_VOLUME_NAME:/var/lib/grafana"
 				]
 			}
 		}

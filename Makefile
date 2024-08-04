@@ -93,10 +93,61 @@ attach:
 	@docker attach --detach-keys=ctrl-d $(EDGELAKE_NODE_NAME)
 logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
+
+publish: publish-service publish-service-policy publish-deployment-policy agent-run browse
+# Pull, not push, Docker image since provided by third party
 publish-service:
-	hzn exchange service publish -o $(HZN_ORG_ID) -O -P --json-file=service.definition.json
-publish-service-policy: export-dotenv
-	hzn exchange service addpolicy -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo "=================="
+	@echo "PUBLISHING SERVICE"
+	@echo "=================="
+	@hzn exchange service publish -O -P --json-file=service.definition.json
+	@echo ""
+remove-service:
+	@echo "=================="
+	@echo "REMOVING SERVICE"
+	@echo "=================="
+	@hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+publish-service-policy:
+	@echo "========================="
+	@echo "PUBLISHING SERVICE POLICY"
+	@echo "========================="
+	@hzn exchange service addpolicy -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+remove-service-policy:
+	@echo "======================="
+	@echo "REMOVING SERVICE POLICY"
+	@echo "======================="
+	@hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@echo ""
+
+publish-deployment-policy:
+	@echo "============================"
+	@echo "PUBLISHING DEPLOYMENT POLICY"
+	@echo "============================"
+	@hzn exchange deployment addpolicy -f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@echo ""
+
+remove-deployment-policy:
+	@echo "=========================="
+	@echo "REMOVING DEPLOYMENT POLICY"
+	@echo "=========================="
+	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@echo ""
+
+agent-run:
+	@echo "================"
+	@echo "REGISTERING NODE"
+	@echo "================"
+	@hzn register --policy=node.policy.json
+	@watch hzn agreement list
+
+agent-stop:
+	@echo "==================="
+	@echo "UN-REGISTERING NODE"
+	@echo "==================="
+	@hzn unregister -f
+	@echo ""
 help-docker:
 	@echo "====================="
 	@echo "Docker Deployment Options"
