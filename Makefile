@@ -51,14 +51,8 @@ remove-docker-compose:
 export-dotenv:
 	# Check if the .env file exists and include it
 	ENV_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.envs
-	ifneq ("$(wildcard $(ENV_FILE))","")
-    	include $(ENV_FILE)
-    	export
-	endif
-
-#	@cp docker-makefiles/edgelake_operator.env docker-makefiles/edgelake_configs_tmp.env
-#	@sed -i 's/\(COMPANY_NAME=\)\(.*\)/\1\2/; s/\(MSG_TABLE=\)\(.*\)/\1\2/; s/\(MSG_TIMESTAMP_COLUMN=\)\(.*\)/\1\2/; s/\(MSG_VALUE_COLUMN=\)\(.*\)/\1\2/' docker-makefiles/edgelake_configs_tmp.env
-#	@source docker-makefiles/edgelake_configs_tmp.env
+	include $(ENV_FILE)
+	export
 check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
