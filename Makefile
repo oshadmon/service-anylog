@@ -49,7 +49,7 @@ generate-docker-compose:
 remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
 export-dotenv:
-	YAML_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.yml
+	YAML_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
 	# Command to extract values from the YAML file
 	define YAML_PARSER
 		$(eval $(1) = $(shell yq eval ".$(2)" $(YAML_FILE)))
