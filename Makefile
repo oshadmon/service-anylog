@@ -1,17 +1,10 @@
-#!/bin/Makefile
+#!make
 
 SHELL := /bin/bash
 EDGELAKE_TYPE := generic
 ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 	EDGELAKE_TYPE := $(filter-out $@,$(MAKECMDGOALS))
 endif
-
-YAML_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.yml
-
-# Command to extract values from the YAML file
-define YAML_PARSER
-    $(eval $(1) = $(shell yq eval ".$(2)" $(YAML_FILE)))
-endef
 
 # Docker configurations
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
