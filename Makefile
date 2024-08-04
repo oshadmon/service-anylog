@@ -6,6 +6,13 @@ ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
 	EDGELAKE_TYPE := $(filter-out $@,$(MAKECMDGOALS))
 endif
 
+YAML_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.yml
+
+# Command to extract values from the YAML file
+define YAML_PARSER
+    $(eval $(1) = $(shell yq eval ".$(2)" $(YAML_FILE)))
+endef
+
 # Docker configurations
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
@@ -49,6 +56,7 @@ check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
 	@echo "====================="
+	@echo "$$NODE_NAME"
 	@echo "EDGELAKE_TYPE          default: generic                               actual: $$EDGELAKE_TYPE"
 	@echo "DOCKER_IMAGE_BASE      default: anylogco/edgelake                     actual: $$DOCKER_IMAGE_BASE"
 	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: $$DOCKER_IMAGE_NAME"
@@ -95,6 +103,7 @@ logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
 
 publish: publish-service publish-service-policy publish-deployment-policy agent-run browse
+
 # Pull, not push, Docker image since provided by third party
 publish-service:
 	@echo "=================="
@@ -108,6 +117,7 @@ remove-service:
 	@echo "=================="
 	@hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
+
 publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
@@ -127,7 +137,6 @@ publish-deployment-policy:
 	@echo "============================"
 	@hzn exchange deployment addpolicy -f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
-
 remove-deployment-policy:
 	@echo "=========================="
 	@echo "REMOVING DEPLOYMENT POLICY"
@@ -141,13 +150,13 @@ agent-run:
 	@echo "================"
 	@hzn register --policy=node.policy.json
 	@watch hzn agreement list
-
 agent-stop:
 	@echo "==================="
 	@echo "UN-REGISTERING NODE"
 	@echo "==================="
 	@hzn unregister -f
 	@echo ""
+
 help-docker:
 	@echo "====================="
 	@echo "Docker Deployment Options"
