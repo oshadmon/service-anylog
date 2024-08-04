@@ -50,7 +50,7 @@ remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
 export-dotenv:
 	# Check if the .env file exists and include it
-	source docker-makefiles/edgelake_${EDGELAKE_TYPE}.envad
+	source docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
 check: export-dotenv
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
