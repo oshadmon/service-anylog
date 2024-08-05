@@ -57,6 +57,7 @@ check:
 	@echo "HZN_ORG_ID             default: myorg                                 actual: ${HZN_ORG_ID}"
 	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: ${HZN_LISTEN_IP}"
 	@echo "SERVICE_NAME                                                          actual: ${SERVICE_NAME}"
+	@echo "SERVICE_VERSION                                                       actual: ${SERVICE_VERSION}"
 	@echo "==================="
 	@echo "EDGELAKE DEFINITION"
 	@echo "==================="
