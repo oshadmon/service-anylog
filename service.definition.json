@@ -38,7 +38,7 @@
 			"name": "COMPANY_NAME",
 			"label": "Owner of the AnyLog instance",
 			"type": "string",
-			"defaultValue": "${COMPANY_NAME"
+			"defaultValue": "${COMPANY_NAME}"
 		},
 		{
 			"name": "ANYLOG_SERVER_PORT",
