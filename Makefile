@@ -123,6 +123,7 @@ remove-service-policy:
 	@echo "======================="
 	@echo "REMOVING SERVICE POLICY"
 	@echo "======================="
+	@echo hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 
