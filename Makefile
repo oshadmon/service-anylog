@@ -93,7 +93,7 @@ attach:
 logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
 
-publish: publish-service publish-service-policy publish-deployment-policy agent-run browse
+publish: publish-service publish-service-policy publish-deployment-policy agent-run
 
 # Pull, not push, Docker image since provided by third party
 publish-service:
