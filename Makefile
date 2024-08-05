@@ -102,7 +102,7 @@ publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
 	@echo "=================="
-	@hzn exchange service publish -O -P --json-file=service.definition.json
+	@hzn exchange service publish -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
 	@echo ""
 remove-service:
 	@echo "=================="
@@ -115,7 +115,7 @@ publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
 	@echo "========================="
-	@hzn exchange service addpolicy -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@hzn exchange service addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 remove-service-policy:
 	@echo "======================="
@@ -128,7 +128,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@hzn exchange deployment addpolicy -f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 remove-deployment-policy:
 	@echo "=========================="
