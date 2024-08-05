@@ -160,7 +160,7 @@ help-docker:
 	@echo "attach           attach to docker container based on EDGELAKE_TYPE"
 	@echo "logs             view docker container logs based on EDGELAKE_TYPE"
 	@echo "down             stop docker container based on EDGELAKE_TYPE"
-	@echo "clean            (stop and) remove volumes and iamges for a docker container basd on EDGELAKE_TYPE"
+	@echo "clean            (stop and) remove volumes and images for a docker container basd on EDGELAKE_TYPE"
 	@echo "tset-node        using cURL make sure EdgeLake is accessible and is configured properly"
 	@echo "test-network     using cURL make sure EdgeLake node is able to communicate with nodes in the network"
 help-open-horizon:
