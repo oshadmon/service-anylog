@@ -100,9 +100,9 @@
 			"$SERVICE_NAME": {
 				"image": "$DOCKER_IMAGE_BASE:$DOCKER_IMAGE_VERSION",
 				"ports": [
-					"32148:32148",
-					"32149:32149",
-					"32150:32150"
+					{ "HostIP": "0.0.0.0", "HostPort": "32148:32148/tcp" },
+					{ "HostIP": "0.0.0.0", "HostPort": "32149:32149/tcp" },
+					{ "HostIP": "0.0.0.0", "HostPort": "32150:32150/tcp" }
 				],
 				"binds": [
 					"edgelake-operator-anylog:/app/EdgeLake/anylog",
