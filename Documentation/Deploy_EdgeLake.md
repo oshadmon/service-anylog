@@ -52,9 +52,9 @@ cd service-edgelake
 
 ## Deploy via Open-Horizon Patterns 
 1. Update _input_ section for _userInput_ section for deployment policy pattern - Edit `LEDGER_CONN` in _Query_ and _Operator_ using IP address of _Master node_
-    * [deployment.policy.master.json](../hzn/deployment.policy.master.json)
-    * [deployment.policy.operator.json](../hzn/deployment.policy.master.json)
-    * [deployment.policy.query.json](../hzn/deployment.policy.query.json)
+    * [deployment.policy.master.json](../archive/hzn/deployment.policy.master.json)
+    * [deployment.policy.operator.json](../archive/hzn/deployment.policy.master.json)
+    * [deployment.policy.query.json](../archive/hzn/deployment.policy.query.json)
 ```json
 {            
     "serviceOrgid": "$HZN_ORG_ID",

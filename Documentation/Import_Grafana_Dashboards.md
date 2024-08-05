@@ -9,20 +9,20 @@
 
 ## Grafana Dashboards examples (for KubeArmor)
 The following document provides 3 sample Grafana dashboards
-* [Network Map](../grafana/network_summary.json) - The dashboard consists of:
+* [Network Map](../archive/grafana/network_summary.json) - The dashboard consists of:
   1. a map showing the nodes in the network
   2. a list of the operator nodes
   3. a list of  tables supported in the network
 ![grafana_network_map.png](..%2Fimgs%2Fgrafana_network_map.png)
 
 
-* [Kubernetes Alert](../grafana/kubearmor_alert.json) - A dashboard representing alerts from kubearmor-relay.
+* [Kubernetes Alert](../archive/grafana/kubearmor_alert.json) - A dashboard representing alerts from kubearmor-relay.
 
  
 ![grafana_alert.png](..%2Fimgs%2Fgrafana_alert.png)
 
 
-* [Kubernetes Log](../grafana/kubearmor_log.json) - A dashboard representing logs from kubearmor-relay.
+* [Kubernetes Log](../archive/grafana/kubearmor_log.json) - A dashboard representing logs from kubearmor-relay.
 
 
 ![grafana_log.png](..%2Fimgs%2Fgrafana_log.png)
@@ -73,7 +73,7 @@ Directions to install Grafana as a OpenHorizon service can be found [here](https
 <img src="../imgs/grafana_base_dashboard.png" alt="Empty Dashboard" />
 
 
-2. Go _JSON Model_ and add desired model - A model is the JSON object being used to generate the grafana dashboard (for example: [Kubernetes Alert](../grafana/kubearmor_alert.json)).
+2. Go _JSON Model_ and add desired model - A model is the JSON object being used to generate the grafana dashboard (for example: [Kubernetes Alert](../archive/grafana/kubearmor_alert.json)).
 
 | <img src="../imgs/grafana_json_model_empty.png" alt="Empty JSON Model" width="75%" height="75%" /> | <img src="../imgs/grafana_json_model.png" alt="JSON Model" width="75%" height="75%"/> |
 |:--------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|

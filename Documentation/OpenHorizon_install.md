@@ -183,7 +183,7 @@ sudo apt-get -y install docker-compose
 ```
 
 When using [OpenHorizon Edge Service](OpenHorizon_EdgeService.md), the number of edge nodes increase by one. 
-![OpenHorizon_node_state.png](../imgs/OpenHorizon_node_state.png)
+![OpenHorizon_node_state.png](../archive/imgs/OpenHorizon_node_state.png)
 
 
 
