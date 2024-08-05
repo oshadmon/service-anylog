@@ -95,6 +95,7 @@ logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
 
 publish: publish-service publish-service-policy publish-deployment-policy agent-run
+hzn-clean: agent-stop remove-deployment-policy remove-service-policy remove-service
 
 # Pull, not push, Docker image since provided by third party
 publish-service:
@@ -148,7 +149,6 @@ agent-stop:
 	@echo "==================="
 	@hzn unregister -f
 	@echo ""
-
 help-docker:
 	@echo "====================="
 	@echo "Docker Deployment Options"
@@ -161,3 +161,15 @@ help-docker:
 	@echo "clean            (stop and) remove volumes and iamges for a docker container basd on EDGELAKE_TYPE"
 	@echo "tset-node        using cURL make sure EdgeLake is accessible and is configured properly"
 	@echo "test-network     using cURL make sure EdgeLake node is able to communicate with nodes in the network"
+help-open-horizon:
+	@echo "=============================="
+	@echo "OpenHorizon Deployment Options"
+	@echo "=============================="
+	@echo "publish-service            publish service to OpenHorizon"
+	@echo "remove-service             remove service from OpenHorizon"
+	@echo "publish-service-policy     publish service policy to OpenHorizon"
+	@echo "remove-service-policy      remove service policy from OpenHorizon"
+	@echo "publish-deployment-policy  publish deployment policy to OpenHorizon"
+	@echo "remove-deployment-policy   remove deployment policy from OpenHorizon"
+	@echo "agent-run                  start OpenHorizon service"
+	@echo "aget-stop                  stop OpenHorizon service"
