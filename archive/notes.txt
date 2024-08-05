@@ -1,0 +1,23 @@
+1. when service name not contain "troy-" does not work
+
+2.Attempt to machine on a differnet machine fails
+
+Machine 1:
+    - HZN_DEVICE_ID=edgelake-master
+    make publish-service EDGELAKE_TYPE=master
+    make publish-deployment-policy EDGELAKE_TYPE=master
+    make agent-run EDGELAKE_TYPE=master
+Machine 2:
+    - HZN_DEVICE_ID=edgelake-operator
+    make publish-service EDGELAKE_TYPE=operator
+    make publish-deployment-policy EDGELAKE_TYPE=operator
+    make agent-run EDGELAKE_TYPE=operator
+
+Expect: Sucucess - both nodes run
+Actual - Nodee 1 (edgeelake-master) stops
+
+3. can we have multiple patterns on the same machine?
+
+4. volume bind? https://github.com/open-horizon-services/service-minecraft/blob/main/horizon/service.definition.json
+5. network mode?
+
