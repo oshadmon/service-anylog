@@ -35,6 +35,7 @@ export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env |
 
 # Env Variables
 include docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
+export
 
 # Docker deployment call
 DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker compose")
