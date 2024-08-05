@@ -31,6 +31,7 @@ export EDGELAKE_VOLUME := $(EDGELAKE_NODE_NAME)-anylog
 export BLOCKCHAIN_VOLUME := $(EDGELAKE_NODE_NAME)-blockchain
 export DATA_VOLUME := $(EDGELAKE_NODE_NAME)-data
 export LOCAL_SCRIPTS_VOLUME := $(EDGELAKE_NODE_NAME)-local-scripts
+export TCP_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_SERVER_PORT | awk -F "=" '{print $$2}')
 export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $$2}')
 
 # Env Variables
@@ -42,7 +43,7 @@ DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker 
 
 help: help-docker help-open-horizon
 generate-docker-compose:
-	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
+	EDGELAKE_TYPE=$(EDGELAKE_TYPE) ANYLOG_SERVER_PORT=${TCP_PORT} ANYLOG_REST_PORT=${REST_PORT} envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
 remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
 check:

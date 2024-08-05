@@ -7,7 +7,10 @@ services:
     container_name: ${EDGELAKE_NODE_NAME}
     stdin_open: true
     tty: true
-    network_mode: host
+#    network_mode: host
+    ports:
+      - ${ANYLOG_SERVER_PORT}:${ANYLOG_SERVER_PORT}
+      - ${REST_PORT}:${REST_PORT}
     volumes:
       - ${EDGELAKE_VOLUME}:/app/AnyLog-Network/anylog
       - ${BLOCKCHAIN_VOLUME}:/app/AnyLog-Network/blockchain
