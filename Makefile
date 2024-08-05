@@ -19,7 +19,7 @@ endif
 export HZN_ORG_ID ?= myorg
 export HZN_LISTEN_IP ?= 127.0.0.1
 export SERVICE_NAME ?= service-edgelake
-export SERVICE_VERSION ?= 0.0.1
+export SERVICE_VERSION ?= 1.3.2407
 export ARCH=amd64
 ifeq ($(ARCH), arm64)
 	export ARCH=arm64
