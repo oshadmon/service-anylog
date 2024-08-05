@@ -33,6 +33,9 @@ export DATA_VOLUME := $(EDGELAKE_NODE_NAME)-data
 export LOCAL_SCRIPTS_VOLUME := $(EDGELAKE_NODE_NAME)-local-scripts
 export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $$2}')
 
+# Env Variables
+include docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
+
 # Docker deployment call
 DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker compose")
 
@@ -41,14 +44,7 @@ generate-docker-compose:
 	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
 remove-docker-compose:
 	@rm -rf docker-makefiles/docker-compose.yaml
-export-dotenv:
-	ENV_FILE=docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
-	include $(ENV_FILE)
-	$(eval export $(shell sed -ne 's/ *#.*$$//; /./ s/=.*$$// p' $(ENV_FILE)))
-#	ifneq ("$(wildcard $(ENV_FILE))","")
-#
-#	endif
-check: export-dotenv
+check:
 	@echo "====================="
 	@echo "ENVIRONMENT VARIABLES"
 	@echo "====================="
