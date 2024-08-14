@@ -7,10 +7,11 @@ services:
     container_name: ${EDGELAKE_NODE_NAME}
     stdin_open: true
     tty: true
-#    network_mode: host
+    networks:
+      hzn_horizonnet:
     ports:
       - ${ANYLOG_SERVER_PORT}:${ANYLOG_SERVER_PORT}
-      - ${REST_PORT}:${REST_PORT}
+      - ${ANYLOG_REST_PORT}:${ANYLOG_REST_PORT}
     volumes:
       - ${EDGELAKE_VOLUME}:/app/AnyLog-Network/anylog
       - ${BLOCKCHAIN_VOLUME}:/app/AnyLog-Network/blockchain
@@ -21,3 +22,7 @@ volumes:
   ${BLOCKCHAIN_VOLUME}:
   ${DATA_VOLUME}:
   ${LOCAL_SCRIPTS_VOLUME}:
+networks:
+  hzn_horizonnet:
+    external: true
+

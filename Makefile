@@ -1,27 +1,26 @@
 #!make
 
 SHELL := /bin/bash
-EDGELAKE_TYPE := generic
-ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
-	EDGELAKE_TYPE := $(filter-out $@,$(MAKECMDGOALS))
+ifneq ($(filter check,$(MAKECMDGOALS)), )
+        EDGELAKE_TYPE = $(EDGLAKE_TYPE)
+else
+        EDGELAKE_TYPE := $(filter-out $@,$(MAKECMDGOALS))
 endif
 
 # Docker configurations
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_HUB_ID ?= anylogco
-export DOCKER_IMAGE_VERSION := 1.3.2407-beta2
-ifeq ($(ARCH), arm64)
-	export DOCKER_IMAGE_VERSION := 1.3.2407-beta2-arm64
-endif
+export DOCKER_IMAGE_VERSION := 1.3.2408
 
 # Open Horizon Configs
 export HZN_ORG_ID ?= myorg
 export HZN_LISTEN_IP ?= 127.0.0.1
 export SERVICE_NAME ?= service-edgelake
-export SERVICE_VERSION ?= 1.3.2407
-export ARCH=amd64
+export SERVICE_VERSION ?= 1.3.2408
+export ARCH ?= $(shell hzn architecture)
 ifeq ($(ARCH), arm64)
+	export DOCKER_IMAGE_VERSION := 1.3.2407-beta2-arm64
 	export ARCH=arm64
 endif
 
@@ -76,7 +75,7 @@ build:
 up: generate-docker-compose
 	@echo "Deploying EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
 	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml up -d
-	@$(MAKE) remove-docker-compose
+	#@$(MAKE) remove-docker-compose
 down: generate-docker-compose
 	@echo "Stopping EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
 	$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down
