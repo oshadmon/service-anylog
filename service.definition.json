@@ -11,11 +11,6 @@
 	"requiredServices": [],
 	"userInput": [
 		{
-			"name": "ANYLOG_PATH",
-			"type": "string",
-			"defaultValues": "/app"
-		},
-		{
 			"name": "INIT_TYPE",
 			"label": "Whether to deploy AnyLog or shell as a docker container",
 			"type": "string",
@@ -109,6 +104,7 @@
 					{ "HostIP": "0.0.0.0", "HostPort": "${ANYLOG_REST_PORT}:${ANYLOG_REST_PORT}/tcp" }
 				],
 				"network": "host",
+				"privileged": true,
 				"binds": [
 					"edgelake-operator-anylog:/app/EdgeLake/anylog",
 					"edgelake-operator-blockchain:/app/EdgeLake/blockchain",
