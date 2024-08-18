@@ -11,6 +11,11 @@
 	"requiredServices": [],
 	"userInput": [
 		{
+			"name": "ANYLOG_PATH",
+			"type": "string",
+			"default": "${ANYLOG_PATH}"
+		},
+		{
 			"name": "INIT_TYPE",
 			"label": "Whether to deploy AnyLog or shell as a docker container",
 			"type": "string",
