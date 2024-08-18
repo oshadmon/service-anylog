@@ -16,7 +16,7 @@ export DOCKER_IMAGE_VERSION := 1.3.2408
 # Open Horizon Configs
 export HZN_ORG_ID ?= myorg
 export HZN_LISTEN_IP ?= 127.0.0.1
-export SERVICE_NAME ?= service-edgelake
+export SERVICE_NAME ?= service-edgelake-$(EDGELAKE_TYPE)
 export SERVICE_VERSION ?= 1.3.2408
 export ARCH ?= $(shell hzn architecture)
 ifeq ($(ARCH), arm64)
