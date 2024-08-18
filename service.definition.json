@@ -11,6 +11,11 @@
 	"requiredServices": [],
 	"userInput": [
 		{
+			"name": "ANYLOG_PATH",
+			"type": "string",
+			"defaultValues": "/app"
+		},
+		{
 			"name": "INIT_TYPE",
 			"label": "Whether to deploy AnyLog or shell as a docker container",
 			"type": "string",
@@ -103,21 +108,13 @@
 					{ "HostIP": "0.0.0.0", "HostPort": "${ANYLOG_SERVER_PORT}:${ANYLOG_SERVER_PORT}/tcp" },
 					{ "HostIP": "0.0.0.0", "HostPort": "${ANYLOG_REST_PORT}:${ANYLOG_REST_PORT}/tcp" }
 				],
-				"network_mode": "hzn_horizonnet",
+				"network": "host",
 				"binds": [
 					"edgelake-operator-anylog:/app/EdgeLake/anylog",
 					"edgelake-operator-blockchain:/app/EdgeLake/blockchain",
 					"edgelake-operator-data:/app/EdgeLake/data",
 					"edgelake-operator-local-scripts:/app/deployment-scripts"
-				],
-				"networks": {
-					"hzn_horizonnet": {}
-				}
-			}
-		},
-		"networks": {
-			"hzn_horizonnet": {
-				"external": true
+				]
 			}
 		}
 	}
