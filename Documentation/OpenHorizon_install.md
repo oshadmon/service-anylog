@@ -56,23 +56,28 @@ sudo apt-get -y upgrade
 3. Export following params - I tend to store the params as part of `~/.bashrc` (_Alpine_: `~/.profile`), that way when the node
 reboots the environment variables still exist
 ```shell
-# OpenHorizon
 export HZN_ORG_ID=[ORG_ID]
-# export HZN_DEVICE_TOKEN= # specify a string value for a token
-export HZN_DEVICE_ID=[DEVICE_ID] 
-export HZN_EXCHANGE_USER_AUTH=[USER:PASSWORD]
-export HZN_EXCHANGE_URL=http://132.177.125.232:3090/v1
-export HZN_FSS_CSSURL=http://132.177.125.232:9443/
-export HZN_AGBOT_URL=http://132.177.125.232:3111
-export HZN_SDO_SVC_URL=http://132.177.125.232:9008/api
+export HZN_EXCHANGE_USER_AUTH=[USER_AUTH]
+export HZN_EXCHANGE_URL=[EXCHANGE_URL]
+export HZN_FSS_CSSURL=[FSS_CSSURL]
 ```
-**Disclaimer**: When setting `HZN_DEVICE_ID`, make sure each physical node has a unique value.   
 
-4. Download and install agent using _Hello World_
+4. Download the installation agent & provide admin permissions
 ```shell
-curl -sSL https://raw.githubusercontent.com/open-horizon/anax/v2.30/agent-install/agent-install.sh | bash -s -- -i anax: -c css: -p IBM/pattern-ibm.helloworld -w '*' -T 120
+curl -u "${HZN_ORG_ID}/${HZN_EXCHANGE_USER_AUTH}" -k -o agent-install.sh ${HZN_FSS_CSSURL}/api/v1/objects/IBM/agent_files/agent-install.sh/data
+chmod +x agent-install.sh
 ```
 
+## Install _Hello World_
+
+The _hello world_ pattern will install `hzn` and `docker` as well as validate everything works properly 
+
+1. Test agent is installed by deploying _IBM/pattern-ibm.helloworld_
+
+**Command**
+```shell
+sudo -s -E ./agent-install.sh -i 'css:' -p IBM/pattern-ibm.helloworld -w '*' -T 120
+```
 **Output**
 ```shell
 ...
@@ -92,8 +97,7 @@ Status of the services you are watching:
         IBM/ibm.helloworld      Success
 ```
 
-## Validate Node 
-* Check node is running
+2. Check node is running
 
 **Command**
 ```shell
@@ -118,7 +122,7 @@ hzn eventlog list -f
 ```
 
 
-* View general information about this Horizon edge node.
+3. View general information about this Horizon edge node.
 
 **Command**:
 ```shell
@@ -153,12 +157,12 @@ hzn node list
 ```
 
 
-* Unregister _IBM/pattern-ibm.helloworld_
+4. Unregister _IBM/pattern-ibm.helloworld_
 ```shell
 hzn unregister -f
 ```
 
-* Validate _hzn_ is installed 
+5. Validate _hzn_ is installed 
 
 **Command**
 ```shell
@@ -171,7 +175,7 @@ Horizon CLI version: 2.30.0-1435
 Horizon Agent version: 2.30.0-1435
 ```
 
-* Docker is already installed via `hzn`, however needs permissions to use not as root / sudo
+6. Docker is already installed via `hzn`, however needs permissions to use not as root
 ```shell
 USER=`whoami` 
 sudo groupadd docker 
@@ -183,7 +187,7 @@ sudo apt-get -y install docker-compose
 ```
 
 When using [OpenHorizon Edge Service](OpenHorizon_EdgeService.md), the number of edge nodes increase by one. 
-![OpenHorizon_node_state.png](../archive/imgs/OpenHorizon_node_state.png)
+![OpenHorizon_node_state.png](../imgs/OpenHorizon_node_state.png)
 
 
 
