@@ -1,4 +1,4 @@
-# Instaall Open Horizon
+# Install Open Horizon
 
 The following installs Open Horizon locally 
 
@@ -18,6 +18,10 @@ source ~/.bashrc
 
 2. Start OpenHorizon via cURL - details can be found in [index](Install_OpenHorizon_index.md)
 ```shell
+for cmd in update upgrade ; do 
+  sudo apt-get -y ${cmd}
+done 
+ 
 curl -sSL https://raw.githubusercontent.com/open-horizon/devops/master/mgmt-hub/deploy-mgmt-hub.sh -A -R | bash
 ```
 
