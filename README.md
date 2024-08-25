@@ -58,8 +58,7 @@ Make sure the following params get update accordingly:
    * Database name
 
 
-2. Make sure there aren't any services running - note existing services will redeploy as part of `agent-run` in step 3. 
-
+2. Make sure there aren't any services running - note existing services will redeploy as part of `agent-run` in step
 ```shell
 hzn unregister -f
 ```
