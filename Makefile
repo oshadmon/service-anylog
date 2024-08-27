@@ -1,96 +1,110 @@
-# Makefile
+#!make
 
-EDGELAKE_TYPE := generic
-ifneq ($(filter-out $@,$(MAKECMDGOALS)), )
-	EDGELAKE_TYPE = $(filter-out $@,$(MAKECMDGOALS))
+SHELL := /bin/bash
+ifneq ($(filter check,$(MAKECMDGOALS)), )
+        EDGELAKE_TYPE = $(EDGLAKE_TYPE)
+else
+        EDGELAKE_TYPE := $(filter-out $@,$(MAKECMDGOALS))
 endif
-include docker_makefile/edgelake_$(EDGELAKE_TYPE).env
 
-export EXTRACT_NODE_NAME := $(shell cat docker_makefile/edgelake_master.env | grep NODE_NAME | awk -F "=" '{print $$2}')
+# Docker configurations
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
-export DOCKER_IMAGE_VERSION ?= 1.0.0
-
-# DockerHub ID of the third party providing the image (usually yours if building and pushing)
 export DOCKER_HUB_ID ?= anylogco
-# The Open Horizon organization ID namespace where you will be publishing the service definition file
-export HZN_ORG_ID ?= alog
+export DOCKER_IMAGE_VERSION := 1.3.2408
 
-# Open Horizon settings for publishing metadata about the service
-export DEPLOYMENT_POLICY_NAME ?= troy-deployment-policy-edgelake-$(EDGELAKE_TYPE)
-export NODE_POLICY_NAME ?= troy-node-policy-edgelake-$(EDGELAKE_TYPE)
-export SERVICE_NAME ?= troy-service-edgelake
-export SERVICE_VERSION := $(shell curl -s https://raw.githubusercontent.com/EdgeLake/EdgeLake/main/setup.cfg | grep "version = " | awk -F " = " '{print $$2}')
-
-export ARCH := $(shell uname -m)
-OS := $(shell uname -s)
+# Open Horizon Configs
+export HZN_ORG_ID ?= myorg
+export HZN_LISTEN_IP ?= 127.0.0.1
+export SERVICE_NAME ?= service-edgelake-$(EDGELAKE_TYPE)
+export SERVICE_VERSION ?= 1.3.2408
+export ARCH ?= $(shell hzn architecture)
 ifeq ($(ARCH), arm64)
-	export DOCKER_IMAGE_VERSION := latest-arm64
+	export DOCKER_IMAGE_VERSION := 1.3.2407-beta2-arm64
+	export ARCH=arm64
 endif
 
-export EDGELAKE_VOLUME := edgelake-$(EDGELAKE_TYPE)-anylog
-export BLOCKCHAIN_VOLUME := edgelake-$(EDGELAKE_TYPE)-blockchain
-export DATA_VOLUME := edgelake-$(EDGELAKE_TYPE)-data
-export LOCAL_SCRIPTS_VOLUME := edgelake-$(EDGELAKE_TYPE)-local-scripts
+# Node Deployment configs
+export EDGELAKE_NODE_NAME := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep NODE_NAME | awk -F "=" '{print $$2}')
+export EDGELAKE_VOLUME := $(EDGELAKE_NODE_NAME)-anylog
+export BLOCKCHAIN_VOLUME := $(EDGELAKE_NODE_NAME)-blockchain
+export DATA_VOLUME := $(EDGELAKE_NODE_NAME)-data
+export LOCAL_SCRIPTS_VOLUME := $(EDGELAKE_NODE_NAME)-local-scripts
+export TCP_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_SERVER_PORT | awk -F "=" '{print $$2}')
+export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $$2}')
 
-all: help-docker help-open-horizon
+# Env Variables
+include docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
+export
+
+# Docker deployment call
+DOCKER_COMPOSE := $(shell command -v docker-compose 2>/dev/null || echo "docker compose")
+
+help: help-docker help-open-horizon
+generate-docker-compose:
+	EDGELAKE_TYPE=$(EDGELAKE_TYPE) ANYLOG_SERVER_PORT=${TCP_PORT} ANYLOG_REST_PORT=${REST_PORT} envsubst < docker-makefiles/docker-compose-template.yaml > docker-makefiles/docker-compose.yaml
+remove-docker-compose:
+	@rm -rf docker-makefiles/docker-compose.yaml
+check:
+	@echo "====================="
+	@echo "ENVIRONMENT VARIABLES"
+	@echo "====================="
+	@echo "EDGELAKE_TYPE          default: generic                               actual: ${EDGELAKE_TYPE}"
+	@echo "DOCKER_IMAGE_BASE      default: anylogco/edgelake                     actual: ${DOCKER_IMAGE_BASE}"
+	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: ${DOCKER_IMAGE_NAME}"
+	@echo "DOCKER_IMAGE_VERSION   default: latest                                actual: ${DOCKER_IMAGE_VERSION}"
+	@echo "DOCKER_HUB_ID          default: anylogco                              actual: ${DOCKER_HUB_ID}"
+	@echo "HZN_ORG_ID             default: myorg                                 actual: ${HZN_ORG_ID}"
+	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: ${HZN_LISTEN_IP}"
+	@echo "SERVICE_NAME                                                          actual: ${SERVICE_NAME}"
+	@echo "SERVICE_VERSION                                                       actual: ${SERVICE_VERSION}"
+	@echo "==================="
+	@echo "EDGELAKE DEFINITION"
+	@echo "==================="
+	@echo "NODE_TYPE              default: generic                               actual: ${NODE_TYPE}"
+	@echo "NODE_NAME              default: edgelake-node                         actual: ${NODE_NAME}"
+	@echo "COMPANY_NAME           default: New Company                           actual: ${COMPANY_NAME}"
+	@echo "ANYLOG_SERVER_PORT     default: 32548                                 actual: ${ANYLOG_SERVER_PORT}"
+	@echo "ANYLOG_REST_PORT       default: 32549                                 actual: ${ANYLOG_REST_PORT}"
+	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: ${LEDGER_CONN}"
+	@echo ""
+
 build:
-	docker pull anylogco/edgelake:latest
-up:
-	@echo "Deploy AnyLog with config file: anylog_$(EDGELAKE_TYPE).env"
-	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	@docker-compose -f docker_makefile/docker-compose.yaml up -d
-	@rm -rf docker_makefile/docker-compose.yaml
-down:
-	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	@docker-compose -f docker_makefile/docker-compose.yaml down
-	@rm -rf docker_makefile/docker-compose.yaml
-clean:
-	EDGELAKE_TYPE=$(EDGELAKE_TYPE) envsubst < docker_makefile/docker-compose-template.yaml > docker_makefile/docker-compose.yaml
-	@docker-compose -f docker_makefile/docker-compose.yaml down -v --remove-orphans --rmi all
-	@rm -rf docker_makefile/docker-compose.yaml
-attach:
-	docker attach --detach-keys=ctrl-d edgelake-$(EDGELAKE_TYPE)
-node-status:
-	@if [ "$(EDGELAKE_TYPE)" = "master" ]; then \
-		curl -X GET 127.0.0.1:32049 -H "command: get status" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(EDGELAKE_TYPE)" = "operator" ]; then \
-		curl -X GET 127.0.0.1:32149 -H "command: get status" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(EDGELAKE_TYPE)" = "query" ]; then \
-		curl -X GET 127.0.0.1:32349 -H "command: get status" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(NODE_TYPE)" == "generic" ]; then \
-		curl -X GET 127.0.0.1:32549 -H "command: get status" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	fi
+	@echo "Pulling image $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
+	docker pull $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)
+up: generate-docker-compose
+	@echo "Deploying EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
+	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml up -d
+	#@$(MAKE) remove-docker-compose
+down: generate-docker-compose
+	@echo "Stopping EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
+	$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down
+	@$(MAKE) remove-docker-compose
+clean: generate-docker-compose
+	@echo "Cleaning EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
+	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --rmi all
+	@$(MAKE) remove-docker-compose
 test-node:
-	@if [ "$(EDGELAKE_TYPE)" = "master" ]; then \
-		curl -X GET 127.0.0.1:32049 -H "command: test node" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(EDGELAKE_TYPE)" = "operator" ]; then \
-		curl -X GET 127.0.0.1:32149 -H "command: test node" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(EDGELAKE_TYPE)" = "query" ]; then \
-		curl -X GET 127.0.0.1:32349 -H "command: test node" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(NODE_TYPE)" == "generic" ]; then \
-		curl -X GET 127.0.0.1:32549 -H "command: test node" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	fi
+	@echo "Test Node Against: $(HZN_LISTEN_IP):$(REST_PORT)"
+	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT)
+	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test node"
 test-network:
-	@if [ "$(EDGELAKE_TYPE)" = "master" ]; then \
-		curl -X GET 127.0.0.1:32049 -H "command: test network" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(EDGELAKE_TYPE)" = "operator" ]; then \
-		curl -X GET 127.0.0.1:32149 -H "command: test network" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(EDGELAKE_TYPE)" = "query" ]; then \
-		curl -X GET 127.0.0.1:32349 -H "command: test network" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	elif [ "$(NODE_TYPE)" == "generic" ]; then \
-		curl -X GET 127.0.0.1:32549 -H "command: test network" -H "User-Agent: AnyLog/1.23" -w "\n"; \
-	fi
-exec:
-	docker exec -it edgelake-$(EDGELAKE_TYPE) bash
+	@echo "Test Network Against: $(HZN_LISTEN_IP):$(REST_PORT)"
+	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test network"
+attach:
+	@docker attach --detach-keys=ctrl-d $(EDGELAKE_NODE_NAME)
 logs:
-	docker logs edgelake-$(EDGELAKE_TYPE)
-# Makefile for policy
+	@docker logs $(EDGELAKE_NODE_NAME)
+
+publish: publish-service publish-service-policy publish-deployment-policy agent-run
+hzn-clean: agent-stop remove-deployment-policy remove-service-policy remove-service
+
+# Pull, not push, Docker image since provided by third party
 publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
 	@echo "=================="
-	@hzn exchange service publish -O -P --json-file=hzn/service.definition.json
+	@hzn exchange service publish -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
 	@echo ""
 remove-service:
 	@echo "=================="
@@ -103,9 +117,8 @@ publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
 	@echo "========================="
-	@hzn exchange service addpolicy -f hzn/service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@hzn exchange service addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
-
 remove-service-policy:
 	@echo "======================="
 	@echo "REMOVING SERVICE POLICY"
@@ -117,65 +130,48 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@hzn exchange deployment addpolicy -f hzn/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)
+	@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
-
 remove-deployment-policy:
 	@echo "=========================="
 	@echo "REMOVING DEPLOYMENT POLICY"
 	@echo "=========================="
-	@hzn exchange deployment removepolicy -f hzn/deployment.policy.$(EDGELAKE_TYPE).json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)-$(EDGELAKE_TYPE)_$(SERVICE_VERSION)_$(EXTRACT_NODE_NAME).json
+	@hzn exchange deployment removepolicy -f $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 
 agent-run:
 	@echo "================"
 	@echo "REGISTERING NODE"
 	@echo "================"
-	@hzn register --policy=hzn/node.policy.$(EDGELAKE_TYPE).json
+	@hzn register --policy=node.policy.json
 	@watch hzn agreement list
-
 agent-stop:
 	@echo "==================="
 	@echo "UN-REGISTERING NODE"
 	@echo "==================="
 	@hzn unregister -f
 	@echo ""
-
-deploy-check:
-	@hzn deploycheck all -t device -B hzn/deployment.policy.$(EDGELAKE_TYPE).json --service=hzn/service.definition.json --node-pol=hzn/node.policy.$(EDGELAKE_TYPE).json
-
 help-docker:
-	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
-	@echo "Targets:"
-	@echo "  all           Get help for both docker and OpenHorizon deployments"
-	@echo "  build         Pull the docker image"
-	@echo "  up            Start the containers"
-	@echo "  attach        Attach to EdgeLake instance"
-	@echo "  test          Using cURL validate node is running"
-	@echo "  exec          Attach to shell interface for container"
-	@echo "  down          Stop and remove the containers"
-	@echo "  logs          View logs of the containers"
-	@echo "  node-status   validate node is accessible via REST"
-	@echo "  test-node     validate node is able to communicate and has a valid blockchain file"
-	@echo "  test-network  validate node is able to communicate with other nodes witin its network"
-	@echo "  clean         Clean up volumes and network"
-	@echo "  help-docker   Show this help message"
-	@echo "  supported EdgeLake types: generic, master, operator, and query"
-	@echo "Sample calls: make up master | make attach master | make clean master"
+	@echo "====================="
+	@echo "Docker Deployment Options"
+	@echo "====================="
+	@echo "build            pull latest image for $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
+	@echo "up               bring up docker container based on EDGELAKE_TYPE"
+	@echo "attach           attach to docker container based on EDGELAKE_TYPE"
+	@echo "logs             view docker container logs based on EDGELAKE_TYPE"
+	@echo "down             stop docker container based on EDGELAKE_TYPE"
+	@echo "clean            (stop and) remove volumes and images for a docker container basd on EDGELAKE_TYPE"
+	@echo "tset-node        using cURL make sure EdgeLake is accessible and is configured properly"
+	@echo "test-network     using cURL make sure EdgeLake node is able to communicate with nodes in the network"
 help-open-horizon:
-	@echo "Usage: make [target] EDGELAKE_TYPE=[edgelake-type]"
-	@echo "Targets:"
-	@echo "  all                                 Get help for both OpenHorizon and docker deployments"
-	@echo "  build                               Pull the docker image"
-	@echo "  publish-service                     Publish service to OpenHorizon"
-	@echo "  remove-service                      Remove service from OpenHorizon"
-	@echo "  publish-service-policy              Publish service policy to OpenHorizon"
-	@echo "  remove-service-policy               Remove service policy from OpenHorizon"
-	@echo "  publish-deployment-policy           Publish deployment policy to OpenHorizon"
-	@echo "  remove-deployment-policy            Remove deployment policy from OpenHorizon"
-	@echo "  agent-run                           Start service via OpenHorizon"
-	@echo "  agent-stop                          Stop service via OpenHorizon"
-	@echo "  deploy-check                        Check status of machine against OpenHorizon"
-	@echo "  help-open-horizon                   Show this help message"
-	@echo "  supported EdgeLake types: generic, master, operator, and query"
-
+	@echo "=============================="
+	@echo "OpenHorizon Deployment Options"
+	@echo "=============================="
+	@echo "publish-service            publish service to OpenHorizon"
+	@echo "remove-service             remove service from OpenHorizon"
+	@echo "publish-service-policy     publish service policy to OpenHorizon"
+	@echo "remove-service-policy      remove service policy from OpenHorizon"
+	@echo "publish-deployment-policy  publish deployment policy to OpenHorizon"
+	@echo "remove-deployment-policy   remove deployment policy from OpenHorizon"
+	@echo "agent-run                  start OpenHorizon service"
+	@echo "agent-stop                  stop OpenHorizon service"
