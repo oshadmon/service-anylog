@@ -32,7 +32,7 @@
 			"name": "NODE_TYPE",
 			"label": "Information regarding which AnyLog node configurations to enable. By default, even if everything is disabled, AnyLog starts TCP and REST connection protocols",
 			"type": "string",
-			"defaultValue": "${NODE_TYPE}"
+			"defaultValue": "generic"
 		},
 		{
 			"name": "NODE_NAME",
