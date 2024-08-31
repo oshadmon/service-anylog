@@ -100,12 +100,14 @@
 		{
 			"name": "DB_USER",
 			"label": "Physical database type (sqlite or psql)",
-			"type": "string"
+			"type": "string",
+			"defaultValue": null
 		},
 		{
 			"name": "DB_PASSWD",
 			"label": "Password correlated to database user",
-			"type": "string"
+			"type": "string",
+			"defaultValue": null
 		},
 		{
 			"name": "DB_IP",
@@ -131,6 +133,18 @@
 			"label": "Owner of the cluster",
 			"type": "string",
 			"defaultValue": "new_company"
+		},
+		{
+			"name": "SYSTEM_QUERY",
+			"label": "Whether to start to start system_query logical database",
+			"type": "string",
+			"defaultValue": "false"
+		},
+		{
+			"name": "MEMORY",
+			"label": "Run system_query using in-memory SQLite. If set to false, will use pre-set database type",
+			"type": "string",
+			"defaultValue": "true"
 		},
 
 		{
