@@ -59,11 +59,6 @@
 			"type": "int",
 			"defaultValue": "32549"
 		},
-		{
-			"name": "ANYLOG_BROKER_PORT",
-			"label": "Port address used by AnyLog's Message Broker protocol",
-			"type": "int"
-		},
 
 		{
 			"name": "TCP_BIND",
