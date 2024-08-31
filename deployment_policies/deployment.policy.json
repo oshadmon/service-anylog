@@ -56,12 +56,6 @@
               "value": "${ANYLOG_REST_PORT}"
           },
           {
-              "name": "ANYLOG_BROKER_PORT",
-              "label": "Port address used by AnyLog's Message Broker protocol",
-              "type": "int",
-              "value": "${ANYLOG_BROKER_PORT}"
-          },
-          {
               "name": "TCP_BIND",
               "label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
               "type": "bool",
@@ -73,12 +67,6 @@
               "type": "bool",
               "value": "${REST_BIND}"
           },
-          {
-              "name": "BROKER_BIND",
-              "label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-              "type": "bool",
-              "value": "${BROKER_BIND}"
-          },
 
           {
               "name": "LEDGER_CONN",
@@ -86,12 +74,14 @@
               "type": "string",
               "value": "${LEDGER_CONN}"
           },
+
           {
               "name": "DB_TYPE",
               "label": "Physical database type (sqlite or psql)",
               "type": "string",
               "value": "${DB_TYPE}"
           },
+
           {
               "name": "SYSTEM_QUERY",
               "label": "Whether to start to start system_query logical database",
