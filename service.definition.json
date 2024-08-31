@@ -155,7 +155,6 @@
 			"defaultValue": "false"
 		}
 
-
 	],
 	"deployment": {
 		"services": {
