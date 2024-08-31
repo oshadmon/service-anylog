@@ -101,13 +101,13 @@
 			"name": "DB_USER",
 			"label": "Physical database type (sqlite or psql)",
 			"type": "string",
-			"defaultValue": null
+			"defaultValue": "admin"
 		},
 		{
 			"name": "DB_PASSWD",
 			"label": "Password correlated to database user",
 			"type": "string",
-			"defaultValue": null
+			"defaultValue": "passwd"
 		},
 		{
 			"name": "DB_IP",
