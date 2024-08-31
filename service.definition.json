@@ -28,6 +28,7 @@
 			"type": "bool",
 			"defaultValue": "true"
 		},
+
 		{
 			"name": "NODE_TYPE",
 			"label": "Information regarding which AnyLog node configurations to enable. By default, even if everything is disabled, AnyLog starts TCP and REST connection protocols",
@@ -59,6 +60,12 @@
 			"defaultValue": "32549"
 		},
 		{
+			"name": "ANYLOG_BROKER_PORT",
+			"label": "Port address used by AnyLog's Message Broker protocol",
+			"type": "int"
+		},
+
+		{
 			"name": "TCP_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
@@ -71,17 +78,48 @@
 			"defaultValue": "false"
 		},
 		{
+			"name": "BROKER_BIND",
+			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
+			"type": "bool",
+			"defaultValue": "false"
+		},
+
+		{
 			"name": "LEDGER_CONN",
 			"label": "TCP connection information for Master Node",
 			"type": "string",
 			"defaultValue": "127.0.0.1:32048"
 		},
+
 		{
 			"name": "DB_TYPE",
 			"label": "Physical database type (sqlite or psql)",
 			"type": "string",
 			"defaultValue": "sqlite"
 		},
+		{
+			"name": "DB_USER",
+			"label": "Physical database type (sqlite or psql)",
+			"type": "string"
+		},
+		{
+			"name": "DB_PASSWD",
+			"label": "Password correlated to database user",
+			"type": "string"
+		},
+		{
+			"name": "DB_IP",
+			"label": "Database IP address",
+			"type": "string",
+			"defaultValue": "127.0.0.1"
+		},
+		{
+			"name": "DB_PORT",
+			"label": "Database port number",
+			"type": "int",
+			"defaultValue": "5432"
+		},
+
 		{
 			"name": "CLUSTER_NAME",
 			"label": "Owner of the cluster",
@@ -94,9 +132,22 @@
 			"type": "string",
 			"defaultValue": "new_company"
 		},
+
 		{
 			"name": "ENABLE_MQTT",
 			"label": "Whether to enable the default MQTT process",
+			"type": "bool",
+			"defaultValue": "false"
+		},
+		{
+			"name": "DEPLOY_LOCAL_SCRIPT",
+			"label": "Whether to automatically run a local (or personalized) script at the end of the process",
+			"type": "bool",
+			"defaultValue": "false"
+		},
+		{
+			"name": "MONITOR_NODES",
+			"label": "Whether to monitor the node",
 			"type": "bool",
 			"defaultValue": "false"
 		}
