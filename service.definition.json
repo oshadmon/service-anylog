@@ -112,13 +112,13 @@
 		{
 			"name": "SYSTEM_QUERY",
 			"label": "Whether to start to start system_query logical database",
-			"type": "string",
+			"type": "bool",
 			"defaultValue": "false"
 		},
 		{
 			"name": "MEMORY",
 			"label": "Run system_query using in-memory SQLite. If set to false, will use pre-set database type",
-			"type": "string",
+			"type": "bool",
 			"defaultValue": "true"
 		},
 		{
