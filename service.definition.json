@@ -38,67 +38,67 @@
 			"name": "NODE_NAME",
 			"label": "Name of the AnyLog instance",
 			"type": "string",
-			"defaultValue": "${NODE_NAME}"
+			"defaultValue": "anylog-node"
 		},
 		{
 			"name": "COMPANY_NAME",
 			"label": "Owner of the AnyLog instance",
 			"type": "string",
-			"defaultValue": "${COMPANY_NAME}"
+			"defaultValue": "New Company"
 		},
 		{
 			"name": "ANYLOG_SERVER_PORT",
 			"label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
 			"type": "int",
-			"defaultValue": "${ANYLOG_SERVER_PORT}"
+			"defaultValue": "32148"
 		},
 		{
 			"name": "ANYLOG_REST_PORT",
 			"label": "Port address used by AnyLog's REST protocol",
 			"type": "int",
-			"defaultValue": "${ANYLOG_REST_PORT}"
+			"defaultValue": "32149"
 		},
 		{
 			"name": "TCP_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
-			"defaultValue": "${TCP_BIND}"
+			"defaultValue": "false"
 		},
 		{
 			"name": "REST_BIND",
 			"label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
 			"type": "bool",
-			"defaultValue": "${REST_BIND}"
+			"defaultValue": "false"
 		},
 		{
 			"name": "LEDGER_CONN",
 			"label": "TCP connection information for Master Node",
 			"type": "string",
-			"defaultValue": "${LEDGER_CONN}"
+			"defaultValue": "127.0.0.1:32048"
 		},
 		{
 			"name": "DB_TYPE",
 			"label": "Physical database type (sqlite or psql)",
 			"type": "string",
-			"defaultValue": "${DB_TYPE}"
+			"defaultValue": "sqlite"
 		},
 		{
 			"name": "CLUSTER_NAME",
 			"label": "Owner of the cluster",
 			"type": "string",
-			"defaultValue": "${CLUSTER_NAME}"
+			"defaultValue": ""
 		},
 		{
 			"name": "DEFAULT_DBMS",
 			"label": "Owner of the cluster",
 			"type": "string",
-			"defaultValue": "${DEFAULT_DBMS}"
+			"defaultValue": "new_company"
 		},
 		{
 			"name": "ENABLE_MQTT",
 			"label": "Whether to enable the default MQTT process",
 			"type": "bool",
-			"defaultValue": "${ENABLE_MQTT}"
+			"defaultValue": "false"
 		}
 	],
 	"deployment": {
