@@ -86,7 +86,7 @@
 			"name": "CLUSTER_NAME",
 			"label": "Owner of the cluster",
 			"type": "string",
-			"defaultValue": ""
+			"defaultValue": "new-company-cluster"
 		},
 		{
 			"name": "DEFAULT_DBMS",

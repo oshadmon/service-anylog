@@ -80,6 +80,10 @@ down: generate-docker-compose
 	@echo "Stopping EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
 	$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down
 	@$(MAKE) remove-docker-compose
+clean-volume: generate-docker-compose
+	@echo "Cleaning EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
+	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v
+	@$(MAKE) remove-docker-compose
 clean: generate-docker-compose
 	@echo "Cleaning EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
 	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --rmi all
