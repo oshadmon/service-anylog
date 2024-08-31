@@ -11,7 +11,7 @@ endif
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_HUB_ID ?= anylogco
-export DOCKER_IMAGE_VERSION := 1.3.2408
+export DOCKER_IMAGE_VERSION := 1.3.2408-beta9
 
 # Open Horizon Configs
 export HZN_ORG_ID ?= myorg
