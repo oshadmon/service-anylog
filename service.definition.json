@@ -98,31 +98,6 @@
 			"defaultValue": "sqlite"
 		},
 		{
-			"name": "DB_USER",
-			"label": "Physical database type (sqlite or psql)",
-			"type": "string",
-			"defaultValue": "admin"
-		},
-		{
-			"name": "DB_PASSWD",
-			"label": "Password correlated to database user",
-			"type": "string",
-			"defaultValue": "passwd"
-		},
-		{
-			"name": "DB_IP",
-			"label": "Database IP address",
-			"type": "string",
-			"defaultValue": "127.0.0.1"
-		},
-		{
-			"name": "DB_PORT",
-			"label": "Database port number",
-			"type": "int",
-			"defaultValue": "5432"
-		},
-
-		{
 			"name": "CLUSTER_NAME",
 			"label": "Owner of the cluster",
 			"type": "string",
@@ -146,7 +121,6 @@
 			"type": "string",
 			"defaultValue": "true"
 		},
-
 		{
 			"name": "ENABLE_MQTT",
 			"label": "Whether to enable the default MQTT process",
