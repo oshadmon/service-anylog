@@ -112,8 +112,8 @@
 		{
 			"name": "DB_PORT",
 			"label": "Database port number",
-			"type": "string",
-			"defaultValue": 5432
+			"type": "int",
+			"defaultValue": "5432"
 		},
 
 		{
