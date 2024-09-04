@@ -101,7 +101,7 @@ logs:
 	@docker logs $(EDGELAKE_NODE_NAME)
 
 publish: publish-service publish-service-policy publish-deployment-policy agent-run
-hzn-clean: agent-stop remove-deployment-policy remove-service-policy remove-service
+hzn-clean: hzn-clean remove-deployment-policy remove-service-policy remove-service
 
 # Pull, not push, Docker image since provided by third party
 publish-service:
@@ -149,7 +149,7 @@ agent-run:
 	@echo "================"
 	@hzn register --policy=node.policy.json
 	@watch hzn agreement list
-agent-stop:
+hzn-clean:
 	@echo "==================="
 	@echo "UN-REGISTERING NODE"
 	@echo "==================="
@@ -178,4 +178,4 @@ help-open-horizon:
 	@echo "publish-deployment-policy  publish deployment policy to OpenHorizon"
 	@echo "remove-deployment-policy   remove deployment policy from OpenHorizon"
 	@echo "agent-run                  start OpenHorizon service"
-	@echo "agent-stop                  stop OpenHorizon service"
+	@echo "hzn-clean                  stop OpenHorizon service"
