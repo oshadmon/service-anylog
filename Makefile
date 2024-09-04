@@ -136,14 +136,14 @@ publish-deployment-policy:
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
 	@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
-#	ifeq ($(EDGELAKE_TYPE), operator)
-#		ifeq ($(BROKER_PORT),)
+#	ifeq ($(EDGELAKE_TYPE), operator) # is operator
+#		ifeq ($(BROKER_PORT),) # no message broker port
 #			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/operator.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 #		else
 #			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/operator_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 #		endif
 #	else
-#		ifeq ($(BROKER_PORT),)
+#		ifeq ($(BROKER_PORT),) # no message broker port
 #			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 #		else
 #			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
