@@ -42,7 +42,6 @@
               "type": "string",
               "value": "${COMPANY_NAME}"
           },
-
           {
               "name": "ANYLOG_SERVER_PORT",
               "label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
@@ -54,12 +53,6 @@
               "label": "Port address used by AnyLog's REST protocol",
               "type": "int",
               "value": "${ANYLOG_REST_PORT}"
-          },
-          {
-              "name": "ANYLOG_BROKER_PORT",
-              "label": "Port address used by AnyLog's Message Broker protocol",
-              "type": "int",
-              "value": "${ANYLOG_BROKER_PORT}"
           },
           {
               "name": "TCP_BIND",
@@ -74,69 +67,11 @@
               "value": "${REST_BIND}"
           },
           {
-              "name": "BROKER_BIND",
-              "label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
-              "type": "bool",
-              "value": "${BROKER_BIND}"
-          },
-
-          {
               "name": "LEDGER_CONN",
               "label": "TCP connection information for Master Node",
               "type": "string",
               "value": "${LEDGER_CONN}"
-          },
-          {
-              "name": "DB_TYPE",
-              "label": "Physical database type (sqlite or psql)",
-              "type": "string",
-              "value": "${DB_TYPE}"
-          },
-          {
-              "name": "SYSTEM_QUERY",
-              "label": "Whether to start to start system_query logical database",
-              "type": "string",
-              "value": "${SYSTEM_QUERY}"
-          },
-          {
-              "name": "MEMORY",
-              "label": "Run system_query using in-memory SQLite. If set to false, will use pre-set database type",
-              "type": "string",
-              "value": "true"
-          },
-
-          {
-              "name": "CLUSTER_NAME",
-              "label": "Owner of the cluster",
-              "type": "string",
-              "value": "${CLUSTER_NAME}"
-          },
-          {
-              "name": "DEFAULT_DBMS",
-              "label": "Owner of the cluster",
-              "type": "string",
-              "value": "${DEFAULT_DBMS}"
-          },
-
-          {
-              "name": "ENABLE_MQTT",
-              "label": "Whether to enable the default MQTT process",
-              "type": "bool",
-              "value": "${ENABLE_MQTT}"
-          },
-          {
-              "name": "DEPLOY_LOCAL_SCRIPT",
-              "label": "Whether to automatically run a local (or personalized) script at the end of the process",
-              "type": "bool",
-              "value": "${DEPLOY_LOCAL_SCRIPT}"
-          },
-          {
-              "name": "MONITOR_NODES",
-              "label": "Whether to monitor the node",
-              "type": "bool",
-              "value": "${MONITOR_NODES}"
           }
-
         ]
       }
     ]
