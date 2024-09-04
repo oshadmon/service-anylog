@@ -145,7 +145,7 @@ publish-deployment-policy:
 		ifeq ($(BROKER_PORT),)
 			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 		else
-			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-p
 		endif
 	endif
 	@echo ""
