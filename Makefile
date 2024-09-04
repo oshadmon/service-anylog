@@ -55,7 +55,7 @@ check:
 	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: ${DOCKER_IMAGE_NAME}"
 	@echo "DOCKER_IMAGE_VERSION   default: latest                                actual: ${DOCKER_IMAGE_VERSION}"
 	@echo "DOCKER_HUB_ID          default: anylogco                              actual: ${DOCKER_HUB_ID}"
-	@echo "HZN_ORG_ID             default: myorg                                 actual: ${HZN_ORG_ID}"
+	@echo "HZN_ORG_ID             default: myorg                                 actual: $(HZN_ORG_ID)"
 	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: ${HZN_LISTEN_IP}"
 	@echo "SERVICE_NAME                                                          actual: ${SERVICE_NAME}"
 	@echo "SERVICE_VERSION                                                       actual: ${SERVICE_VERSION}"
@@ -109,8 +109,8 @@ publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
 	@echo "=================="
-	@echo hzn exchange service publish --org=${HZN_ORG_ID} --user-pw=${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
-	@hzn exchange service publish --org=${HZN_ORG_ID} --user-pw=${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
+	@echo hzn exchange service publish --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-O -P --json-file=service.definition.json
+	@hzn exchange service publish --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-O -P --json-file=service.definition.json
 	@echo ""
 remove-service:
 	@echo "=================="
@@ -123,7 +123,7 @@ publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
 	@echo "========================="
-	@hzn exchange service addpolicy -org=${HZN_ORG_ID} --user-pw=${HZN_EXCHANGE_USER_AUTH} -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@hzn exchange service addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 remove-service-policy:
 	@echo "======================="
@@ -136,7 +136,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@hzn exchange deployment addpolicy -org=${HZN_ORG_ID} --user-pw=${HZN_EXCHANGE_USER_AUTH} -f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@hzn exchange deployment addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 remove-deployment-policy:
 	@echo "=========================="
