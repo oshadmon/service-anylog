@@ -179,4 +179,4 @@ help-open-horizon:
 	@echo "publish-deployment-policy  publish deployment policy to OpenHorizon"
 	@echo "remove-deployment-policy   remove deployment policy from OpenHorizon"
 	@echo "agent-run                  start OpenHorizon service"
-	@echo "agent-stop                  stop OpenHorizon service"
+	@echo "hz-clean                   stop OpenHorizon service"
