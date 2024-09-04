@@ -148,6 +148,7 @@ publish-deployment-policy:
 			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 		endif
 	endif
+
 	@echo ""
 remove-deployment-policy:
 	@echo "=========================="
