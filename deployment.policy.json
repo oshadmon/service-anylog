@@ -42,7 +42,6 @@
               "type": "string",
               "value": "${COMPANY_NAME}"
           },
-
           {
               "name": "ANYLOG_SERVER_PORT",
               "label": "Port address used by AnyLog's TCP protocol to communicate with other nodes in the network",
@@ -59,8 +58,9 @@
               "name": "ANYLOG_BROKER_PORT",
               "label": "Port address used by AnyLog's Message Broker protocol",
               "type": "int",
-              "value": "${ANYLOG_BROKER_PORT}"
+              "Value": "${ANYLOG_BROKER_PORT}"
           },
+
           {
               "name": "TCP_BIND",
               "label": "A bool value that determines if to bind to a specific IP and Port (a false value binds to all IPs)",
@@ -86,11 +86,36 @@
               "type": "string",
               "value": "${LEDGER_CONN}"
           },
+
           {
               "name": "DB_TYPE",
               "label": "Physical database type (sqlite or psql)",
               "type": "string",
               "value": "${DB_TYPE}"
+          },
+          {
+              "name": "DB_USER",
+              "label": "Database user",
+              "type": "string",
+              "value": "${DB_USER}"
+          },
+          {
+              "name": "DB_PASSWD",
+              "label": "Database user passwordd",
+              "type": "string",
+              "value": "${DB_PASSWD}"
+          },
+          {
+              "name": "DB_IP",
+              "label": "Database IP address",
+              "type": "string",
+              "value": "${DB_IP}"
+          },
+          {
+              "name": "DB_PORT",
+              "label": "Database port number",
+              "type": "int",
+              "value": "${DB_PORT}"
           },
           {
               "name": "SYSTEM_QUERY",
