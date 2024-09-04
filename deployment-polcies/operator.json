@@ -71,7 +71,48 @@
               "label": "TCP connection information for Master Node",
               "type": "string",
               "value": "${LEDGER_CONN}"
+          },
+          {
+            "name": "DB_TYPE",
+            "label": "Physical database type (sqlite or psql)",
+            "type": "string",
+            "defaultValue": "sqlite",
+            "value": "${DB_TYPE}"
+          },
+          {
+              "name": "CLUSTER_NAME",
+              "label": "Owner of the cluster",
+              "type": "string",
+              "value": "${CLUSTER_NAME}"
+          },
+          {
+            "name": "DEFAULT_DBMS",
+            "label": "Logical database name",
+            "type": "string",
+            "value": "${DEFAULT_DBMS}"
+          },
+          {
+            "name": "ENABLE_MQTT",
+            "label": "Whether to enable the default MQTT process",
+            "type": "bool",
+            "defaultValue": "true",
+            "value": "${ENABLE_MQTT}"
+          },
+          {
+            "name": "DEPLOY_LOCAL_SCRIPT",
+            "label": "Whether to automatically run a local (or personalized) script at the end of the process",
+            "type": "bool",
+            "defaultValue": "false",
+            "value": "${DEPLOY_LOCAL_SCRIPT}"
+          },
+          {
+            "name": "MONITOR_NODES",
+            "label": "Whether to monitor the node or not",
+            "type": "bool",
+            "defaultValue": "true",
+            "value": "${MONITOR_NODES}"
           }
+
         ]
       }
     ]
