@@ -9,7 +9,7 @@ Software. Joining a network requires the following steps:
 
 
 **Table of Content**:
-* [Install OpenHorizon](Install_OpenHorizon.md)
+* [Install OpenHorizon](Documentation%2FInstall_Local_OpenHorizon.md)
 * [Deploy EdgeLake](#deploy-edgelake)
   * [Master + Query](#master--query)
   * [Operator](#operator)
@@ -181,7 +181,5 @@ LEDGER_CONN            default: 127.0.0.1:32049                       actual: 66
 <<COMMENT
 ```
 
-Review [Deploy EdgeLake](Documentation/Deploy_EdgeLake.md) for farther details and specific examples - 
-[Docker-based](Documentation/Deploy_EdgeLake.md#makefile-commands-for-docker-deployment-) and 
-[OpenHorizon-Based](Documentation/Deploy_EdgeLake.md#makefile-commands-for-openhorizon-deployment-)
+Review [Deploy EdgeLake](https://edgelake.github.io/docs/training/quick_start.html) for farther details and specific examples
  
