@@ -149,7 +149,7 @@ remove-service-policy      remove service policy from OpenHorizon
 publish-deployment-policy  publish deployment policy to OpenHorizon
 remove-deployment-policy   remove deployment policy from OpenHorizon
 agent-run                  start OpenHorizon service
-agent-stop                  stop OpenHorizon service
+hzn-clean                  stop OpenHorizon service
 <<COMMENT
 ```
 * Check
