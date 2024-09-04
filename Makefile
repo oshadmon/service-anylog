@@ -32,7 +32,6 @@ export DATA_VOLUME := $(EDGELAKE_NODE_NAME)-data
 export LOCAL_SCRIPTS_VOLUME := $(EDGELAKE_NODE_NAME)-local-scripts
 export TCP_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_SERVER_PORT | awk -F "=" '{print $$2}')
 export REST_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_REST_PORT | awk -F "=" '{print $$2}')
-export BROKER_PORT := $(shell cat docker-makefiles/edgelake_${EDGELAKE_TYPE}.env | grep ANYLOG_BROKER_PORT | awk -F "=" '{print $$2}')
 
 # Env Variables
 include docker-makefiles/edgelake_${EDGELAKE_TYPE}.env
@@ -55,7 +54,7 @@ check:
 	@echo "DOCKER_IMAGE_NAME      default: edgelake                              actual: ${DOCKER_IMAGE_NAME}"
 	@echo "DOCKER_IMAGE_VERSION   default: latest                                actual: ${DOCKER_IMAGE_VERSION}"
 	@echo "DOCKER_HUB_ID          default: anylogco                              actual: ${DOCKER_HUB_ID}"
-	@echo "HZN_ORG_ID             default: myorg                                 actual: $(HZN_ORG_ID)"
+	@echo "HZN_ORG_ID             default: myorg                                 actual: ${HZN_ORG_ID}"
 	@echo "HZN_LISTEN_IP          default: 127.0.0.1                             actual: ${HZN_LISTEN_IP}"
 	@echo "SERVICE_NAME                                                          actual: ${SERVICE_NAME}"
 	@echo "SERVICE_VERSION                                                       actual: ${SERVICE_VERSION}"
@@ -109,14 +108,12 @@ publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
 	@echo "=================="
-	@echo hzn exchange service publish --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-O -P --json-file=service.definition.json
-	@hzn exchange service publish --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-O -P --json-file=service.definition.json
+	@hzn exchange service publish -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
 	@echo ""
 remove-service:
 	@echo "=================="
 	@echo "REMOVING SERVICE"
 	@echo "=================="
-	@echo hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 
@@ -124,14 +121,12 @@ publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
 	@echo "========================="
-	@echo hzn exchange service addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
-	@hzn exchange service addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@hzn exchange service addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 remove-service-policy:
 	@echo "======================="
 	@echo "REMOVING SERVICE POLICY"
 	@echo "======================="
-	@echo hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 
@@ -139,8 +134,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	@echo hzn exchange deployment addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
-	@hzn exchange deployment addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
+	@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 remove-deployment-policy:
 	@echo "=========================="
@@ -153,7 +147,6 @@ agent-run:
 	@echo "================"
 	@echo "REGISTERING NODE"
 	@echo "================"
-	@echo hzn register --policy=node.policy.json
 	@hzn register --policy=node.policy.json
 	@watch hzn agreement list
 agent-stop:
@@ -185,4 +178,4 @@ help-open-horizon:
 	@echo "publish-deployment-policy  publish deployment policy to OpenHorizon"
 	@echo "remove-deployment-policy   remove deployment policy from OpenHorizon"
 	@echo "agent-run                  start OpenHorizon service"
-	@echo "hz-clean                   stop OpenHorizon service"
+	@echo "agent-stop                  stop OpenHorizon service"
