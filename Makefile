@@ -116,6 +116,7 @@ remove-service:
 	@echo "=================="
 	@echo "REMOVING SERVICE"
 	@echo "=================="
+	@echo hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@hzn exchange service remove -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 
@@ -123,12 +124,14 @@ publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
 	@echo "========================="
+	@echo hzn exchange service addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@hzn exchange service addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 remove-service-policy:
 	@echo "======================="
 	@echo "REMOVING SERVICE POLICY"
 	@echo "======================="
+	@echo hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@hzn exchange service removepolicy -f $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 
@@ -136,6 +139,7 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
+	@echo hzn exchange deployment addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@hzn exchange deployment addpolicy -org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH)-f deployment.policy.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 	@echo ""
 remove-deployment-policy:
@@ -149,6 +153,7 @@ agent-run:
 	@echo "================"
 	@echo "REGISTERING NODE"
 	@echo "================"
+	@echo hzn register --policy=node.policy.json
 	@hzn register --policy=node.policy.json
 	@watch hzn agreement list
 agent-stop:
