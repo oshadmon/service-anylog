@@ -142,7 +142,7 @@ publish-deployment-policy:
 			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/operator_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 		endif
 	else
-  		@echo $(EDGELAKE_TYPE)
+  		echo "$(EDGELAKE_TYPE)"
 		ifeq ($(BROKER_PORT),)
 			@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
 		else
