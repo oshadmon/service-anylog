@@ -17,7 +17,7 @@ export DOCKER_IMAGE_VERSION := 1.3.2408-beta9
 export HZN_ORG_ID ?= myorg
 export HZN_LISTEN_IP ?= 127.0.0.1
 export SERVICE_NAME ?= service-edgelake-$(EDGELAKE_TYPE)
-export SERVICE_VERSION ?= 1.3.2408
+export SERVICE_VERSION ?= 1.3.2409
 export ARCH ?= $(shell hzn architecture)
 ifeq ($(ARCH), arm64)
 	export DOCKER_IMAGE_VERSION := 1.3.2407-beta2-arm64
@@ -109,7 +109,9 @@ publish-service:
 	@echo "=================="
 	@echo "PUBLISHING SERVICE"
 	@echo "=================="
-	@hzn exchange service publish -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
+	@echo ${HZN_EXCHANGE_USER_AUTH}
+	@echo hzn exchange service publish --org=${HZN_ORG_ID} --user-pw=${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
+	@hzn exchange service publish --org=${HZN_ORG_ID} --user-pw=${HZN_EXCHANGE_USER_AUTH} -O -P --json-file=service.definition.json
 	@echo ""
 remove-service:
 	@echo "=================="
@@ -122,7 +124,7 @@ publish-service-policy:
 	@echo "========================="
 	@echo "PUBLISHING SERVICE POLICY"
 	@echo "========================="
-	@hzn exchange service addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
+	@hzn exchange service addpolicy --org=${HZN_ORG_ID} --user-pw=${HZN_EXCHANGE_USER_AUTH} -f service.policy.json $(HZN_ORG_ID)/$(SERVICE_NAME)_$(SERVICE_VERSION)_$(ARCH)
 	@echo ""
 remove-service-policy:
 	@echo "======================="
@@ -135,20 +137,15 @@ publish-deployment-policy:
 	@echo "============================"
 	@echo "PUBLISHING DEPLOYMENT POLICY"
 	@echo "============================"
-	# logic
-	# -> if Operator && BROKER_PORT then run operator with broker
-	# -> elif Operator && not BROKER_PORT the oeprator
-	# -> elif BROKER_PORT then run generic with operator broker
-	# -> else run geeneric
-	@if [ "$(EDGELAKE_TYPE)" = "operator" ] && [ -n $(BROKER_PORT) ] ; then \
-	  hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/operator_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION) ; \
-  	elif [ "$(EDGELAKE_TYPE)" = "operator" ] ; then \
-  		hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/operator.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION) ; \
-	elif [ -n $(BROKER_PORT) ] ; then \
-		@hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION) ; \
-	  else \
-	    @hzn exchange deployment addpolicy -o ${HZN_ORG_ID} -u ${HZN_EXCHANGE_USER_AUTH} -f deployment-policies/generic.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION)
-	fi
+	@if [ "$(EDGELAKE_TYPE)" = "operator" ] && [ -n "$(BROKER_PORT)" ]; then \
+            hzn exchange deployment addpolicy --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH) -f deployment-policies/operator_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION) ; \
+        elif [ "$(EDGELAKE_TYPE)" = "operator" ]; then \
+            hzn exchange deployment addpolicy --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH) -f deployment-policies/operator.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION) ; \
+        elif [ -n "$(BROKER_PORT)" ]; then \
+            hzn exchange deployment addpolicy --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH) -f deployment-policies/generic_broker.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION) ; \
+        else \
+            hzn exchange deployment addpolicy --org=$(HZN_ORG_ID) --user-pw=$(HZN_EXCHANGE_USER_AUTH) -f deployment-policies/generic.json $(HZN_ORG_ID)/policy-$(SERVICE_NAME)_$(SERVICE_VERSION) ; \
+        fi
 	@echo ""
 remove-deployment-policy:
 	@echo "=========================="
