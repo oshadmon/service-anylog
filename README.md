@@ -29,7 +29,18 @@ These nodes can be deployed either on the same physical machine, or unique machi
 ## Deploy EdgeLake
 
 In the following directions, the _Master_ and _Query_ nodes will be deployed directly via Docker, while the _Operator_ 
-node will be deployoed via OpenHorizon.  
+node will be deployed via OpenHorizon.  
+
+Prior to deployment, docker should be [installed via OpenHorizon](Documentation/OpenHorizon_install.md), but may require 
+`sudo` permissions to execute docker commands. In addition, `make` command is not installed by default. 
+```shell
+USER=`whoami` 
+sudo groupadd docker 
+sudo usermod -aG docker ${USER} 
+newgrp docker
+
+sudo apt-get -y install make
+```
 
 ### Master / Query
 
