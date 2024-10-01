@@ -11,7 +11,7 @@ endif
 export DOCKER_IMAGE_BASE ?= anylogco/edgelake
 export DOCKER_IMAGE_NAME ?= edgelake
 export DOCKER_HUB_ID ?= anylogco
-export DOCKER_IMAGE_VERSION := 1.3.2408-beta9
+export DOCKER_IMAGE_VERSION := latest
 
 # Open Horizon Configs
 export HZN_ORG_ID ?= myorg
@@ -19,8 +19,8 @@ export HZN_LISTEN_IP ?= 127.0.0.1
 export SERVICE_NAME ?= service-edgelake-$(EDGELAKE_TYPE)
 export SERVICE_VERSION ?= 1.3.2409
 export ARCH ?= $(shell hzn architecture)
-ifeq ($(ARCH), arm64)
-	export DOCKER_IMAGE_VERSION := 1.3.2407-beta2-arm64
+ifeq ($(ARCH), aarch64)
+	export DOCKER_IMAGE_VERSION := latest-arm64
 	export ARCH=arm64
 endif
 
@@ -69,7 +69,9 @@ check:
 	@echo "ANYLOG_REST_PORT       default: 32549                                 actual: ${ANYLOG_REST_PORT}"
 	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: ${LEDGER_CONN}"
 	@echo ""
-
+test-conn:
+	@echo "REST Connection Info for Testing $(EDGELAKE_TYPE) (Example: 127.0.0.1:32149): "
+	@readme CONN
 build:
 	@echo "Pulling image $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)"
 	docker pull $(DOCKER_IMAGE_BASE):$(DOCKER_IMAGE_VERSION)
@@ -89,11 +91,11 @@ clean: generate-docker-compose
 	@echo "Cleaning EdgeLake with config file: edgelake_$(EDGELAKE_TYPE).env"
 	@$(DOCKER_COMPOSE) -f docker-makefiles/docker-compose.yaml down -v --rmi all
 	@$(MAKE) remove-docker-compose
-test-node:
+test-node: test-conn
 	@echo "Test Node Against: $(HZN_LISTEN_IP):$(REST_PORT)"
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT)
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test node"
-test-network:
+test-network: test-conn
 	@echo "Test Network Against: $(HZN_LISTEN_IP):$(REST_PORT)"
 	@curl -X GET $(HZN_LISTEN_IP):$(REST_PORT) -H "command: test network"
 attach:
