@@ -48,7 +48,7 @@ sudo apt-get -y install make
 Make sure the following params get update accordingly:
    * Node Name
    * Company Name
-   * LEDGER_CONN associated with Master node
+   * LEDGER_CONN associated with Master node - when TCP binding is set to _true_, then 127.0.0.1 as the IP value for LEDGER will not work. 
 
 2. Deploy  Node
 ```shell
@@ -64,8 +64,8 @@ make up EDGELAKE_TYPE=query
 Make sure the following params get update accordingly:
    * Node Name
    * Company Name
-   * LEDGER_CONN
-   * Cluster Name
+   * LEDGER_CONN - when TCP binding is set to _true_, then 127.0.0.1 as the IP value for LEDGER will not work.
+   * Cluster Name 
    * Database name
 
 
