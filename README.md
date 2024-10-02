@@ -9,7 +9,7 @@ Software. Joining a network requires the following steps:
 
 
 **Table of Content**:
-* [Install OpenHorizon](Install_OpenHorizon.md)
+* [Install OpenHorizon](Documentation%2FInstall_Local_OpenHorizon.md)
 * [Deploy EdgeLake](#deploy-edgelake)
   * [Master + Query](#master--query)
   * [Operator](#operator)
@@ -29,7 +29,18 @@ These nodes can be deployed either on the same physical machine, or unique machi
 ## Deploy EdgeLake
 
 In the following directions, the _Master_ and _Query_ nodes will be deployed directly via Docker, while the _Operator_ 
-node will be deployoed via OpenHorizon.  
+node will be deployed via OpenHorizon.  
+
+Prior to deployment, docker should be [installed via OpenHorizon](Documentation/OpenHorizon_install.md), but may require 
+`sudo` permissions to execute docker commands. In addition, `make` command is not installed by default. 
+```shell
+USER=`whoami` 
+sudo groupadd docker 
+sudo usermod -aG docker ${USER} 
+newgrp docker
+
+sudo apt-get -y install make
+```
 
 ### Master / Query
 
@@ -37,7 +48,7 @@ node will be deployoed via OpenHorizon.
 Make sure the following params get update accordingly:
    * Node Name
    * Company Name
-   * LEDGER_CONN associated with Master node
+   * LEDGER_CONN associated with Master node - when TCP binding is set to _true_, then 127.0.0.1 as the IP value for LEDGER will not work. 
 
 2. Deploy  Node
 ```shell
@@ -53,8 +64,8 @@ make up EDGELAKE_TYPE=query
 Make sure the following params get update accordingly:
    * Node Name
    * Company Name
-   * LEDGER_CONN
-   * Cluster Name
+   * LEDGER_CONN - when TCP binding is set to _true_, then 127.0.0.1 as the IP value for LEDGER will not work.
+   * Cluster Name 
    * Database name
 
 
@@ -64,60 +75,71 @@ hzn unregister -f
 ```
 
 3. Using `publish` command deploy EdgeLake
-   * publish-service
-   * publish-service-policy
-   * publish-deployment-policy 
-   * agent-run
+   * publish-service -- uses [service.definition.json](service.definition.json), which has the default / required values for a deployment of a node 
+   * publish-service-policy -- uses [service.policy.json](service.policy.json), which declares the constraints for deploying a node
+   * publish-deployment-policy -- Due to the "extra" configurations to deploy an Operator node, the script uses either [generic.json](deployment-policies%2Fgeneric.json) or [operator.json](deployment-policies%2Foperator.json) in [deployment-policies](deployment-policies) 
+   * agent-run -- uses [node.policy.json](node.policy.json), which matches the constraints between the configurations to decide servicees to deploy. 
 ```shell
 make publish EDGELAKE_TYPE=operator
 ```
 
+When deploying a node via OpenHorizon, the following files are used: 
+* 
+* 
+* 
+
 ### Validate Node
 
-* Test Node
+* Test Node -- validate node is accessible,  blockchain is upto date and which processes are running
 ```shell
-make test-node EDGELAKE_TYPE=master 
+make test-node 
 
 <<COMMENT
-Test Node Against: 127.0.0.1:32049
-edgelake-master@172.235.53.13:32048 running
-Test                                        Status                                                                      
--------------------------------------------|---------------------------------------------------------------------------|
-Metadata Version                           |3988d68a8225634033a02eb1eced9b5b                                           |
-Metadata Test                              |Pass                                                                       |
-TCP test using 172.235.53.13:32048         |[From Node 172.235.53.13:32048] edgelake-master@172.235.53.13:32048 running|
-REST test using http://172.235.53.13:32049 |edgelake-master@172.235.53.13:32048 running                                |
+REST Connection Info for testing (Example: 127.0.0.1:32149):
+172.232.157.208:32149
+Node State against 172.232.157.208:32149
+edgelake-operator@172.232.157.208:32148 running
 
-root@openhorizon-demo:~/service-edgelake# make test-node EDGELAKE_TYPE=query
-Test Node Against: 127.0.0.1:32349
-edgelake-query@172.235.53.13:32348 running
-Test                                        Status                                                                     
--------------------------------------------|--------------------------------------------------------------------------|
-Metadata Version                           |3988d68a8225634033a02eb1eced9b5b                                          |
-Metadata Test                              |Pass                                                                      |
-TCP test using 172.235.53.13:32348         |[From Node 172.235.53.13:32348] edgelake-query@172.235.53.13:32348 running|
-REST test using http://172.235.53.13:32349 |edgelake-query@172.235.53.13:32348 running                                | 
+Test                                          Status                                                                            
+---------------------------------------------|---------------------------------------------------------------------------------|
+Metadata Version                             |bc5b778a91949a980f4013e8fd2da3dd                                                 |
+Metadata Test                                |Pass                                                                             |
+TCP test using 172.232.157.208:32148         |[From Node 172.232.157.208:32148] edgelake-operator@172.232.157.208:32148 running|
+REST test using http://172.232.157.208:32149 |edgelake-operator@172.232.157.208:32148 running                                  |
+
+
+    Process         Status       Details                                                                       
+    ---------------|------------|-----------------------------------------------------------------------------|
+    TCP            |Running     |Listening on: 172.232.157.208:32148, Threads Pool: 6                         |
+    REST           |Running     |Listening on: 172.232.157.208:32149, Threads Pool: 6, Timeout: 30, SSL: False|
+    Operator       |Running     |Cluster Member: True, Using Master: 127.0.0.1:32048, Threads Pool: 3         |
+    Blockchain Sync|Running     |Sync every 30 seconds with master using: 127.0.0.1:32048                     |
+    Scheduler      |Running     |Schedulers IDs in use: [0 (system)] [1 (user)]                               |
+    Blobs Archiver |Not declared|                                                                             |
+    MQTT           |Not declared|                                                                             |
+    Message Broker |Not declared|No active connection                                                         |
+    SMTP           |Not declared|                                                                             |
+    Streamer       |Running     |Default streaming thresholds are 60 seconds and 10,240 bytes                 |
+    Query Pool     |Running     |Threads Pool: 3                                                              |
+    Kafka Consumer |Not declared|                                                                             |
+    gRPC           |Not declared|                                                                             |
 <<COMMENT
 ```
 
-* Test Network
+* Test Network -- Node is able to communicate with (all) other nodes inn the network 
 ```shell
-make test-network EDGELAKE_TYPE=query
+make test-network
 
 <<COMMENT
-Test Network Against: 127.0.0.1:32349
+REST Connection Info for testing (Example: 127.0.0.1:32149):
+172.232.157.208:32149 
+Test Network Against: 172.232.157.208:32149
 
-Address             Node Type Node Name       Status 
--------------------|---------|---------------|------|
-172.235.53.13:32048|master   |edgelake-master|  +   |
-172.235.53.13:32348|query    |edgelake-query |  +   |
-root@openhorizon-demo:~/service-edgelake# make test-network EDGELAKE_TYPE=master
-Test Network Against: 127.0.0.1:32049
-
-Address             Node Type Node Name       Status 
--------------------|---------|---------------|------|
-172.235.53.13:32048|master   |edgelake-master|  +   |
-172.235.53.13:32348|query    |edgelake-query |  +   |
+Address               Node Type Node Name         Status 
+---------------------|---------|-----------------|------|
+172.232.157.208:32048|master   |edgelake-master  |  +   |
+172.232.157.208:32348|query    |edgelake-query   |  +   |
+172.232.157.208:32148|operator |edgelake-operator|  +   |
 <<COMMENT
 ```
 
@@ -149,7 +171,7 @@ remove-service-policy      remove service policy from OpenHorizon
 publish-deployment-policy  publish deployment policy to OpenHorizon
 remove-deployment-policy   remove deployment policy from OpenHorizon
 agent-run                  start OpenHorizon service
-agent-stop                  stop OpenHorizon service
+hzn-clean                  stop OpenHorizon service
 <<COMMENT
 ```
 * Check
@@ -181,7 +203,5 @@ LEDGER_CONN            default: 127.0.0.1:32049                       actual: 66
 <<COMMENT
 ```
 
-Review [Deploy EdgeLake](Documentation/Deploy_EdgeLake.md) for farther details and specific examples - 
-[Docker-based](Documentation/Deploy_EdgeLake.md#makefile-commands-for-docker-deployment-) and 
-[OpenHorizon-Based](Documentation/Deploy_EdgeLake.md#makefile-commands-for-openhorizon-deployment-)
+Review [Deploy EdgeLake](https://edgelake.github.io/docs/training/quick_start.html) for farther details and specific examples
  
