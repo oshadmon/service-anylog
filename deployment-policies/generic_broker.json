@@ -84,12 +84,54 @@
               "type": "string",
               "value": "${LEDGER_CONN}"
           },
-          {
+                    {
             "name": "DB_TYPE",
             "label": "Physical database type (sqlite or psql)",
             "type": "string",
             "defaultValue": "sqlite",
             "value": "${DB_TYPE}"
+          },
+          {
+            "name": "DB_USER",
+            "label": "Username for SQL database connection",
+            "type": "string",
+            "defaultValue": "admin",
+            "value": "${DB_USER}"
+          },
+          {
+            "name": "DB_PASSWD",
+            "label": "Password correlated to database user",
+            "type": "string",
+            "defaultValue": "Pa55W0rD!",
+            "value": "${DB_PASSWD}"
+          },
+          {
+            "name": "DB_IP",
+            "label": "Database IP address",
+            "type": "string",
+            "defaultValue": "127.0.0.1",
+            "value": "${DB_IP}"
+          },
+          {
+            "name": "DB_PORT",
+            "label": "Database port number",
+            "type": "string",
+            "defaultValue": "54332",
+            "value": "${DB_PORT}"
+          },
+          {
+            "name": "AUTOCOMMIT",
+            "label": "Whether to set autocommit data",
+            "type": "string",
+            "defaultValue": "false",
+            "value": "${AUTOCOMMIT}"
+          },
+          {
+            "name": "SYSTEM_QUERY",
+            "label": "Enable system query logical database",
+            "type": "string",
+            "defaultValue": "false",
+            "value": "${SYSTEM_QUERY}"
           },
           {
             "name": "ENABLE_MQTT",
