@@ -99,7 +99,7 @@
             "value": "${DB_USER}"
           },
           {
-            "name": "DB_USER",
+            "name": "DB_PASSWD",
             "label": "Password correlated to database user",
             "type": "string",
             "defaultValue": "Pa55W0rD!",
@@ -125,6 +125,13 @@
             "type": "string",
             "defaultValue": "false",
             "value": "${AUTOCOMMIT}"
+          },
+          {
+            "name": "SYSTEM_QUERY",
+            "label": "Enable system query logical database",
+            "type": "string",
+            "defaultValue": "false",
+            "value": "${SYSTEM_QUERY}"
           },
           {
             "name": "ENABLE_MQTT",
