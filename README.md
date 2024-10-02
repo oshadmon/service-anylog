@@ -87,48 +87,54 @@ make publish EDGELAKE_TYPE=operator
 
 * Test Node
 ```shell
-make test-node EDGELAKE_TYPE=master 
+make test-node EDGELAKE_TYPE=operator 
 
 <<COMMENT
-Test Node Against: 127.0.0.1:32049
-edgelake-master@172.235.53.13:32048 running
-Test                                        Status                                                                      
--------------------------------------------|---------------------------------------------------------------------------|
-Metadata Version                           |3988d68a8225634033a02eb1eced9b5b                                           |
-Metadata Test                              |Pass                                                                       |
-TCP test using 172.235.53.13:32048         |[From Node 172.235.53.13:32048] edgelake-master@172.235.53.13:32048 running|
-REST test using http://172.235.53.13:32049 |edgelake-master@172.235.53.13:32048 running                                |
+REST Connection Info for testing operator (Example: 127.0.0.1:32149):
+172.232.157.208:32149
+operator Node State against 
+edgelake-operator@172.232.157.208:32148 running
 
-root@openhorizon-demo:~/service-edgelake# make test-node EDGELAKE_TYPE=query
-Test Node Against: 127.0.0.1:32349
-edgelake-query@172.235.53.13:32348 running
-Test                                        Status                                                                     
--------------------------------------------|--------------------------------------------------------------------------|
-Metadata Version                           |3988d68a8225634033a02eb1eced9b5b                                          |
-Metadata Test                              |Pass                                                                      |
-TCP test using 172.235.53.13:32348         |[From Node 172.235.53.13:32348] edgelake-query@172.235.53.13:32348 running|
-REST test using http://172.235.53.13:32349 |edgelake-query@172.235.53.13:32348 running                                | 
+Test                                          Status                                                                            
+---------------------------------------------|---------------------------------------------------------------------------------|
+Metadata Version                             |bc5b778a91949a980f4013e8fd2da3dd                                                 |
+Metadata Test                                |Pass                                                                             |
+TCP test using 172.232.157.208:32148         |[From Node 172.232.157.208:32148] edgelake-operator@172.232.157.208:32148 running|
+REST test using http://172.232.157.208:32149 |edgelake-operator@172.232.157.208:32148 running                                  |
+
+
+    Process         Status       Details                                                                       
+    ---------------|------------|-----------------------------------------------------------------------------|
+    TCP            |Running     |Listening on: 172.232.157.208:32148, Threads Pool: 6                         |
+    REST           |Running     |Listening on: 172.232.157.208:32149, Threads Pool: 6, Timeout: 30, SSL: False|
+    Operator       |Running     |Cluster Member: True, Using Master: 127.0.0.1:32048, Threads Pool: 3         |
+    Blockchain Sync|Running     |Sync every 30 seconds with master using: 127.0.0.1:32048                     |
+    Scheduler      |Running     |Schedulers IDs in use: [0 (system)] [1 (user)]                               |
+    Blobs Archiver |Not declared|                                                                             |
+    MQTT           |Not declared|                                                                             |
+    Message Broker |Not declared|No active connection                                                         |
+    SMTP           |Not declared|                                                                             |
+    Streamer       |Running     |Default streaming thresholds are 60 seconds and 10,240 bytes                 |
+    Query Pool     |Running     |Threads Pool: 3                                                              |
+    Kafka Consumer |Not declared|                                                                             |
+    gRPC           |Not declared|                                                                             |
 <<COMMENT
 ```
 
 * Test Network
 ```shell
-make test-network EDGELAKE_TYPE=query
+make test-network EDGELAKE_TYPE=operator
 
 <<COMMENT
-Test Network Against: 127.0.0.1:32349
+REST Connection Info for testing operator (Example: 127.0.0.1:32149):
+172.232.157.208:32149 
+Test Network Against: 172.232.157.208:32149
 
-Address             Node Type Node Name       Status 
--------------------|---------|---------------|------|
-172.235.53.13:32048|master   |edgelake-master|  +   |
-172.235.53.13:32348|query    |edgelake-query |  +   |
-root@openhorizon-demo:~/service-edgelake# make test-network EDGELAKE_TYPE=master
-Test Network Against: 127.0.0.1:32049
-
-Address             Node Type Node Name       Status 
--------------------|---------|---------------|------|
-172.235.53.13:32048|master   |edgelake-master|  +   |
-172.235.53.13:32348|query    |edgelake-query |  +   |
+Address               Node Type Node Name         Status 
+---------------------|---------|-----------------|------|
+172.232.157.208:32048|master   |edgelake-master  |  +   |
+172.232.157.208:32348|query    |edgelake-query   |  +   |
+172.232.157.208:32148|operator |edgelake-operator|  +   |
 <<COMMENT
 ```
 
