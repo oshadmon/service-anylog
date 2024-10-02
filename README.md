@@ -85,14 +85,14 @@ make publish EDGELAKE_TYPE=operator
 
 ### Validate Node
 
-* Test Node
+* Test Node -- validate node is accessible,  blockchain is upto date and which processes are running
 ```shell
-make test-node EDGELAKE_TYPE=operator 
+make test-node 
 
 <<COMMENT
-REST Connection Info for testing operator (Example: 127.0.0.1:32149):
+REST Connection Info for testing (Example: 127.0.0.1:32149):
 172.232.157.208:32149
-operator Node State against 
+Node State against 172.232.157.208:32149
 edgelake-operator@172.232.157.208:32148 running
 
 Test                                          Status                                                                            
@@ -121,12 +121,12 @@ REST test using http://172.232.157.208:32149 |edgelake-operator@172.232.157.208:
 <<COMMENT
 ```
 
-* Test Network
+* Test Network -- Node is able to communicate with (all) other nodes inn the network 
 ```shell
-make test-network EDGELAKE_TYPE=operator
+make test-network
 
 <<COMMENT
-REST Connection Info for testing operator (Example: 127.0.0.1:32149):
+REST Connection Info for testing (Example: 127.0.0.1:32149):
 172.232.157.208:32149 
 Test Network Against: 172.232.157.208:32149
 

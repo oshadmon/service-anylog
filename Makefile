@@ -4,7 +4,7 @@ SHELL := /bin/bash
 ifneq ($(filter check,$(MAKECMDGOALS)), )
         EDGELAKE_TYPE = $(EDGLAKE_TYPE)
 else
-        EDGELAKE_TYPE := $(filter-out $@,$(MAKECMDGOALS))
+        EDGELAKE_TYPE := generic
 endif
 
 # Docker configurations
@@ -70,7 +70,7 @@ check:
 	@echo "LEDGER_CONN            default: 127.0.0.1:32049                       actual: ${LEDGER_CONN}"
 	@echo ""
 test-conn:
-	@echo "REST Connection Info for testing $(EDGELAKE_TYPE) (Example: 127.0.0.1:32149):"
+	@echo "REST Connection Info for testing (Example: 127.0.0.1:32149):"
 	@read CONN; \
 	echo $$CONN > conn.tmp
 	
@@ -95,7 +95,7 @@ clean: generate-docker-compose
 	@$(MAKE) remove-docker-compose
 test-node: test-conn
 	@CONN=$$(cat conn.tmp); \
-	echo "$(NODE_TYPE) Node State against $(CONN)"; \
+	echo "Node State against $$CONN"; \
 	curl -X GET http://$$CONN -H "command: get status"    -H "User-Agent: AnyLog/1.23" -w "\n"; \
 	curl -X GET http://$$CONN -H "command: test node"     -H "User-Agent: AnyLog/1.23" -w "\n"; \
 	curl -X GET http://$$CONN -H "command: get processes" -H "User-Agent: AnyLog/1.23" -w "\n"; \
