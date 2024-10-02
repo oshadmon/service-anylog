@@ -140,7 +140,7 @@ process $EDGELAKE_PATH/deployment-scripts/grpc/kubearmor/grpc_client.al
 1. Attach to EdgeLake operator node 
 ```shell
 # ctrl-d to detach 
-cd servvice-edgelake 
+cd service-edgelake 
 make attach operator 
 ```
 
@@ -174,7 +174,7 @@ kubearmor-logs   |Active|kubearmor.kubearmor.svc.cluster.local:32767|kubearmor |
 1. Attach to EdgeLake operator node 
 ```shell
 # ctrl-d to detach 
-cd servvice-edgelake 
+cd service-edgelake 
 make attach operator 
 ```
 
