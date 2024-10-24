@@ -1,19 +1,30 @@
 # Install Open Horizon
 
-The following installs Open Horizon locally 
+The following installs Open Horizon locally and is based on [Installing Open Horizon Overview](https://open-horizon.github.io/docs/hub/online_installation/) 
 
 ### Requirements
-* **Operating System**: Ubuntu 18.04 LTS (or higheer) 
+* **Operating System**: Ubuntu 18.04 LTS (or higher) 
 * **RAM**: 4GB 
-* **CPU**: 4 Core
+* **CPU**: 2 Core
 * **Storage**: 50GB
 
 ## Install Open Horizon 
-1. Update & execute `~/.bashrc`
+0. Make sure to have root privliages 
+```shell
+su -i
 ```
-echo MONGO_IMAGE_TAG=4.0.6 >> ~/.bashrc
-HZN_LISTEN_IP=[MAACHINE_IP] >> ~/.bashrc
-source ~/.bashrc 
+
+1. Add the following params to ~/.bashrc file 
+```
+export MONGO_IMAGE_TAG=4.0.6
+#export POSTGRES_IMAGE_TAG=16.0
+export CSS_IMAGE_TAG=1.10.1-1577
+export HZN_LISTEN_IP=172.232.158.168 # <-- use your IP address, not this one 
+```
+
+Execute ~/.bashrc
+```shell
+source ~/.bashrc
 ```
 
 2. Start OpenHorizon via cURL - details can be found in [index](Install_Local_OpenHorizon_index.md)
@@ -25,16 +36,26 @@ done
 curl -sSL https://raw.githubusercontent.com/open-horizon/devops/master/mgmt-hub/deploy-mgmt-hub.sh -A -R | bash
 ```
 
-3. Update & execute `~/.bashrc`
+3. Based on output generated in step 2, [part 9](Install_Local_OpenHorizon_index.md#L64), update ~/.bashrc with ID and 
+credentials. 
 ```shell
-export HZN_ORG_ID=myorg >> ~/.bashrc
-export HZN_EXCHANGE_USER_AUTH=admin:[USER_AUTH_PASS] >> ~/.bashrc
+export HZN_ORG_ID=myorg
+export HZN_EXCHANGE_USER_AUTH=admin:[USER_AUTH_PASS]
+```
+
+Execute ~/.bashrc
+```shell
 source ~/.bashrc
 ```
 
 4. Before starting a (new) service via OpenHorizon, make sure to unregister the existing service(s)
 ```shell
 hzn unregister -f
+```
+
+To ensure that the user on the host can see Docker containers, run the following command:
+```shell
+sudo usermod -aG docker $USER
 ```
 
 ## Validate  
