@@ -36,7 +36,7 @@ done
 curl -sSL https://raw.githubusercontent.com/open-horizon/devops/master/mgmt-hub/deploy-mgmt-hub.sh -A -R | bash
 ```
 
-3. Based on output generated in step 2, [part 9](https://github.com/user/repo/blob/main/Install_Local_OpenHorizon_index.md#L64), update ~/.bashrc with ID and credentials. 
+3. Based on output generated in step 2, [part 9](../Documentation/Install_Local_OpenHorizon_index.md#L64), update ~/.bashrc with ID and credentials. 
 ```shell
 export HZN_ORG_ID=myorg
 export HZN_EXCHANGE_USER_AUTH=admin:[USER_AUTH_PASS]
